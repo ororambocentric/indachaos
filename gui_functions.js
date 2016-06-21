@@ -1,4 +1,8 @@
 var animationSpeed = 0;
+var clipTitle='', clipBody='';
+
+const {clipboard} = require('electron');
+
 
 function hideAllScreens() {
     $("[id^=screen]").hide(animationSpeed);
@@ -39,6 +43,13 @@ function showScreenEdit(id) {
     $("#screen-edit #title").focus();
 }
 
+function showScreenClips() {
+    searchClips();
+    hideAllScreens();
+    $("#screen-clips").show(animationSpeed);
+
+}
+
 function escapeHtml(text) {
     return text
         .replace(/&/g, "&amp;")
@@ -72,6 +83,92 @@ function renderFoundNote(note, pattern) {
     return render;
 }
 
+function searchNotes(pattern) {
+    var nm = new DBManager();
+    nm.setDB('db/pilepad.db');
+    nm.createDB();
+    var extra = " WHERE title LIKE '%" + pattern + "%' OR body LIKE '%" + pattern + "%' ORDER BY id DESC";
+    nm.getNotes(function (err, rows) {
+        var html = '';
+        var idList = [];
+        rows.forEach(function (note) {
+            idList.push(note.id);
+            html += renderFoundNote(note, pattern);
+        });
+        $("#search-results-area").html(html);
+        $("#search-results-area").attr('data-navigator-list', idList);
+        $("#search-results-area").attr('data-navigator-pos', 0);
+        $(".found-counter").text(idList.length);
+    }, extra);
+}
+
+function renderFoundClip(clip) {
+    var render = '';
+    var title = escapeHtml(clip.title);
+    var body = escapeHtml(clip.body);
+    render += '<div class="row clip">';
+    render += '<button class="btn btn-default btn-block" type="submit" title="Copy it">';
+    render += '<p class="clip-title">'+title+'</p>';
+    render += '<p class="clip-text">'+body+'</p>';
+    render += '</button>';
+    render += '</div>';
+    return render;
+}
+
+function searchClips() {
+    var nm = new DBManager();
+    nm.setDB('db/pilepad.db');
+    nm.createDB();
+    var extra = " ORDER BY id DESC";
+    nm.getClips(function (err, rows) {
+        var html = '';
+        rows.forEach(function (clip) {
+            html += renderFoundClip(clip);
+        });
+        $("#clips-area").html(html);
+    }, extra);
+}
+
+function addNote(title, body) {
+    var nm = new DBManager();
+    nm.setDB('db/pilepad.db');
+    nm.createDB();
+    nm.addNote(title, body);
+    nm.closeDB();
+}
+
+function addClip(title, body) {
+    var nm = new DBManager();
+    nm.setDB('db/pilepad.db');
+    nm.createDB();
+    nm.addClip(title, body);
+    nm.closeDB();
+}
+
+function updateNote(id, title, body) {
+    var nm = new DBManager();
+    nm.setDB('db/pilepad.db');
+    nm.createDB();
+    nm.updateNote(id, title, body);
+    nm.closeDB();
+}
+
+function deleteNote(id) {
+    var nm = new DBManager();
+    nm.setDB('db/pilepad.db');
+    nm.createDB();
+    nm.deleteNote(id);
+    nm.closeDB();
+}
+
+function deleteClip(id) {
+    var nm = new DBManager();
+    nm.setDB('db/pilepad.db');
+    nm.createDB();
+    nm.deleteClip(id);
+    nm.closeDB();
+}
+
 function navigatorSaveCurrent(id) {
     var idList = $("#search-results-area").attr('data-navigator-list').split(',');
     idList = idList.map(function(value) {
@@ -79,9 +176,6 @@ function navigatorSaveCurrent(id) {
     });
 
     var pos = idList.indexOf(parseInt(id));
-    console.log(idList);
-    console.log(id);
-    console.log(pos);
     $("#search-results-area").attr('data-navigator-pos', pos);
 }
 
@@ -120,49 +214,6 @@ function navigatorBackward() {
 
 }
 
-function searchNotes(pattern) {
-    var nm = new DBManager();
-    nm.setDB('db/pilepad.db');
-    nm.createDB();
-    var extra = " WHERE title LIKE '%" + pattern + "%' OR body LIKE '%" + pattern + "%' ORDER BY id DESC";
-    nm.getNotes(function (err, rows) {
-        var html = '';
-        var idList = [];
-        rows.forEach(function (note) {
-            idList.push(note.id);
-            html += renderFoundNote(note, pattern);
-        });
-        $("#search-results-area").html(html);
-        $("#search-results-area").attr('data-navigator-list', idList);
-        $("#search-results-area").attr('data-navigator-pos', 0);
-        $(".found-counter").text(idList.length);
-    }, extra);
-}
-
-function addNote(title, body) {
-    var nm = new DBManager();
-    nm.setDB('db/pilepad.db');
-    nm.createDB();
-    nm.addNote(title, body);
-    nm.closeDB();
-}
-
-function updateNote(id, title, body) {
-    var nm = new DBManager();
-    nm.setDB('db/pilepad.db');
-    nm.createDB();
-    nm.updateNote(id, title, body);
-    nm.closeDB();
-}
-
-function deleteNote(id) {
-    var nm = new DBManager();
-    nm.setDB('db/pilepad.db');
-    nm.createDB();
-    nm.deleteNote(id);
-    nm.closeDB();
-}
-
 function registerShortcuts() {
     var isCtrl = false;
     $(document).keyup(function (e) {
@@ -191,9 +242,24 @@ function registerShortcuts() {
             return false;
         }
 
+        //ctrl + Y
+        if(e.which == 89 && isCtrl == true) {
+            $("#button-clips").trigger('click');
+            return false;
+        }
+
         //ctrl + S
         if(e.which == 83 && isCtrl == true) {
             $("#screen-edit #button-ok").trigger('click');
+            return false;
+        }
+
+        //ctrl + C
+        if(e.which == 67 && isCtrl == true) {
+            if (clipBody != '' && window.getSelection().toString() != '') {
+                addClip(clipTitle, clipBody);
+                clipTitle = clipBody = '';
+            }
             return false;
         }
 

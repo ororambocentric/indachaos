@@ -20,6 +20,7 @@ function DBManager() {
     this.createDB = function () {
         self.db = new sqlite3.Database(self.dbPath);
         self.db.run("CREATE TABLE IF NOT EXISTS note ( id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT, ltitle TEXT, lbody TEXT, marker INTEGER DEFAULT (1))");
+        self.db.run("CREATE TABLE IF NOT EXISTS clip ( id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT)");
     }
 
     this.addNote = function (title, body, marker='1') {
@@ -29,17 +30,14 @@ function DBManager() {
             $ltitle: title.toLowerCase(),
             $lbody: body.toLowerCase(),
             $marker: marker
-        });
+        }, afterAddNote);
     };
 
-    this.addNote = function (title, body, marker='1') {
-        self.db.run("INSERT INTO note (title, body, ltitle, lbody, marker) VALUES ($title, $body, $ltitle, $lbody, $marker)", {
+    this.addClip = function (title, body) {
+        self.db.run("INSERT INTO clip (title, body) VALUES ($title, $body)", {
             $title: title,
-            $body: body,
-            $ltitle: title.toLowerCase(),
-            $lbody: body.toLowerCase(),
-            $marker: marker
-        }, afterAddNote);
+            $body: body
+        });
     };
 
     this.updateNote = function (id, title, body, marker='1') {
@@ -58,13 +56,19 @@ function DBManager() {
             callback(err, row)
         });
         
-    }
+    };
     
     this.getNotes = function (callback, extra='') {
         self.db.all("SELECT * FROM note " + extra, function (err, rows) {
             callback(err, rows)
         });
-    }
+    };
+
+    this.getClips = function (callback, extra='') {
+        self.db.all("SELECT * FROM clip " + extra, function (err, rows) {
+            callback(err, rows)
+        });
+    };
 
     this.deleteNote = function (id) {
         self.db.run("DELETE FROM note WHERE id = $id", {
@@ -72,9 +76,15 @@ function DBManager() {
         }, afterDeleteNote);
     };
 
+    this.deleteClip = function (id) {
+        self.db.run("DELETE FROM clip WHERE id = $id", {
+            $id: id
+        }, afterDeleteClip);
+    };
+
     this.closeDB = function () {
         self.db.close();
-    }
+    };
 
 
 }
@@ -89,4 +99,7 @@ function afterUpdateNote() {
 }
 function afterDeleteNote() {
     searchNotes($("#screen-search #input-search").val());
+}
+function afterDeleteClip() {
+    showScreenClips();
 }

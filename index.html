@@ -17,7 +17,7 @@
   <div id="screen-settings">
     <div class="toolbar navbar-fixed-top">
       <button id="button-settings-back" type="button" class="btn btn-default pull-right">
-        <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
       </button>
     </div>
     <div style="clear: both"></div>
@@ -33,7 +33,7 @@
           <button id="button-add-note" type="button" class="btn btn-default" title="Add note (CTRL+N)">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
           </button>
-          <button id="button-copies" type="button" class="btn btn-default" title="Clips history (CTRL+H)">
+          <button id="button-clips" type="button" class="btn btn-default" title="Clips history (CTRL+H)">
             <span class="glyphicon glyphicon-copy" aria-hidden="true"></span>
           </button>
           <button id="button-settings" type="button" class="btn btn-default" title="Settings">
@@ -61,7 +61,7 @@
   <div id="screen-edit">
     <div class="toolbar navbar-fixed-top">
       <button id="button-edit-back" type="button" class="btn btn-default pull-right" title="Close (ESC)">
-        <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
       </button>
     </div>
     <div style="clear: both"></div>
@@ -86,14 +86,18 @@
       </div>
     </form>
   </div>
-  <div id="screen-search">
+  <div id="screen-clips">
     <div class="toolbar navbar-fixed-top">
-      <button id="button-edit-back" type="button" class="btn btn-default pull-right" title="Close (ESC)">
-        <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+      <button id="button-clips-back" type="button" class="btn btn-default pull-right" title="Close (ESC)">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
       </button>
     </div>
     <div style="clear: both"></div>
-    <h1 id="edit-screen-title">Clips</h1>
+    <h1>Clips</h1>
+    <hr>
+    <div id="clips-area" class="col-xs-12">
+
+    </div>
   </div>
 </div>
 </body>
