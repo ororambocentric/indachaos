@@ -1,0 +1,73 @@
+.container {
+    padding-top: 10px;
+}
+
+#screen-* {
+    display: none;
+}
+
+#screen-search .toolbar {
+    padding-bottom: 40px;
+    background: white;
+
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+100,ffffff+100&1+84,0+100 */
+    background: -moz-linear-gradient(top,  rgba(255,255,255,1) 84%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 84%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(255,255,255,1) 84%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+
+
+}
+
+#screen-search .toolbar .input-group {
+    margin: 15px 30px 0px 30px;
+}
+
+h1 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#search-results-area {
+    margin-top: 80px;
+}
+
+#search-results-area .note{
+    margin-bottom: 30px;
+}
+
+#search-results-area .note:hover{
+
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+100,ededed+100&0+50,1+100 */
+    background: -moz-linear-gradient(left,  rgba(237,237,237,0) 50%, rgba(237,237,237,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,  rgba(237,237,237,0) 50%,rgba(237,237,237,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,  rgba(237,237,237,0) 50%,rgba(237,237,237,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ededed', endColorstr='#ededed',GradientType=1 ); /* IE6-9 */
+
+    border-radius: 4px;
+}
+
+#search-results-area .note .body{
+    white-space: pre-line;
+    word-break: break-all;
+    font-family: Monospaced, monospace;
+    font-size: 14px;
+    color: #000000;
+}
+
+.hl{
+    background: cyan;
+}
+
+.status-bar {
+    background: white;
+    padding: 4px;
+    color: gray;
+    font-size: 12px;
+    text-align: right;
+}
+
+.found-counter {
+
+}
+

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>indachaos</title>
+  <script>window.$ = window.jQuery = require('jquery/dist/jquery.min.js');</script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="node_modules/jquery.scrollto/jquery.scrollTo.min.js"></script>
+  <script src="db_manager.js"></script>
+  <script src="gui_functions.js"></script>
+  <script src="gui_events.js"></script>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="custom.css">
+</head>
+<body>
+<div class="container">
+  <div id="screen-settings">
+    <div class="toolbar navbar-fixed-top">
+      <button id="button-settings-back" type="button" class="btn btn-default pull-right">
+        <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+      </button>
+    </div>
+    <div style="clear: both"></div>
+    <h1>Settings</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, sint tenetur. Alias at exercitationem facilis nulla officia temporibus voluptate. Commodi facilis hic minima, obcaecati officia saepe sapiente tenetur veniam? Dolores.</p>
+
+  </div>
+  <div id="screen-search">
+    <div class="toolbar navbar-fixed-top">
+
+      <div class="input-group">
+        <span class="input-group-btn">
+          <button id="button-add-note" type="button" class="btn btn-default" title="Add note (CTRL+N)">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          </button>
+          <button id="button-copies" type="button" class="btn btn-default" title="Clips history (CTRL+H)">
+            <span class="glyphicon glyphicon-copy" aria-hidden="true"></span>
+          </button>
+          <button id="button-settings" type="button" class="btn btn-default" title="Settings">
+            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+          </button>
+        </span>
+        <input id="input-search" type="text" class="form-control" placeholder="Search for...">
+        <span class="input-group-btn">
+          <button id="button-navigator-backward" class="btn btn-default" type="button" title="Previous note (CTRL+Up)">
+            <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+          </button>
+          <button id="button-navigator-forward" class="btn btn-default" type="button" title="Next note (CTRL+Down)">
+            <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+          </button>
+        </span>
+        <div class="status-bar navbar-fixed-bottom">
+          Found: <span class="found-counter">0</span>
+        </div>
+
+      </div>
+
+    </div>
+    <div id="search-results-area"></div>
+  </div>
+  <div id="screen-edit">
+    <div class="toolbar navbar-fixed-top">
+      <button id="button-edit-back" type="button" class="btn btn-default pull-right" title="Close (ESC)">
+        <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+      </button>
+    </div>
+    <div style="clear: both"></div>
+    <h1 id="edit-screen-title">Add note</h1>
+    <form class="form-horizontal" role="form">
+      <div class="form-group">
+        <label for="title" class="col-sm-2 control-label">Title</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="title">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="body" class="col-sm-2 control-label">Body</label>
+        <div class="col-sm-10">
+          <textarea id="body" class="form-control" rows="15"></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button id="button-ok" type="button" class="btn btn-default">OK</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div id="screen-search">
+    <div class="toolbar navbar-fixed-top">
+      <button id="button-edit-back" type="button" class="btn btn-default pull-right" title="Close (ESC)">
+        <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+      </button>
+    </div>
+    <div style="clear: both"></div>
+    <h1 id="edit-screen-title">Clips</h1>
+  </div>
+</div>
+</body>
+</html>

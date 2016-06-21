@@ -1,0 +1,34 @@
+{
+  "name": "indachaos",
+  "version": "1.0.0",
+  "description": "Notes manager",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ororambocentric/indachaos.git"
+  },
+  "keywords": [
+    "indachaos",
+    "Notes",
+    "manager"
+  ],
+  "author": "ororambocentric",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ororambocentric/indachaos/issues"
+  },
+  "homepage": "https://github.com/ororambocentric/indachaos/blob/master/README.md",
+  "devDependencies": {
+    "electron-prebuilt": "^1.2.0",
+    "electron-rebuild": "~1.1.5"
+  },
+  "dependencies": {
+    "sqlite3": "~3.1.4",
+    "bootstrap": "~3.3.6",
+    "jquery": "~2.2.4",
+    "jquery-ui": "~1.10.5"
+  }
+}
