@@ -90,6 +90,12 @@ $(document).ready(function () {
         navigatorBackward();
     });
 
+    $(document).on('click', "#clips-area .clip", function () {
+        var clip = $(this).find(".clip-text").text();
+        clipboard.writeText(clip);
+        clipboard.writeText(clip, 'selection');
+        $("#button-clips-back").trigger('click');
+    });
 
 
 });

@@ -33,11 +33,25 @@ function DBManager() {
         }, afterAddNote);
     };
 
-    this.addClip = function (title, body) {
-        self.db.run("INSERT INTO clip (title, body) VALUES ($title, $body)", {
-            $title: title,
-            $body: body
+    this.getClipsCount = function (callback) {
+        self.db.get("SELECT count(*) as c, min(id) as m FROM clip", function (err, row) {
+            callback(err, row)
         });
+    };
+    
+    this.addClip = function (title, body) {
+        this.getClipsCount(function (err, row) {
+            if (row.c >= 10) {
+                self.db.run("DELETE FROM clip WHERE id = $id", {
+                    $id: row.m
+                });
+            }
+            self.db.run("INSERT INTO clip (title, body) VALUES ($title, $body)", {
+                $title: title,
+                $body: body
+            });
+        });
+
     };
 
     this.updateNote = function (id, title, body, marker='1') {

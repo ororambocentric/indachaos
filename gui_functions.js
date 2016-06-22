@@ -256,6 +256,8 @@ function registerShortcuts() {
 
         //ctrl + C
         if(e.which == 67 && isCtrl == true) {
+            clipboard.writeText(window.getSelection().toString());
+            clipboard.writeText(window.getSelection().toString(), 'selection');
             if (clipBody != '' && window.getSelection().toString() != '') {
                 addClip(clipTitle, clipBody);
                 clipTitle = clipBody = '';
