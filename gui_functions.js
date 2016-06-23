@@ -1,5 +1,7 @@
 var animationSpeed = 0;
 var clipTitle='', clipBody='';
+var currentResultIndex = -1;
+var resultsCount = 0;
 
 const {clipboard} = require('electron');
 
@@ -115,7 +117,9 @@ function searchNotes(pattern) {
         $("#search-results-area").html(html);
         $("#search-results-area").attr('data-navigator-list', idList);
         $("#search-results-area").attr('data-navigator-pos', 0);
-        $(".found-counter").text(idList.length);
+        resultsCount = idList.length;
+        currentResultIndex = -1;
+        $(".found-counter").text(resultsCount);
         for (var i in patternArray) {
             $("#search-results-area").highlight(patternArray[i]);
             $("#search-results-area").highlight(alterKeymap(patternArray[i], 'en', 'ru'));
@@ -298,10 +302,47 @@ function registerShortcuts() {
             $("#button-navigator-forward").trigger('click');
             return false;
         }
+
+        //ctrl + Right
+        if(e.which == 39 && isCtrl == true) {
+            $("#button-gotoresult-forward").trigger('click');
+            return false;
+        }
+
+        //ctrl + Left
+        if(e.which == 37 && isCtrl == true) {
+            $("#button-gotoresult-backward").trigger('click');
+            return false;
+        }
         
     });
-}
+};
 
+function gotoNextResult() {
+    $("#button-gotoresult-forward").focus();
+    if (resultsCount === 0) return;
+    if (currentResultIndex < resultsCount) {
+        currentResultIndex++;
+    } else {
+        currentResultIndex = 0;
+    }
+    $(".highlight").removeClass('highlight-current');
+    $(".highlight:eq("+currentResultIndex+")").addClass('highlight-current');
+    $(document).scrollTop($(".highlight:eq("+currentResultIndex+")").offset().top -300);
+};
+
+function gotoPrevResult() {
+    $("#button-gotoresult-backward").focus();
+    if (resultsCount === 0) return;
+    if (currentResultIndex > 0) {
+        currentResultIndex--;
+    } else {
+        currentResultIndex = resultsCount;
+    }
+    $(".highlight").removeClass('highlight-current');
+    $(".highlight:eq("+currentResultIndex+")").addClass('highlight-current');
+    $(document).scrollTop($(".highlight:eq("+currentResultIndex+")").offset().top -300);
+}
 
 var KEYMAPS = {
     en: [

@@ -25,6 +25,14 @@ $(document).ready(function () {
         showScreenClips();
     });
 
+    $(document).on('click', "#button-gotoresult-forward", function () {
+        gotoNextResult();
+    });
+
+    $(document).on('click', "#button-gotoresult-backward", function () {
+        gotoPrevResult();
+    });
+
     $(document).on('mouseup', '.note', function (e) {
         if (window.getSelection().toString() != '') {
             clipTitle = $(this).find(".title").text();

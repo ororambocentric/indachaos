@@ -75,3 +75,7 @@ h1 {
 .highlight {
     background: cyan;
 }
+
+.highlight-current {
+    background: lightcoral;
+}
