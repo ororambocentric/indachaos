@@ -59,11 +59,12 @@ function escapeHtml(text) {
         .replace(/'/g, "&#039;");
 }
 
-function renderFoundNote(note, pattern) {
-    pattern = pattern.trim();
+function renderFoundNote(note, patternArray) {
+
     var render = '';
-    var title = escapeHtml(note.title).replace(pattern, '<span class="hl">'+escapeHtml(pattern)+'</span>');
-    var body = escapeHtml(note.body).replace(pattern, '<span class="hl">'+escapeHtml(pattern)+'</span>');
+    var title = escapeHtml(note.title);
+    var body = escapeHtml(note.body);
+
     render += '<a name="note_'+note.id+'"></a>';
     render += '<div data-id="'+note.id+'" class="note">';
     render += '<div class="btn-group pull-right" role="group">';
@@ -87,18 +88,39 @@ function searchNotes(pattern) {
     var nm = new DBManager();
     nm.setDB('db/pilepad.db');
     nm.createDB();
-    var extra = " WHERE title LIKE '%" + pattern + "%' OR body LIKE '%" + pattern + "%' ORDER BY id DESC";
+
+    var patternArray = pattern.trim().split(' ');
+    var extra = " WHERE ";
+    for (var i in patternArray) {
+        var keymaped = alterKeymap(patternArray[i], 'en', 'ru');
+        extra += " (title LIKE '%"+patternArray[i]+"%' OR ltitle LIKE '%"+patternArray[i]+"%' OR body LIKE '%"+patternArray[i]+"%' or lbody LIKE '%"+patternArray[i]+"%'";
+        extra += " OR title LIKE '%"+keymaped+"%' OR ltitle LIKE '%"+keymaped+"%' OR body LIKE '%"+keymaped+"%' or lbody LIKE '%"+keymaped+"%')";
+
+        if (i < patternArray.length-1) {
+            extra += ' AND ';
+        } else {
+            extra += " ORDER BY id DESC";
+        }
+
+        console.log(extra);
+    }
+
     nm.getNotes(function (err, rows) {
         var html = '';
         var idList = [];
         rows.forEach(function (note) {
             idList.push(note.id);
-            html += renderFoundNote(note, pattern);
+            html += renderFoundNote(note, patternArray);
         });
         $("#search-results-area").html(html);
         $("#search-results-area").attr('data-navigator-list', idList);
         $("#search-results-area").attr('data-navigator-pos', 0);
         $(".found-counter").text(idList.length);
+        for (var i in patternArray) {
+            $("#search-results-area").highlight(patternArray[i]);
+            $("#search-results-area").highlight(alterKeymap(patternArray[i], 'en', 'ru'));
+            $("#search-results-area").highlight(alterKeymap(patternArray[i], 'ru', 'en'));
+        }
     }, extra);
 }
 
@@ -278,6 +300,33 @@ function registerShortcuts() {
         }
         
     });
+}
+
+
+var KEYMAPS = {
+    en: [
+        "q","w","e","r","t","y","u","i","o","p","\\[","\\]",
+        "a","s","d","f","g","h","j","k","l",";","'",
+        "z","x","c","v","b","n","m",",","\\."
+    ],
+    ru: [
+        "й","ц","у","к","е","н","г","ш","щ","з","х","ъ",
+        "ф","ы","в","а","п","р","о","л","д","ж","э",
+        "я","ч","с","м","и","т","ь","б","ю"
+    ]
+};
+
+function alterKeymap(str, from, to) {
+
+    for (var i = 0; i < KEYMAPS[from].length; i++)
+    {
+        var reg = new RegExp(KEYMAPS[from][i], 'mig');
+        str = str.replace(reg, function (a) {
+            return a == a.toLowerCase() ? KEYMAPS[to][i] : KEYMAPS[to][i].toUpperCase();
+        });
+    }
+
+    return str;
 }
 
 // QString Core::strLatToRus(QString str){

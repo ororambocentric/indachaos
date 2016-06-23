@@ -56,10 +56,6 @@ h1 {
     color: #000000;
 }
 
-.hl{
-    background: cyan;
-}
-
 .status-bar {
     background: white;
     padding: 4px;
@@ -74,4 +70,8 @@ h1 {
 }
 .clip-text {
     font-weight: bold;
+}
+
+.highlight {
+    background: cyan;
 }
