@@ -41,7 +41,7 @@ const template = [
                 accelerator: 'F12',
                 click() { showScreenAbout(); }
             },
-            
+
         ]
 
     },

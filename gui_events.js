@@ -5,11 +5,6 @@ $(document).ready(function () {
     showScreenSearch();
     searchNotes($("#screen-search #input-search").val());
 
-
-    $(document).on('click', "#button-settings", function () {
-        showScreenSettings();
-    });
-
     $(document).on('click', "#button-settings-back", function () {
         showScreenSearch();
     });

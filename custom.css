@@ -29,7 +29,7 @@
 
 
 h1 {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
 }
 
@@ -56,7 +56,7 @@ h1 {
     white-space: pre-line;
     word-break: break-all;
     font-family: Monospaced, monospace;
-    font-size: 14px;
+    font-size: 15px;
     color: #000000;
 }
 
@@ -85,4 +85,16 @@ h1 {
 
 .highlight-current {
     background: lightcoral;
+}
+
+#screen-edit #body {
+    font-family: Monospaced, monospace;
+    font-size: 15px;
+    color: #000000;
+}
+
+#screen-edit #title {
+    font-size: 17px;
+    font-weight: bold;
+    color: #333;
 }
