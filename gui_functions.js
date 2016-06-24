@@ -235,6 +235,15 @@ function deleteClip(id) {
 //     }
 // }
 
+function copyText() {
+    clipboard.writeText(window.getSelection().toString());
+    clipboard.writeText(window.getSelection().toString(), 'selection');
+    if (clipBody != '' && window.getSelection().toString() != '') {
+        addClip(clipTitle, clipBody);
+        clipTitle = clipBody = '';
+    }
+}
+
 function registerShortcuts() {
     var isCtrl = false;
     var isShift = false;
@@ -259,22 +268,22 @@ function registerShortcuts() {
         }
 
         //ctrl + N
-        if(e.which == 78 && isCtrl == true) {
-            $("#button-add-note").trigger('click');
-            return false;
-        }
+        // if(e.which == 78 && isCtrl == true) {
+        //     $("#button-add-note").trigger('click');
+        //     return false;
+        // }
 
         //ctrl + F
-        if(e.which == 70 && isCtrl == true) {
-            $("#screen-search #input-search").focus();
-            return false;
-        }
+        // if(e.which == 70 && isCtrl == true) {
+        //     $("#screen-search #input-search").focus();
+        //     return false;
+        // }
 
-        //ctrl + Y
-        if(e.which == 89 && isCtrl == true) {
-            $("#button-clips").trigger('click');
-            return false;
-        }
+        // //ctrl + Y
+        // if(e.which == 89 && isCtrl == true) {
+        //     $("#button-clips").trigger('click');
+        //     return false;
+        // }
 
         //ctrl + S
         if(e.which == 83 && isCtrl == true) {
@@ -284,12 +293,7 @@ function registerShortcuts() {
 
         //ctrl + C
         if(e.which == 67 && isCtrl == true) {
-            clipboard.writeText(window.getSelection().toString());
-            clipboard.writeText(window.getSelection().toString(), 'selection');
-            if (clipBody != '' && window.getSelection().toString() != '') {
-                addClip(clipTitle, clipBody);
-                clipTitle = clipBody = '';
-            }
+            copyText();
             return false;
         }
 
@@ -306,15 +310,15 @@ function registerShortcuts() {
         // }
 
         //F3 and Shift+F3
-        if(e.which == 114) {
-            if (e.shiftKey) {
-                $("#button-gotoresult-backward").trigger('click');
-            } else {
-                $("#button-gotoresult-forward").trigger('click');
-            }
-
-            return false;
-        }
+        // if(e.which == 114) {
+        //     if (e.shiftKey) {
+        //         $("#button-gotoresult-backward").trigger('click');
+        //     } else {
+        //         $("#button-gotoresult-forward").trigger('click');
+        //     }
+        //
+        //     return false;
+        // }
 
 
         

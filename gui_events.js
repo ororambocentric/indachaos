@@ -5,6 +5,7 @@ $(document).ready(function () {
     showScreenSearch();
     searchNotes($("#screen-search #input-search").val());
 
+
     $(document).on('click', "#button-settings", function () {
         showScreenSettings();
     });
@@ -57,9 +58,9 @@ $(document).ready(function () {
         showScreenSearch();
     });
 
-    $(document).on('mouseenter', ".note", function () {
-        //navigatorSaveCurrent($(this).attr('data-id'));
-    });
+    // $(document).on('mouseenter', ".note", function () {
+    //     //navigatorSaveCurrent($(this).attr('data-id'));
+    // });
 
     $("#screen-search #input-search").keyup(function (e) {
         searchNotes($(this).val());
