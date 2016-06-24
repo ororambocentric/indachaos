@@ -23,6 +23,9 @@ function createWindow () {
 
   appIcon = new Tray('images/app-icon.png');
   const contextMenu = Menu.buildFromTemplate([
+    {label: 'Show', type: 'normal', click: function () {
+      mainWindow.show();
+    }},
     {label: 'Exit', type: 'normal', click: function () {
       app.exit(0);
     }}
