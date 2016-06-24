@@ -15,6 +15,11 @@ function showScreenSettings() {
     $("#screen-settings").show(animationSpeed);
 }
 
+function showScreenAbout() {
+    hideAllScreens();
+    $("#screen-about").show(animationSpeed);
+}
+
 function showScreenSearch() {
     hideAllScreens();
     $("#screen-search").show(animationSpeed);

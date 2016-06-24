@@ -57,6 +57,9 @@ $(document).ready(function () {
     $(document).on('click', "#button-edit-back", function () {
         showScreenSearch();
     });
+    $(document).on('click', "#button-about-back", function () {
+        showScreenSearch();
+    });
 
     // $(document).on('mouseenter', ".note", function () {
     //     //navigatorSaveCurrent($(this).attr('data-id'));

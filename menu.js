@@ -33,14 +33,15 @@ const template = [
             },
             {
                 label: 'Settings',
-                accelerator: 'CmdOrCtrl+Shift+S',
+                accelerator: 'F6',
                 click() { showScreenSettings(); }
             },
             {
-                label: 'Help',
+                label: 'About',
                 accelerator: 'F12',
-                click() {  }
+                click() { showScreenAbout(); }
             },
+            
         ]
 
     },
