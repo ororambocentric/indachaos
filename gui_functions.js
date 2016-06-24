@@ -237,13 +237,20 @@ function deleteClip(id) {
 
 function registerShortcuts() {
     var isCtrl = false;
+    var isShift = false;
     $(document).keyup(function (e) {
         if(e.which == 17) {
             isCtrl = false;
         }
+        if(e.shiftKey) {
+            isShift = false;
+        }
     }).keydown(function (e) {
         if(e.which == 17) {
             isCtrl=true;
+        }
+        if(e.shiftKey) {
+            isShift=true;
         }
 
         // ESC
@@ -298,23 +305,20 @@ function registerShortcuts() {
         //     return false;
         // }
 
-        //Right
-        if(e.which == 39 && isCtrl == true) {
-            $("#button-gotoresult-forward").trigger('click');
+        //F3 and Shift+F3
+        if(e.which == 114) {
+            if (e.shiftKey) {
+                $("#button-gotoresult-backward").trigger('click');
+            } else {
+                $("#button-gotoresult-forward").trigger('click');
+            }
+
             return false;
         }
 
-        //Left
-        if(e.which == 37 && isCtrl == true) {
-            $("#button-gotoresult-backward").trigger('click');
-            return false;
-        }
+
         
     });
-};
-
-function get() {
-
 }
 
 function gotoNextResult() {
@@ -334,7 +338,7 @@ function gotoNextResult() {
     // $("#search-results-area").attr('data-navigator-pos', pos);
 
     if (searchMatchesCount === 0) return;
-    if (currentResultIndex < searchMatchesCount) {
+    if (currentResultIndex < searchMatchesCount-1) {
         currentResultIndex++;
     } else {
         currentResultIndex = 0;
@@ -342,10 +346,7 @@ function gotoNextResult() {
     $(".highlight").removeClass('highlight-current');
     $(".highlight:eq("+currentResultIndex+")").addClass('highlight-current');
     $(document).scrollTop($(".highlight:eq("+currentResultIndex+")").offset().top -300);
-
-
-
-};
+}
 
 function gotoPrevResult() {
     $("#button-gotoresult-backward").focus();
@@ -367,13 +368,11 @@ function gotoPrevResult() {
     if (currentResultIndex > 0) {
         currentResultIndex--;
     } else {
-        currentResultIndex = searchMatchesCount;
+        currentResultIndex = searchMatchesCount - 1;
     }
     $(".highlight").removeClass('highlight-current');
     $(".highlight:eq("+currentResultIndex+")").addClass('highlight-current');
     $(document).scrollTop($(".highlight:eq("+currentResultIndex+")").offset().top -300);
-
-
 }
 
 var KEYMAPS = {
