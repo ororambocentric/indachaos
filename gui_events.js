@@ -52,7 +52,6 @@ $(document).ready(function () {
     $(document).on('selectionchange', function (e) {
         if (window.getSelection().toString() == '') {
             clipTitle = clipBody = '';
-            console.log(clipTitle, clipBody);
             return;
         } else {
             var noteID = window.getSelection().getRangeAt(0).commonAncestorContainer
@@ -60,7 +59,6 @@ $(document).ready(function () {
             if (noteID === null) return;
             clipTitle = $(".note[data-id="+noteID+"]").find(".title").text();
             clipBody = window.getSelection().toString();
-            console.log(clipTitle, clipBody);
         }
     });
 
