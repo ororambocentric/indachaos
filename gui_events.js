@@ -26,10 +26,12 @@ $(document).ready(function () {
     });
 
     $(document).on('click', "#button-gotoresult-forward", function () {
+        if (!searchMatchesCount) return;
         gotoNextResult();
     });
 
     $(document).on('click', "#button-gotoresult-backward", function () {
+        if (!searchMatchesCount) return;
         gotoPrevResult();
     });
 
@@ -56,7 +58,7 @@ $(document).ready(function () {
     });
 
     $(document).on('mouseenter', ".note", function () {
-        navigatorSaveCurrent($(this).attr('data-id'));
+        //navigatorSaveCurrent($(this).attr('data-id'));
     });
 
     $("#screen-search #input-search").keyup(function (e) {
@@ -90,13 +92,13 @@ $(document).ready(function () {
         deleteNote(id);
     });
 
-    $(document).on('click', "#button-navigator-forward", function () {
-        navigatorForward();
-    });
-
-    $(document).on('click', "#button-navigator-backward", function () {
-        navigatorBackward();
-    });
+    // $(document).on('click', "#button-navigator-forward", function () {
+    //     navigatorForward();
+    // });
+    //
+    // $(document).on('click', "#button-navigator-backward", function () {
+    //     navigatorBackward();
+    // });
 
     $(document).on('click', "#clips-area .clip", function () {
         var clip = $(this).find(".clip-text").text();
