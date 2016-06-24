@@ -31,18 +31,37 @@ $(document).ready(function () {
         gotoPrevResult();
     });
 
-    $(document).on('mouseup', '.note', function (e) {
-        if (window.getSelection().toString() != '') {
-            clipTitle = $(this).find(".title").text();
+    $(document).on('click', '.note', function (e) {
+
+    });
+
+    // $(document).on('selectionchange', '.note', function (e) {
+    //     if (window.getSelection().toString() != '') {
+    //         clipTitle = $(this).find(".title").text();
+    //         clipBody = window.getSelection().toString();
+    //         console.log(clipTitle, clipBody);
+    //     } else {
+    //         clipTitle = clipBody = '';
+    //     }
+    //     // clipboard.writeText(window.getSelection().toString());
+    //     // clipboard.writeText(window.getSelection().toString(), 'selection');
+    //     // console.log(clipboard.readText('selection'));
+    //     // console.log(window.getSelection());
+    // });
+
+    $(document).on('selectionchange', function (e) {
+        if (window.getSelection().toString() == '') {
+            clipTitle = clipBody = '';
+            console.log(clipTitle, clipBody);
+            return;
+        } else {
+            var noteID = window.getSelection().getRangeAt(0).commonAncestorContainer
+                .parentNode.parentNode.getAttribute('data-id');
+            if (noteID === null) return;
+            clipTitle = $(".note[data-id="+noteID+"]").find(".title").text();
             clipBody = window.getSelection().toString();
             console.log(clipTitle, clipBody);
-        } else {
-            clipTitle = clipBody = '';
         }
-        // clipboard.writeText(window.getSelection().toString());
-        // clipboard.writeText(window.getSelection().toString(), 'selection');
-        // console.log(clipboard.readText('selection'));
-        // console.log(window.getSelection());
     });
 
     $(document).on('click', ".button-edit-note", function () {
