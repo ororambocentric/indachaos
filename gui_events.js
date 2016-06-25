@@ -1,12 +1,26 @@
 $(document).ready(function () {
 
-    $('[data-toggle="tooltip"]').tooltip();
-    registerShortcuts();
-    showScreenSearch();
-    searchNotes($("#screen-search #input-search").val());
+    afterSettingsLoading(function () {
+        $(".container").fadeIn(500);
+        registerShortcuts();
+        showScreenSearch();
+        searchNotes($("#screen-search #input-search").val());
+    });
+
+
 
     $(document).on('click', "#button-settings-back", function () {
+        activeScreen = 'search';
         showScreenSearch();
+
+
+    });
+
+    $(document).on('click', "#button-settings-save", function () {
+        updateSettings();
+        activeScreen = 'search';
+        showScreenSearch();
+        searchNotes($("#screen-search #input-search").val());
     });
 
     $(document).on('click', "#button-clips-back", function () {
@@ -99,13 +113,16 @@ $(document).ready(function () {
         } else {
             updateNote($("#screen-edit").attr('data-id'), title, body);
         }
-
+        $("#screen-edit #title").val('');
+        $("#screen-edit #body").val('');
 
     });
 
     $(document).on('click', ".button-delete-note", function () {
-        var id = $(this).attr('data-id');
-        deleteNote(id);
+        if (confirm('Are you sure you want to delete this note?')) {
+            var id = $(this).attr('data-id');
+            deleteNote(id);
+        }
     });
 
     // $(document).on('click', "#button-navigator-forward", function () {

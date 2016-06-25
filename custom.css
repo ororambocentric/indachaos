@@ -2,8 +2,11 @@
     /*-webkit-appearance: searchfield-cancel-button;*/
 /*}*/
 
+
+
 .container {
     padding-top: 10px;
+    display: none;
 }
 
 #screen-* {
@@ -29,6 +32,12 @@
 
 
 h1 {
+    font-size: 20px;
+    font-weight: bold;
+    color: grey;
+}
+
+h2 {
     font-size: 18px;
     font-weight: bold;
 }
@@ -97,4 +106,8 @@ h1 {
     font-size: 17px;
     font-weight: bold;
     color: #333;
+}
+
+#screen-settings .section-title {
+    text-align: right;
 }

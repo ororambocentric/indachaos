@@ -4,11 +4,8 @@ var sqlite3 = require('sqlite3').verbose();
 
 function DBManager() {
 
-    var dbPath = 'db/default.db';
-
-    var sqlite3 = require('sqlite3').verbose();
+    var dbPath = '';
     var db = '';
-
     this.setDB = function (dbPath) {
         self.dbPath = dbPath;
     };
@@ -100,20 +97,21 @@ function DBManager() {
         self.db.close();
     };
 
+    function afterAddNote() {
+        searchNotes($("#screen-search #input-search").val());
+        showScreenSearch();
+    }
+    function afterUpdateNote() {
+        searchNotes($("#screen-search #input-search").val());
+        showScreenSearch();
+    }
+    function afterDeleteNote() {
+        searchNotes($("#screen-search #input-search").val());
+    }
+    function afterDeleteClip() {
+        showScreenClips();
+    }
 
 }
 
-function afterAddNote() {
-    searchNotes($("#screen-search #input-search").val());
-    showScreenSearch();
-}
-function afterUpdateNote() {
-    searchNotes($("#screen-search #input-search").val());
-    showScreenSearch();
-}
-function afterDeleteNote() {
-    searchNotes($("#screen-search #input-search").val());
-}
-function afterDeleteClip() {
-    showScreenClips();
-}
+

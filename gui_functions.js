@@ -2,6 +2,7 @@ var animationSpeed = 0;
 var clipTitle='', clipBody='';
 var currentResultIndex = -1;
 var searchMatchesCount = 0;
+var activeScreen = 'search';
 
 const {clipboard} = require('electron');
 
@@ -11,7 +12,10 @@ function hideAllScreens() {
 }
 
 function showScreenSettings() {
+    activeScreen = 'settings';
     hideAllScreens();
+    $("#screen-settings #path-to-db").val(settings.path_to_db);
+    $("#screen-settings #local-keymap").val(settings.local_keymap);
     $("#screen-settings").show(animationSpeed);
 }
 
@@ -21,12 +25,14 @@ function showScreenAbout() {
 }
 
 function showScreenSearch() {
+    activeScreen = 'search';
     hideAllScreens();
     $("#screen-search").show(animationSpeed);
     $("#screen-search #input-search").focus();
 }
 
 function showScreenEdit(id) {
+    activeScreen = 'edit';
     hideAllScreens();
     if (id === undefined) {
         $("#screen-edit").removeAttr('data-id');
@@ -36,7 +42,7 @@ function showScreenEdit(id) {
     } else {
         $("#edit-screen-title").text('Edit note');
         var nm = new DBManager();
-        nm.setDB('db/pilepad.db');
+        nm.setDB(settings.path_to_db);
         nm.createDB();
         nm.getNote(id, function (err, row) {
             $("#screen-edit").attr('data-id', row.id);
@@ -81,7 +87,7 @@ function renderFoundNote(note, patternArray) {
     render += '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>';
     render += '</button>';
     render += '</div>';
-    render += '<h1 class="title">'+title+'</h1>';
+    render += '<h2 class="title">'+title+'</h2>';
     render += '<div class="body">';
     render += body;
     render += '</div>';
@@ -92,13 +98,13 @@ function renderFoundNote(note, patternArray) {
 
 function searchNotes(pattern) {
     var nm = new DBManager();
-    nm.setDB('db/pilepad.db');
+    nm.setDB(settings.path_to_db);
     nm.createDB();
 
     var patternArray = pattern.trim().split(' ');
     var extra = " WHERE ";
     for (var i in patternArray) {
-        var keymaped = alterKeymap(patternArray[i], 'en', 'ru');
+        var keymaped = alterKeymap(patternArray[i], 'en', settings.local_keymap);
         extra += " (title LIKE '%"+patternArray[i]+"%' OR ltitle LIKE '%"+patternArray[i]+"%' OR body LIKE '%"+patternArray[i]+"%' or lbody LIKE '%"+patternArray[i]+"%'";
         extra += " OR title LIKE '%"+keymaped+"%' OR ltitle LIKE '%"+keymaped+"%' OR body LIKE '%"+keymaped+"%' or lbody LIKE '%"+keymaped+"%')";
 
@@ -124,8 +130,8 @@ function searchNotes(pattern) {
         $(".found-counter").text(idList.length);
         for (var i in patternArray) {
             $("#search-results-area").highlight(patternArray[i]);
-            $("#search-results-area").highlight(alterKeymap(patternArray[i], 'en', 'ru'));
-            $("#search-results-area").highlight(alterKeymap(patternArray[i], 'ru', 'en'));
+            $("#search-results-area").highlight(alterKeymap(patternArray[i], 'en', settings.local_keymap));
+            $("#search-results-area").highlight(alterKeymap(patternArray[i], settings.local_keymap, 'en'));
             searchMatchesCount = $(".highlight").length;
         }
     }, extra);
@@ -146,7 +152,7 @@ function renderFoundClip(clip) {
 
 function searchClips() {
     var nm = new DBManager();
-    nm.setDB('db/pilepad.db');
+    nm.setDB(settings.path_to_db);
     nm.createDB();
     var extra = " ORDER BY id DESC";
     nm.getClips(function (err, rows) {
@@ -160,7 +166,7 @@ function searchClips() {
 
 function addNote(title, body) {
     var nm = new DBManager();
-    nm.setDB('db/pilepad.db');
+    nm.setDB(settings.path_to_db);
     nm.createDB();
     nm.addNote(title, body);
     nm.closeDB();
@@ -168,7 +174,7 @@ function addNote(title, body) {
 
 function addClip(title, body) {
     var nm = new DBManager();
-    nm.setDB('db/pilepad.db');
+    nm.setDB(settings.path_to_db);
     nm.createDB();
     nm.addClip(title, body);
     nm.closeDB();
@@ -176,7 +182,7 @@ function addClip(title, body) {
 
 function updateNote(id, title, body) {
     var nm = new DBManager();
-    nm.setDB('db/pilepad.db');
+    nm.setDB(settings.path_to_db);
     nm.createDB();
     nm.updateNote(id, title, body);
     nm.closeDB();
@@ -184,7 +190,7 @@ function updateNote(id, title, body) {
 
 function deleteNote(id) {
     var nm = new DBManager();
-    nm.setDB('db/pilepad.db');
+    nm.setDB(settings.path_to_db);
     nm.createDB();
     nm.deleteNote(id);
     nm.closeDB();
@@ -192,7 +198,7 @@ function deleteNote(id) {
 
 function deleteClip(id) {
     var nm = new DBManager();
-    nm.setDB('db/pilepad.db');
+    nm.setDB(settings.path_to_db);
     nm.createDB();
     nm.deleteClip(id);
     nm.closeDB();
@@ -292,7 +298,12 @@ function registerShortcuts() {
 
         //ctrl + S
         if(e.which == 83 && isCtrl == true) {
-            $("#screen-edit #button-ok").trigger('click');
+            if (activeScreen == 'settings') {
+                $("#button-settings-save").trigger('click');
+            } else {
+                $("#screen-edit #button-ok").trigger('click');
+            }
+
             return false;
         }
 
@@ -447,3 +458,32 @@ function alterKeymap(str, from, to) {
 //     return str;
 //
 // }
+
+function afterSettingsLoading(callback) {
+    var sm = new SettingsManager();
+    sm.setDB('settings.db');
+    sm.createDB();
+    sm.getParams(function (err, rows) {
+        rows.forEach(function (param) {
+            settings[param.key] = param.value;
+            // if (param.key == 'path_to_db') {
+            //     settings.path_to_db = param.value;
+            // } else if (param.key == 'local_keymap') {
+            //     settings.local_keymap = param.value;
+            // }
+        });
+        callback();
+    });
+    sm.closeDB();
+}
+
+function updateSettings() {
+    settings.path_to_db = $("#screen-settings #path-to-db").val();
+    settings.local_keymap = $("#screen-settings #local-keymap").val();
+    var sm = new SettingsManager();
+    sm.setDB('settings.db');
+    sm.createDB();
+    sm.updateSettings('path_to_db', settings.path_to_db);
+    sm.updateSettings('local_keymap', settings.local_keymap);
+    sm.closeDB();
+}
