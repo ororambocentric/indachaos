@@ -16,17 +16,13 @@ function SettingsManager() {
 
         self.settingsDb.run("INSERT INTO params (key, value) VALUES ($key, $value)", {
             $key: 'path_to_db',
-            $value: 'db/default.db'
+            $value: 'indachaos_notes.db'
         });
         self.settingsDb.run("INSERT INTO params (key, value) VALUES ($key, $value)", {
             $key: 'local_keymap',
             $value: 'ru'
         });
 
-        // self.db.run(
-        //     "INSERT OR IGNORE INTO settings (key, value) VALUES ('path_to_db', 'db/default.db');"+
-        //     "INSERT OR IGNORE INTO settings (key, value) VALUES ('local_keymap', 'ru')"
-        // );
     }
 
     this.createDB = function () {
@@ -47,7 +43,7 @@ function SettingsManager() {
         self.settingsDb.run("CREATE TABLE IF NOT EXISTS params (key TEXT, value TEXT, UNIQUE(key))", function () {
             self.settingsDb.run("INSERT INTO params (key, value) VALUES ($key, $value)", {
                 $key: 'path_to_db',
-                $value: 'db/default.db'
+                $value: 'indachaos_notes.db'
             }, function () {
                 self.settingsDb.run("INSERT INTO params (key, value) VALUES ($key, $value)", {
                     $key: 'local_keymap',

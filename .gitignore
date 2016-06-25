@@ -3,3 +3,5 @@ node_modules
 /keybinds
 /db/*
 settings.db
+indachaos_notes.db
+/releases/
