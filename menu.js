@@ -16,9 +16,16 @@ const template = [
                 click() { $("#button-clips").trigger('click'); }
             },
             {
-                label: 'Search',
+                label: 'Go to search',
                 accelerator: 'CmdOrCtrl+F',
-                click() { $("#screen-search #input-search").focus(); }
+                click() { 
+                    if (activeScreen !== 'search') {
+                        showScreenSearch();
+                    } else {
+                        $("#screen-search #input-search").focus();
+                    }
+                    
+                }
 
             },
             {

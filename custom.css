@@ -80,12 +80,11 @@ h2 {
 .clip button {
     text-align: left;
     margin-bottom: 20px;
-
+    white-space: pre-line;
+    word-break: break-all;
 }
 .clip-text {
     font-weight: bold;
-    display: block;
-    line-break: strict;
 }
 
 .highlight {
