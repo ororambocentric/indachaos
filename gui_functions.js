@@ -20,6 +20,7 @@ function showScreenSettings() {
 }
 
 function showScreenAbout() {
+    activeScreen = 'about';
     hideAllScreens();
     $("#screen-about").fadeIn(animationSpeed);
 }
@@ -59,6 +60,7 @@ function showScreenEdit(id) {
 }
 
 function showScreenClips() {
+    activeScreen = 'clips';
     searchClips();
     hideAllScreens();
     $("#screen-clips").fadeIn(animationSpeed);
