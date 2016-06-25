@@ -9,7 +9,7 @@ let appIcon = null;
 
 function createWindow () {
 
-  mainWindow = new BrowserWindow({width: 800, height: 600, icon: 'images/app-icon.png'});
+  mainWindow = new BrowserWindow({width: 800, height: 600, icon: 'images/app-icon.svg_64x64.png'});
   mainWindow.loadURL(`file://${__dirname}/index.html`);
   //mainWindow.webContents.openDevTools();
   mainWindow.on('close', function (e) {

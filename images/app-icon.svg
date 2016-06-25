@@ -9,8 +9,8 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="744.09448819"
-   height="1052.3622047"
+   width="744.09003"
+   height="744.09003"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
@@ -46,51 +46,52 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(0,-308.27218)">
     <rect
        style="fill:none;stroke:#000000;stroke-width:24.02566338;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="rect3806"
        width="487.13522"
        height="487.13522"
        x="132.13837"
-       y="130.22314" />
+       y="435.93744" />
     <rect
        style="fill:none;stroke:#000000;stroke-width:24.08203888;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="rect3808"
        width="651.54999"
        height="1.2701668"
-       x="202.68835"
-       y="-2.4930277"
+       x="418.86099"
+       y="213.67961"
        transform="matrix(0.70710678,0.70710678,-0.70710678,0.70710678,0,0)" />
     <rect
        style="fill:none;stroke:#000000;stroke-width:24.08203888;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="rect3808-5"
        width="651.54999"
        height="1.2701668"
-       x="-327.12927"
-       y="-528.59491"
+       x="-110.95663"
+       y="-744.76758"
        transform="matrix(-0.70710678,0.70710678,-0.70710678,-0.70710678,0,0)" />
     <rect
        style="fill:none;stroke:#000000;stroke-width:24.02566338;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="rect3806-3"
        width="487.13516"
        height="487.13516"
-       x="284.39224"
-       y="-242.90747"
+       x="500.56488"
+       y="-26.734825"
        transform="matrix(0.70710678,0.70710678,-0.70710678,0.70710678,0,0)" />
     <rect
        style="fill:none;stroke:#000000;stroke-width:24.08203888;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="rect3808-56"
        width="651.54999"
        height="1.2701668"
-       x="46.504948"
+       x="352.21924"
        y="-373.99588"
        transform="matrix(0,1,-1,0,0,0)" />
     <rect
@@ -99,7 +100,7 @@
        width="651.54999"
        height="1.2701668"
        x="-698.6322"
-       y="-372.41144"
+       y="-678.12573"
        transform="scale(-1,-1)" />
   </g>
 </svg>
