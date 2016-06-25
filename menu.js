@@ -133,14 +133,14 @@ const template = [
                         focusedWindow.setFullScreen(!focusedWindow.isFullScreen());
                 }
             },
-            {
-                label: 'Toggle Developer Tools',
-                accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
-                click(item, focusedWindow) {
-                    if (focusedWindow)
-                        focusedWindow.webContents.toggleDevTools();
-                }
-            },
+            // {
+            //     label: 'Toggle Developer Tools',
+            //     accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
+            //     click(item, focusedWindow) {
+            //         if (focusedWindow)
+            //             focusedWindow.webContents.toggleDevTools();
+            //     }
+            // },
         ]
     },
     {
