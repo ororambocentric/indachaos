@@ -29,6 +29,8 @@ function showScreenSearch() {
     hideAllScreens();
     $("#screen-search").fadeIn(animationSpeed);
     $("#screen-search #input-search").focus();
+    $("#screen-edit #title").val('');
+    $("#screen-edit #body").val('');
 }
 
 function showScreenEdit(id) {

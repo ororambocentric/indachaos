@@ -113,9 +113,6 @@ $(document).ready(function () {
         } else {
             updateNote($("#screen-edit").attr('data-id'), title, body);
         }
-        $("#screen-edit #title").val('');
-        $("#screen-edit #body").val('');
-
     });
 
     $(document).on('click', ".button-delete-note", function () {
