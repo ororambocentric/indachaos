@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     afterSettingsLoading(function () {
-        $(".container").fadeIn(500);
+        $(".container").fadeIn(animationSpeed);
         registerShortcuts();
         showScreenSearch();
         searchNotes($("#screen-search #input-search").val());

@@ -1,4 +1,4 @@
-var animationSpeed = 0;
+var animationSpeed = 250;
 var clipTitle='', clipBody='';
 var currentResultIndex = -1;
 var searchMatchesCount = 0;
@@ -8,7 +8,7 @@ const {clipboard} = require('electron');
 
 
 function hideAllScreens() {
-    $("[id^=screen]").hide(animationSpeed);
+    $("[id^=screen]").hide();
 }
 
 function showScreenSettings() {
@@ -16,18 +16,18 @@ function showScreenSettings() {
     hideAllScreens();
     $("#screen-settings #path-to-db").val(settings.path_to_db);
     $("#screen-settings #local-keymap").val(settings.local_keymap);
-    $("#screen-settings").show(animationSpeed);
+    $("#screen-settings").fadeIn(animationSpeed);
 }
 
 function showScreenAbout() {
     hideAllScreens();
-    $("#screen-about").show(animationSpeed);
+    $("#screen-about").fadeIn(animationSpeed);
 }
 
 function showScreenSearch() {
     activeScreen = 'search';
     hideAllScreens();
-    $("#screen-search").show(animationSpeed);
+    $("#screen-search").fadeIn(animationSpeed);
     $("#screen-search #input-search").focus();
 }
 
@@ -52,14 +52,14 @@ function showScreenEdit(id) {
         nm.closeDB();
 
     }
-    $("#screen-edit").show(animationSpeed);
+    $("#screen-edit").fadeIn(animationSpeed);
     $("#screen-edit #title").focus();
 }
 
 function showScreenClips() {
     searchClips();
     hideAllScreens();
-    $("#screen-clips").show(animationSpeed);
+    $("#screen-clips").fadeIn(animationSpeed);
 
 }
 
