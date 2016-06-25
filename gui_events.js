@@ -106,6 +106,7 @@ $(document).ready(function () {
         var title = $("#screen-edit #title").val();
         var body = $("#screen-edit #body").val();
         if (title == '' || body == '') {
+            alert('All fields in a form are required.');
             return;
         }
         if ($("#screen-edit").attr('data-id') === undefined) {

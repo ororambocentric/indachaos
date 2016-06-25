@@ -98,6 +98,21 @@ const template = [
                 accelerator: 'CmdOrCtrl+A',
                 role: 'selectall'
             },
+            {
+                label: 'Paste line',
+                accelerator: 'CmdOrCtrl+-',
+                click() { pasteLine(); }
+            },
+            {
+                label: 'Paste double line',
+                accelerator: 'CmdOrCtrl+=',
+                click() { pasteDoubleLine(); }
+            },
+            {
+                label: 'Generate and paste password',
+                accelerator: 'CmdOrCtrl+P',
+                click() { pastePassword(); }
+            },
         ]
     },
     {
