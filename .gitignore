@@ -5,3 +5,4 @@ node_modules
 settings.db
 indachaos_notes.db
 /releases/
+/run.sh
