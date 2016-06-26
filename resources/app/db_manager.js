@@ -98,14 +98,17 @@ function DBManager() {
     };
 
     function afterAddNote() {
+        renderNotesLinks();
         searchNotes($("#screen-search #input-search").val());
         showScreenSearch();
     }
     function afterUpdateNote() {
+        renderNotesLinks();
         searchNotes($("#screen-search #input-search").val());
         showScreenSearch();
     }
     function afterDeleteNote() {
+        renderNotesLinks();
         searchNotes($("#screen-search #input-search").val());
     }
     function afterDeleteClip() {

@@ -9,6 +9,11 @@ const {clipboard} = require('electron');
 
 function hideAllScreens() {
     $("[id^=screen]").hide();
+    if ($("#sidebar").css('display') != 'none') {
+        $("#sidebar").hide();
+        $(".container").removeClass('with-sidebar');
+    }
+
 }
 
 function showScreenSettings() {
@@ -29,6 +34,10 @@ function showScreenSearch() {
     activeScreen = 'search';
     hideAllScreens();
     $("#screen-search").fadeIn(animationSpeed);
+    if ($("#button-sidebar-toggle").hasClass('active')) {
+        $("#sidebar").fadeIn(animationSpeed);
+        $(".container").addClass('with-sidebar');
+    }
     $("#screen-search #input-search").focus();
     $("#screen-edit #title").val('');
     $("#screen-edit #body").val('');
@@ -100,24 +109,29 @@ function renderFoundNote(note, patternArray) {
     return render;
 }
 
-function searchNotes(pattern) {
+function searchNotes(pattern, id) {
     var nm = new DBManager();
     nm.setDB(settings.path_to_db);
     nm.createDB();
 
     var patternArray = pattern.trim().split(' ');
     var extra = " WHERE ";
-    for (var i in patternArray) {
-        var keymaped = alterKeymap(patternArray[i], 'en', settings.local_keymap);
-        extra += " (title LIKE '%"+patternArray[i]+"%' OR ltitle LIKE '%"+patternArray[i]+"%' OR body LIKE '%"+patternArray[i]+"%' or lbody LIKE '%"+patternArray[i]+"%'";
-        extra += " OR title LIKE '%"+keymaped+"%' OR ltitle LIKE '%"+keymaped+"%' OR body LIKE '%"+keymaped+"%' or lbody LIKE '%"+keymaped+"%')";
 
-        if (i < patternArray.length-1) {
-            extra += ' AND ';
-        } else {
-            extra += " ORDER BY id DESC";
+    if (id !== undefined) {
+        extra += " id = '"+id+"'";
+    } else {
+        for (var i in patternArray) {
+            var keymaped = alterKeymap(patternArray[i], 'en', settings.local_keymap);
+            extra += " (title LIKE '%"+patternArray[i]+"%' OR ltitle LIKE '%"+patternArray[i]+"%' OR body LIKE '%"+patternArray[i]+"%' or lbody LIKE '%"+patternArray[i]+"%'";
+            extra += " OR title LIKE '%"+keymaped+"%' OR ltitle LIKE '%"+keymaped+"%' OR body LIKE '%"+keymaped+"%' or lbody LIKE '%"+keymaped+"%')";
+
+            if (i < patternArray.length-1) {
+                extra += ' AND ';
+            } else {
+                extra += " ORDER BY id DESC";
+            }
+
         }
-
     }
 
     nm.getNotes(function (err, rows) {
@@ -130,14 +144,48 @@ function searchNotes(pattern) {
         $("#search-results-area").html(html);
         $("#search-results-area").attr('data-navigator-list', idList);
         $("#search-results-area").attr('data-navigator-pos', 0);
-        currentResultIndex = -1;
+
         $(".found-counter").text(idList.length);
-        for (var i in patternArray) {
-            $("#search-results-area").highlight(patternArray[i]);
-            $("#search-results-area").highlight(alterKeymap(patternArray[i], 'en', settings.local_keymap));
-            $("#search-results-area").highlight(alterKeymap(patternArray[i], settings.local_keymap, 'en'));
-            searchMatchesCount = $(".highlight").length;
+
+        if (id === undefined) {
+
+            currentResultIndex = -1;
+            $('body').animate({ scrollTop: $('a[name^=note_]:first').offset().top -100 }, 0, function () {
+
+            });
+
+            for (var i in patternArray) {
+                $("#search-results-area").highlight(patternArray[i]);
+                $("#search-results-area").highlight(alterKeymap(patternArray[i], 'en', settings.local_keymap));
+                $("#search-results-area").highlight(alterKeymap(patternArray[i], settings.local_keymap, 'en'));
+                searchMatchesCount = $(".highlight").length;
+            }
         }
+
+    }, extra);
+}
+
+function renderNoteLink(note) {
+
+    var render = '';
+    var title = escapeHtml(note.title);
+    render += '<button data-id="'+note.id+'" class="note-link btn btn-default btn-block" type="submit" title="Show">'+title+'</button>';
+    return render;
+}
+
+function renderNotesLinks() {
+    var nm = new DBManager();
+    nm.setDB(settings.path_to_db);
+    nm.createDB();
+
+    var extra = " ORDER BY id DESC";
+
+    nm.getNotes(function (err, rows) {
+        var html = '';
+        rows.forEach(function (note) {
+            html += renderNoteLink(note);
+        });
+        $("#notes-links-area").html(html);
     }, extra);
 }
 
@@ -559,3 +607,19 @@ function pastePassword() {
         }
     }
 }
+
+function toggleSidebar() {
+    if ($("#sidebar").css('display') == 'none') {
+        $("#button-sidebar-toggle").addClass('active');
+        $("#sidebar").fadeIn(animationSpeed);
+        $(".container").addClass('with-sidebar');
+    } else {
+        $("#button-sidebar-toggle").removeClass('active');
+        $("#sidebar").fadeOut(animationSpeed / 2, function () {
+            $(".container").removeClass('with-sidebar');
+        });
+
+    }
+}
+
+

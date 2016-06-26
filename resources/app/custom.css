@@ -3,7 +3,9 @@
 /*}*/
 
 
-
+body {
+    overflow-y: scroll;
+}
 .container {
     padding-top: 10px;
     display: none;
@@ -109,4 +111,45 @@ h2 {
 
 #screen-settings .section-title {
     text-align: right;
+}
+
+#sidebar {
+    margin-top: 90px;
+    width: 240px;
+    overflow-y: scroll;
+    background: white;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    z-index: 3;
+}
+#sidebar #notes-links-area {
+    padding-bottom: 120px;
+}
+#sidebar .note-link {
+    margin-bottom: -6px;
+    font-size: 12px;
+    text-align: left;
+    padding-left: 10px;
+    white-space: pre-line;
+    word-break: break-all;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.container.with-sidebar{
+    padding-left: 250px;
+}
+
+#button-add-note {
+    margin-right: 10px !important;
+}
+#button-sidebar-toggle {
+    margin-right: 10px !important;
+}
+
+.col-md-12 {
+    padding-left: 30px;
+    padding-right: 30px;
 }
