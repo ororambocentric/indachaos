@@ -35,6 +35,11 @@ const template = [
             },
             {
                 label: 'Go to next occurrence',
+                accelerator: 'CmdOrCtrl+L',
+                click() { $("#button-sidebar-toggle").trigger('click'); }
+            },
+            {
+                label: 'Show / hide sidebar',
                 accelerator: 'F3',
                 click() { $("#button-gotoresult-forward").trigger('click'); }
             },

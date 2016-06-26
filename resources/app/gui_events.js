@@ -4,6 +4,8 @@ $(document).ready(function () {
         $(".container").fadeIn(animationSpeed);
         registerShortcuts();
         showScreenSearch();
+        renderNotesLinks();
+        toggleSidebar();
         searchNotes($("#screen-search #input-search").val());
     });
 
@@ -45,8 +47,14 @@ $(document).ready(function () {
         gotoPrevResult();
     });
 
-    $(document).on('click', '.note', function (e) {
-
+    $(document).on('click', '#notes-links-area .note-link', function (e) {
+        $("#notes-links-area .note-link").removeClass('active');
+        $(this).addClass('active');
+        var noteId = $(this).attr('data-id');
+        // $('body').animate({ scrollTop: $('a[name=note_'+noteId+']').offset().top -100 }, 0, function () {
+        //
+        // });
+        searchNotes('', parseInt($(this).attr('data-id')));
     });
 
     // $(document).on('selectionchange', '.note', function (e) {
@@ -92,6 +100,7 @@ $(document).ready(function () {
     // });
 
     $("#screen-search #input-search").keyup(function (e) {
+        $("#notes-links-area .note-link").removeClass('active');
         searchNotes($(this).val());
     });
 
@@ -136,6 +145,11 @@ $(document).ready(function () {
         clipboard.writeText(clip);
         clipboard.writeText(clip, 'selection');
         $("#button-clips-back").trigger('click');
+    });
+
+
+    $(document).on('click', "#button-sidebar-toggle", function () {
+        toggleSidebar();
     });
 
 
