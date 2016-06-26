@@ -2,7 +2,7 @@ node_modules
 .idea
 /keybinds
 /db/*
-settings.db
+indachaos_settings.db
 indachaos_notes.db
 /releases/
 /run.sh

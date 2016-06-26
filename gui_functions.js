@@ -465,7 +465,7 @@ function alterKeymap(str, from, to) {
 
 function afterSettingsLoading(callback) {
     var sm = new SettingsManager();
-    sm.setDB('settings.db');
+    sm.setDB('indachaos_settings.db');
     sm.createDB();
     sm.getParams(function (err, rows) {
         rows.forEach(function (param) {
@@ -485,7 +485,7 @@ function updateSettings() {
     settings.path_to_db = $("#screen-settings #path-to-db").val();
     settings.local_keymap = $("#screen-settings #local-keymap").val();
     var sm = new SettingsManager();
-    sm.setDB('settings.db');
+    sm.setDB('indachaos_settings.db');
     sm.createDB();
     sm.updateSettings('path_to_db', settings.path_to_db);
     sm.updateSettings('local_keymap', settings.local_keymap);

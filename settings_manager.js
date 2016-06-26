@@ -5,7 +5,7 @@ var sqlite3 = require('sqlite3').verbose();
 
 function SettingsManager() {
 
-    var settingsPath = 'settings.db';
+    var settingsPath = 'indachaos_settings.db';
     var settingsDb = '';
 
     this.setDB = function (settingsPath) {
