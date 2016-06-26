@@ -9,7 +9,7 @@ let appIcon = null;
 
 function createWindow () {
 
-  mainWindow = new BrowserWindow({width: 800, height: 600, icon: 'images/app-icon.png'});
+  mainWindow = new BrowserWindow({width: 800, height: 600, icon: 'app-icon.png'});
   mainWindow.loadURL(`file://${__dirname}/index.html`);
   //mainWindow.webContents.openDevTools();
   mainWindow.on('close', function (e) {
@@ -21,7 +21,7 @@ function createWindow () {
     mainWindow = null;
   });
 
-  appIcon = new Tray('images/app-icon.png');
+  appIcon = new Tray('app-icon.png');
   const contextMenu = Menu.buildFromTemplate([
     {label: 'Show', type: 'normal', click: function () {
       mainWindow.show();
