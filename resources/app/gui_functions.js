@@ -652,4 +652,10 @@ function getHTMLOfSelection () {
     }
 }
 
-
+function clearClips() {
+    var nm = new DBManager();
+    nm.setDB(settings.path_to_db);
+    nm.createDB();
+    nm.deleteClips();
+    nm.closeDB();
+}

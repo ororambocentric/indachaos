@@ -93,6 +93,10 @@ function DBManager() {
         }, afterDeleteClip);
     };
 
+    this.deleteClips = function () {
+        self.db.run("DELETE FROM clip", afterDeleteClips);
+    };
+
     this.closeDB = function () {
         self.db.close();
     };
@@ -112,6 +116,10 @@ function DBManager() {
         searchNotes($("#screen-search #input-search").val());
     }
     function afterDeleteClip() {
+        showScreenClips();
+    }
+
+    function afterDeleteClips() {
         showScreenClips();
     }
 

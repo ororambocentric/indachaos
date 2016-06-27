@@ -93,6 +93,13 @@ $(document).ready(function () {
         showScreenEdit($(this).attr('data-id'));
     });
 
+    $(document).on('click', "#button-clear-clips", function () {
+        if (confirm('Are you sure you want to delete all clips?')) {
+            clearClips();
+        }
+
+    });
+
     $(document).on('click', "#button-edit-back", function () {
         showScreenSearch();
     });
