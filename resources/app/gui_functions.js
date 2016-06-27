@@ -359,8 +359,8 @@ function registerShortcuts() {
             return false;
         }
 
-        //ctrl + C
-        if(e.which == 67 && isCtrl == true) {
+        //shift + ctrl + C
+        if(e.which == 67 && isCtrl == true && e.shiftKey) {
             copyText();
             return false;
         }
