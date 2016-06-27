@@ -72,7 +72,6 @@ $(document).ready(function () {
     // });
 
     $(document).on('selectionchange', function (e) {
-        console.log(stripHtml(getHTMLOfSelection()));
         if (stripHtml(getHTMLOfSelection()) == '') {
             clipTitle = clipBody = '';
             return;
