@@ -81,7 +81,8 @@ const template = [
             {
                 label: 'Copy',
                 accelerator: 'CmdOrCtrl+C',
-                role: 'copy'
+                //role: 'copy',
+                click() { copyText(false); }
             },
             {
                 label: 'Copy with saving to clips',

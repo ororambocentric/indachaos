@@ -298,10 +298,10 @@ function deleteClip(id) {
 //     }
 // }
 
-function copyText() {
-    clipboard.writeText(window.getSelection().toString());
-    clipboard.writeText(window.getSelection().toString(), 'selection');
-    if (clipBody != '' && window.getSelection().toString() != '') {
+function copyText(viaClips = true) {
+    clipboard.writeText(window.getSelection().getRangeAt(0).toString());
+    clipboard.writeText(window.getSelection().getRangeAt(0).toString(), 'selection');
+    if (viaClips && clipBody != '' && window.getSelection().toString() != '') {
         addClip(clipTitle, clipBody);
         clipTitle = clipBody = '';
     }
@@ -359,9 +359,14 @@ function registerShortcuts() {
             return false;
         }
 
-        //shift + ctrl + C
-        if(e.which == 67 && isCtrl == true && e.shiftKey) {
-            copyText();
+        //shift + ctrl + C / ctrl + C
+        if(e.which == 67 && isCtrl == true) {
+            if (e.shiftKey) {
+                copyText();
+            } else {
+                copyText(false);
+            }
+
             return false;
         }
 
