@@ -139,7 +139,7 @@ h2 {
 }
 
 .container.with-sidebar{
-    padding-left: 250px;
+    padding-left: 270px;
 }
 
 #button-add-note {
@@ -149,7 +149,7 @@ h2 {
     margin-right: 10px !important;
 }
 
-.col-md-12 {
+.col-sm-12 {
     padding-left: 30px;
     padding-right: 30px;
 }
