@@ -139,10 +139,13 @@ function searchNotes(pattern, id) {
     nm.getNotes(function (err, rows) {
         var html = '';
         var idList = [];
+
         rows.forEach(function (note) {
             idList.push(note.id);
             html += renderFoundNote(note, patternArray);
         });
+
+
         $("#search-results-area").html(html);
         $("#search-results-area").attr('data-navigator-list', idList);
         $("#search-results-area").attr('data-navigator-pos', 0);
@@ -151,10 +154,13 @@ function searchNotes(pattern, id) {
 
         if (id === undefined) {
 
-            currentResultIndex = -1;
-            $('body').animate({ scrollTop: $('a[name^=note_]:first').offset().top -100 }, 0, function () {
+            if (rows.length) {
+                currentResultIndex = -1;
+                $('body').animate({ scrollTop: $('a[name^=note_]:first').offset().top -100 }, 0, function () {
 
-            });
+                });
+            }
+
 
             for (var i in patternArray) {
                 $("#search-results-area").highlight(patternArray[i]);
