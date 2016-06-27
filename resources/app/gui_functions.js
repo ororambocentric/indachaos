@@ -121,9 +121,11 @@ function searchNotes(pattern, id) {
         extra += " id = '"+id+"'";
     } else {
         for (var i in patternArray) {
-            var keymaped = alterKeymap(patternArray[i], 'en', settings.local_keymap);
+            var keymaped1 = alterKeymap(patternArray[i], 'en', settings.local_keymap);
+            var keymaped2 = alterKeymap(patternArray[i], settings.local_keymap, 'en');
             extra += " (title LIKE '%"+patternArray[i]+"%' OR ltitle LIKE '%"+patternArray[i]+"%' OR body LIKE '%"+patternArray[i]+"%' or lbody LIKE '%"+patternArray[i]+"%'";
-            extra += " OR title LIKE '%"+keymaped+"%' OR ltitle LIKE '%"+keymaped+"%' OR body LIKE '%"+keymaped+"%' or lbody LIKE '%"+keymaped+"%')";
+            extra += " OR title LIKE '%"+keymaped1+"%' OR ltitle LIKE '%"+keymaped1+"%' OR body LIKE '%"+keymaped1+"%' or lbody LIKE '%"+keymaped1+"%'";
+            extra += " OR title LIKE '%"+keymaped2+"%' OR ltitle LIKE '%"+keymaped2+"%' OR body LIKE '%"+keymaped2+"%' or lbody LIKE '%"+keymaped2+"%')";
 
             if (i < patternArray.length-1) {
                 extra += ' AND ';
@@ -479,44 +481,6 @@ function alterKeymap(str, from, to) {
 
     return str;
 }
-
-// QString Core::strLatToRus(QString str){
-//
-//     QString str_search = "`1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./";
-//     QString str_replace = "ё1234567890-=йцукенгшщзхъ\\фывапролджэячсмитьбю.";
-//
-//     str = str.toLower();
-//
-//     for(int i=0; i<str.length(); i++){
-//         for(int j=0; j<str_search.length(); j++){
-//             if(str.at(i)==str_search.at(j)){
-//                 str[i]=str_replace.at(j);
-//             }
-//         }
-//     }
-//
-//     return str;
-//
-// }
-//
-// QString Core::strRusToLat(QString str){
-//
-//     QString str_search = "ё1234567890-=йцукенгшщзхъ\\фывапролджэячсмитьбю.";
-//     QString str_replace = "`1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./";
-//
-//     str = str.toLower();
-//
-//     for(int i=0; i<str.length(); i++){
-//         for(int j=0; j<str_search.length(); j++){
-//             if(str.at(i)==str_search.at(j)){
-//                 str[i]=str_replace.at(j);
-//             }
-//         }
-//     }
-//
-//     return str;
-//
-// }
 
 function afterSettingsLoading(callback) {
     var sm = new SettingsManager();
