@@ -72,15 +72,20 @@ $(document).ready(function () {
     // });
 
     $(document).on('selectionchange', function (e) {
-        if (window.getSelection().toString() == '') {
+        console.log(stripHtml(getHTMLOfSelection()));
+        if (stripHtml(getHTMLOfSelection()) == '') {
             clipTitle = clipBody = '';
             return;
         } else {
             var noteID = window.getSelection().getRangeAt(0).commonAncestorContainer
-                .parentNode.parentNode.getAttribute('data-id');
-            if (noteID === null) return;
+                .parentNode.parentNode.getAttribute('data-id') ||
+                window.getSelection().getRangeAt(0).commonAncestorContainer.parentNode.getAttribute('data-id') ||
+                window.getSelection().getRangeAt(0).commonAncestorContainer.parentNode.parentNode.parentNode.getAttribute('data-id');
+            if (noteID === null) {
+                return;
+            }
             clipTitle = $(".note[data-id="+noteID+"]").find(".title").text();
-            clipBody = window.getSelection().toString();
+            clipBody = stripHtml(getHTMLOfSelection());
         }
     });
 
