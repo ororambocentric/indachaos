@@ -58,7 +58,7 @@ const template = [
 
     },
     {
-        label: 'Edit',
+        label: 'Edit text',
         submenu: [
             {
                 label: 'Undo',
