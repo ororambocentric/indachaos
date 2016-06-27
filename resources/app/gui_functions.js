@@ -299,9 +299,11 @@ function deleteClip(id) {
 // }
 
 function copyText(viaClips = true) {
-    clipboard.writeText(window.getSelection().getRangeAt(0).toString());
-    clipboard.writeText(window.getSelection().getRangeAt(0).toString(), 'selection');
-    if (viaClips && clipBody != '' && window.getSelection().toString() != '') {
+    var selection = window.getSelection().getRangeAt(0).toString();
+    if (selection == '') selection = window.getSelection().toString();
+    clipboard.writeText(selection);
+    clipboard.writeText(selection, 'selection');
+    if (viaClips && clipBody != '' && selection != '') {
         addClip(clipTitle, clipBody);
         clipTitle = clipBody = '';
     }
