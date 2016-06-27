@@ -356,10 +356,12 @@ function registerShortcuts() {
         if(e.which == 83 && isCtrl == true) {
             if (activeScreen == 'settings') {
                 $("#button-settings-save").trigger('click');
-            } else {
-                $("#screen-edit #button-ok").trigger('click');
+                return;
             }
-
+            if (activeScreen == 'edit') {
+                $("#screen-edit #button-ok").trigger('click');
+                return;
+            }
             return false;
         }
 
