@@ -37,6 +37,24 @@ function createWindow () {
   });
 }
 
+const shouldQuit = app.makeSingleInstance((commandLine, workingDirectory) => {
+      // Someone tried to run a second instance, we should focus our window.
+      if (mainWindow) {
+        if (!mainWindow.isVisible()) {
+          mainWindow.show();
+        }
+        if (mainWindow.isMinimized()) {
+          mainWindow.restore();
+        }
+        mainWindow.focus();
+      }
+    });
+
+if (shouldQuit) {
+  app.exit(0);
+  return;
+}
+
 app.on('ready', createWindow);
 
 app.on('activate', function () {

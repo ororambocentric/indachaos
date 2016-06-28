@@ -5,3 +5,4 @@ indachaos_settings.db
 indachaos_notes.db
 releases
 run.sh
+npm-debug.log
