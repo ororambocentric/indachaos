@@ -47,6 +47,14 @@ $(document).ready(function () {
         gotoPrevResult();
     });
 
+    $(document).on('click', "#button-navigator-forward", function () {
+        navigatorForward();
+    });
+
+    $(document).on('click', "#button-navigator-backward", function () {
+        navigatorBackward();
+    });
+
     $(document).on('click', '#notes-links-area .note-link', function (e) {
         $("#notes-links-area .note-link").removeClass('active');
         $(this).addClass('active');
@@ -143,13 +151,7 @@ $(document).ready(function () {
         }
     });
 
-    // $(document).on('click', "#button-navigator-forward", function () {
-    //     navigatorForward();
-    // });
-    //
-    // $(document).on('click', "#button-navigator-backward", function () {
-    //     navigatorBackward();
-    // });
+
 
     $(document).on('click', "#clips-area .clip", function () {
         var clip = $(this).find(".clip-text").text();

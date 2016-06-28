@@ -273,47 +273,49 @@ function deleteClip(id) {
     nm.closeDB();
 }
 
-// function navigatorSaveCurrent(id) {
-//     var idList = $("#search-results-area").attr('data-navigator-list').split(',');
-//     idList = idList.map(function(value) {
-//         return parseInt(value);
-//     });
-//
-//     var pos = idList.indexOf(parseInt(id));
-//     $("#search-results-area").attr('data-navigator-pos', pos);
-// }
+function navigatorSaveCurrent(id) {
+    var idList = $("#search-results-area").attr('data-navigator-list').split(',');
+    idList = idList.map(function(value) {
+        return parseInt(value);
+    });
 
-// function navigatorForward() {
-//     var idList = $("#search-results-area").attr('data-navigator-list').split(',');
-//     idList = idList.map(function(value) {
-//         return parseInt(value);
-//     });
-//     var pos = parseInt($("#search-results-area").attr('data-navigator-pos'));
-//     if (pos < idList.length - 1) {
-//         $('body').animate({ scrollTop: $('[name=note_'+idList[pos+1]+']').offset().top -100 }, 0, function () {
-//             $("#search-results-area").attr('data-navigator-pos', ++pos);
-//             $("#search-results-area [name=note_"+idList[pos]+"] + .note .button-edit-note").focus();
-//         });
-//     } else {
-//         $("#search-results-area").attr('data-navigator-pos', 0);
-//     }
-// }
+    var pos = idList.indexOf(parseInt(id));
+    $("#search-results-area").attr('data-navigator-pos', pos);
+}
 
-// function navigatorBackward() {
-//     var idList = $("#search-results-area").attr('data-navigator-list').split(',');
-//     idList = idList.map(function(value) {
-//         return parseInt(value);
-//     });
-//     var pos = parseInt($("#search-results-area").attr('data-navigator-pos'));
-//     if (pos > 0) {
-//         $('body').animate({ scrollTop: $('[name=note_'+idList[pos-1]+']').offset().top -100 }, 0, function () {
-//             $("#search-results-area").attr('data-navigator-pos', --pos);
-//             $("#search-results-area [name=note_"+idList[pos]+"] + .note .button-edit-note").focus();
-//         });
-//     } else {
-//         $("#search-results-area").attr('data-navigator-pos', idList.length-1);
-//     }
-// }
+function navigatorForward() {
+
+    var idList = $("#search-results-area").attr('data-navigator-list').split(',');
+    idList = idList.map(function(value) {
+        return parseInt(value);
+    });
+    var pos = parseInt($("#search-results-area").attr('data-navigator-pos'));
+    if (pos < idList.length - 1) {
+        $('body').animate({ scrollTop: $('[name=note_'+idList[pos+1]+']').offset().top -100 }, 0, function () {
+            $("#search-results-area").attr('data-navigator-pos', ++pos);
+            $("#search-results-area [name=note_"+idList[pos]+"] + .note .button-edit-note").focus();
+        });
+    } else {
+        $("#search-results-area").attr('data-navigator-pos', 0);
+    }
+}
+
+function navigatorBackward() {
+
+    var idList = $("#search-results-area").attr('data-navigator-list').split(',');
+    idList = idList.map(function(value) {
+        return parseInt(value);
+    });
+    var pos = parseInt($("#search-results-area").attr('data-navigator-pos'));
+    if (pos > 0) {
+        $('body').animate({ scrollTop: $('[name=note_'+idList[pos-1]+']').offset().top -100 }, 0, function () {
+            $("#search-results-area").attr('data-navigator-pos', --pos);
+            $("#search-results-area [name=note_"+idList[pos]+"] + .note .button-edit-note").focus();
+        });
+    } else {
+        $("#search-results-area").attr('data-navigator-pos', idList.length-1);
+    }
+}
 
 function copyText(viaClips = true) {
     var selection = window.getSelection().getRangeAt(0).toString();
@@ -391,17 +393,17 @@ function registerShortcuts() {
             return false;
         }
 
-        // //ctrl + Up
-        // if(e.which == 38 && isCtrl == true) {
-        //     $("#button-navigator-backward").trigger('click');
-        //     return false;
-        // }
-        //
-        // //ctrl + Down
-        // if(e.which == 40 && isCtrl == true) {
-        //     $("#button-navigator-forward").trigger('click');
-        //     return false;
-        // }
+        //ctrl + Up
+        if(e.which == 38 && isCtrl == true) {
+            $("#button-navigator-backward").trigger('click');
+            return false;
+        }
+
+        //ctrl + Down
+        if(e.which == 40 && isCtrl == true) {
+            $("#button-navigator-forward").trigger('click');
+            return false;
+        }
 
         //F3 and Shift+F3
         // if(e.which == 114) {

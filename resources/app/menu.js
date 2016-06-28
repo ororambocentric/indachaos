@@ -30,19 +30,30 @@ const template = [
             },
             {
                 label: 'Go to previous occurrence',
-                accelerator: 'Shift+F3',
+                accelerator: 'CmdOrCtrl+Left',
                 click() { $("#button-gotoresult-backward").trigger('click'); }
             },
             {
                 label: 'Go to next occurrence',
-                accelerator: 'CmdOrCtrl+L',
-                click() { $("#button-sidebar-toggle").trigger('click'); }
+                accelerator: 'CmdOrCtrl+Right',
+                click() { $("#button-gotoresult-forward").trigger('click'); }
+            },
+            {
+                label: 'Go to previous note',
+                accelerator: 'CmdOrCtrl+Up',
+                click() { $("#button-navigator-backward").trigger('click'); }
+            },
+            {
+                label: 'Go to next note',
+                accelerator: 'CmdOrCtrl+Down',
+                click() { $("#button-navigator-forward").trigger('click'); }
             },
             {
                 label: 'Show / hide sidebar',
-                accelerator: 'F3',
-                click() { $("#button-gotoresult-forward").trigger('click'); }
+                accelerator: 'CmdOrCtrl+L',
+                click() { $("#button-sidebar-toggle").trigger('click'); }
             },
+
             {
                 label: 'Settings',
                 accelerator: 'F6',
