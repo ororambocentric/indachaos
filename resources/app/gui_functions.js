@@ -140,9 +140,16 @@ function searchNotes(pattern, id) {
         var html = '';
         var idList = [];
 
+        $("#sidebar .note-link").hide();
+        if (rows.length) {
+            $("#sidebar").css('overflow-y', 'scroll');
+        } else {
+            $("#sidebar").css('overflow-y', 'hidden');
+        }
         rows.forEach(function (note) {
             idList.push(note.id);
             html += renderFoundNote(note, patternArray);
+            $("#sidebar .note-link[data-id="+note.id+"]").show();
         });
 
 
@@ -151,6 +158,7 @@ function searchNotes(pattern, id) {
         $("#search-results-area").attr('data-navigator-pos', 0);
 
         $(".found-counter").text(idList.length);
+
 
         if (id === undefined) {
 
@@ -169,6 +177,7 @@ function searchNotes(pattern, id) {
                 searchMatchesCount = $(".highlight").length;
             }
         }
+
 
     }, extra);
 }

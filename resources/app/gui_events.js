@@ -51,10 +51,10 @@ $(document).ready(function () {
         $("#notes-links-area .note-link").removeClass('active');
         $(this).addClass('active');
         var noteId = $(this).attr('data-id');
-        // $('body').animate({ scrollTop: $('a[name=note_'+noteId+']').offset().top -100 }, 0, function () {
-        //
-        // });
-        searchNotes('', parseInt($(this).attr('data-id')));
+        $('body').animate({ scrollTop: $('a[name=note_'+noteId+']').offset().top -100 }, 0, function () {
+
+        });
+
     });
 
     // $(document).on('selectionchange', '.note', function (e) {
