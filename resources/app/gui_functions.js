@@ -560,7 +560,7 @@ function pasteDoubleLine() {
 
 function genPassword(len=20) {
     var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567890123456789!@#$%=!@#$%=!@#$%=!@#$%=";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567890123456789!@#$%=!@#$%=!@#$%=";
 
     for( var i=0; i < len; i++ )
         text += possible.charAt(Math.floor(Math.random() * possible.length));
