@@ -26,6 +26,7 @@ function createWindow () {
     {label: 'Show', type: 'normal', click: function () {
       mainWindow.show();
     }},
+    {type: 'separator'},
     {label: 'Exit', type: 'normal', click: function () {
       app.exit(0);
     }}
