@@ -133,9 +133,12 @@ $(document).ready(function () {
     $(document).on('click', "#screen-edit #button-ok", function () {
         var title = $("#screen-edit #title").val();
         var body = $("#screen-edit #body").val();
-        if (title == '' || body == '') {
-            alert('All fields in a form are required.');
+        if (body == '') {
+            alert('Field Body is required.');
             return;
+        }
+        if (title == '') {
+            title = body.substr(0, 30)+'...'.trim();
         }
         if ($("#screen-edit").attr('data-id') === undefined) {
             addNote(title, body);
