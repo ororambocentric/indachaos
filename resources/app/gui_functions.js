@@ -318,22 +318,9 @@ function copyText(viaClips = true) {
 }
 
 function registerShortcuts() {
-    var isCtrl = false;
-    var isShift = false;
-    $(document).keyup(function (e) {
-        if(e.which == 17) {
-            isCtrl = false;
-        }
-        if(e.shiftKey) {
-            isShift = false;
-        }
-    }).keydown(function (e) {
-        if(e.which == 17) {
-            isCtrl=true;
-        }
-        if(e.shiftKey) {
-            isShift=true;
-        }
+
+    $(document).keydown(function (e) {
+
 
         // ESC
         if(e.which == 27) {
@@ -341,25 +328,25 @@ function registerShortcuts() {
         }
 
         //ctrl + N
-        // if(e.which == 78 && isCtrl == true) {
+        // if(e.which == 78 && e.ctrlKey) {
         //     $("#button-add-note").trigger('click');
         //     return false;
         // }
 
         //ctrl + F
-        // if(e.which == 70 && isCtrl == true) {
+        // if(e.which == 70 && e.ctrlKey) {
         //     $("#screen-search #input-search").focus();
         //     return false;
         // }
 
         // //ctrl + Y
-        // if(e.which == 89 && isCtrl == true) {
+        // if(e.which == 89 && e.ctrlKey) {
         //     $("#button-clips").trigger('click');
         //     return false;
         // }
 
         //ctrl + S
-        if(e.which == 83 && isCtrl == true) {
+        if(e.which == 83 && e.ctrlKey) {
             if (activeScreen == 'settings') {
                 $("#button-settings-save").trigger('click');
                 return;
@@ -372,7 +359,7 @@ function registerShortcuts() {
         }
 
         //shift + ctrl + C / ctrl + C
-        if(e.which == 67 && isCtrl == true) {
+        if(e.which == 67 && e.ctrlKey) {
             if (e.shiftKey) {
                 copyText();
             } else {
@@ -383,27 +370,29 @@ function registerShortcuts() {
         }
 
         //ctrl + Up
-        if(e.which == 38 && isCtrl == true) {
+        if(e.which == 38 && e.ctrlKey) {
             $("#button-navigator-backward").trigger('click');
             return false;
         }
 
         //ctrl + Down
-        if(e.which == 40 && isCtrl == true) {
+        if(e.which == 40 && e.ctrlKey) {
             $("#button-navigator-forward").trigger('click');
             return false;
         }
 
-        //F3 and Shift+F3
-        // if(e.which == 114) {
-        //     if (e.shiftKey) {
-        //         $("#button-gotoresult-backward").trigger('click');
-        //     } else {
-        //         $("#button-gotoresult-forward").trigger('click');
-        //     }
-        //
-        //     return false;
-        // }
+        //ctrl + Left
+        if(e.which == 37 && e.ctrlKey) {
+            $("#button-gotoresult-backward").trigger('click');
+            return false;
+        }
+
+        //ctrl + Right
+        if(e.which == 39 && e.ctrlKey) {
+            $("#button-gotoresult-forward").trigger('click');
+            return false;
+        }
+
 
 
         
