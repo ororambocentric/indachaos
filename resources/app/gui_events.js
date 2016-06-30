@@ -56,6 +56,9 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '#notes-links-area .note-link', function (e) {
+
+        navigatorPos = navigatorList.indexOf(parseInt($(this).attr('data-id')));
+
         $("#notes-links-area .note-link").removeClass('active');
         $(this).addClass('active');
         var noteId = $(this).attr('data-id');
@@ -115,7 +118,7 @@ $(document).ready(function () {
     });
 
     // $(document).on('mouseenter', ".note", function () {
-    //     //navigatorSaveCurrent($(this).attr('data-id'));
+    //     markActiveNoteLink(parseInt($(this).attr('data-id')));
     // });
 
     $("#screen-search #input-search").keyup(function (e) {

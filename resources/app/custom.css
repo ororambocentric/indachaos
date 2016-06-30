@@ -138,6 +138,17 @@ h2 {
     font-weight: bold;
 }
 
+#sidebar .note-link:hover {
+    background: #f8f8f8;
+}
+
+#sidebar .note-link:hover:active {
+    background: #d4d4d4 !important;
+    border-color: #8c8c8c;
+}
+
+
+
 .container.with-sidebar{
     padding-left: 270px;
 }
