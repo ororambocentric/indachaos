@@ -178,6 +178,13 @@ function searchNotes(pattern, id) {
                 $("#search-results-area").highlight(alterKeymap(patternArray[i], settings.local_keymap, 'en'));
                 searchMatchesCount = $(".highlight").length;
             }
+
+            var i = 1;
+            $(".highlight").each(function () {
+                $(this).attr('data-index', i);
+                i++;
+            });
+
         }
 
 
@@ -291,6 +298,11 @@ function navigatorForward() {
     } else {
         navigatorPos = 0;
     }
+
+    $(".highlight").removeClass('highlight-current');
+    $("#search-results-area [name=note_"+navigatorList[pos]+"] + .note").find(".highlight:first").addClass('highlight-current');
+    currentResultIndex = parseInt($("#search-results-area [name=note_"+navigatorList[pos]+"] + .note").find(".highlight:first").attr('data-index')) - 1;
+
 }
 
 function navigatorBackward() {
@@ -304,6 +316,12 @@ function navigatorBackward() {
     } else {
         navigatorPos = navigatorList.length-1;
     }
+
+    $(".highlight").removeClass('highlight-current');
+    $("#search-results-area [name=note_"+navigatorList[pos]+"] + .note").find(".highlight:first").addClass('highlight-current');
+    currentResultIndex = parseInt($("#search-results-area [name=note_"+navigatorList[pos]+"] + .note").find(".highlight:first").attr('data-index')) - 1;
+
+
 }
 
 function copyText(viaClips = true) {
@@ -424,6 +442,11 @@ function gotoNextResult() {
     $(".highlight").removeClass('highlight-current');
     $(".highlight:eq("+currentResultIndex+")").addClass('highlight-current');
     $(document).scrollTop($(".highlight:eq("+currentResultIndex+")").offset().top -300);
+
+    var noteId = parseInt($(".highlight-current").parent().parent().attr('data-id'));
+    var pos = navigatorList.indexOf(parseInt(noteId));
+    navigatorPos = pos;
+
 }
 
 function gotoPrevResult() {
@@ -451,6 +474,11 @@ function gotoPrevResult() {
     $(".highlight").removeClass('highlight-current');
     $(".highlight:eq("+currentResultIndex+")").addClass('highlight-current');
     $(document).scrollTop($(".highlight:eq("+currentResultIndex+")").offset().top -300);
+
+    var noteId = parseInt($(".highlight-current").parent().parent().attr('data-id'));
+    var pos = navigatorList.indexOf(parseInt(noteId));
+    navigatorPos = pos;
+
 }
 
 var KEYMAPS = {
