@@ -1,7 +1,7 @@
 {
   "name": "indachaos",
   "version": "1.0.0",
-  "description": "Notes manager",
+  "description": "Notes manager with focus on the fast data access.",
   "main": "main.js",
   "scripts": {
     "start": "electron main.js"
@@ -12,8 +12,11 @@
   },
   "keywords": [
     "indachaos",
-    "Notes",
-    "manager"
+    "notes",
+    "manager",
+    "fast",
+    "data",
+    "access"
   ],
   "author": "ororambocentric",
   "license": "MIT",
