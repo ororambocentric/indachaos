@@ -1,2 +1,2 @@
 # Indachaos
-Notes manager with focus on the fast data access.
+Notes manager with focus on fast data access.
