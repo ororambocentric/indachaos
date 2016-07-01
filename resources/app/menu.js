@@ -29,24 +29,29 @@ const template = [
 
             },
             {
-                label: 'Go to previous occurrence',
-                accelerator: 'CmdOrCtrl+Left',
-                click() { $("#button-gotoresult-backward").trigger('click'); }
-            },
-            {
                 label: 'Go to next occurrence',
-                accelerator: 'CmdOrCtrl+Right',
+                accelerator: 'F3',
                 click() { $("#button-gotoresult-forward").trigger('click'); }
             },
             {
                 label: 'Go to previous note',
-                accelerator: 'CmdOrCtrl+Up',
+                accelerator: 'Shift+F3',
                 click() { $("#button-navigator-backward").trigger('click'); }
             },
             {
                 label: 'Go to next note',
                 accelerator: 'CmdOrCtrl+Down',
                 click() { $("#button-navigator-forward").trigger('click'); }
+            },
+            {
+                label: 'History back',
+                accelerator: 'CmdOrCtrl+Left',
+                click() { historyBack(); }
+            },
+            {
+                label: 'History forward',
+                accelerator: 'CmdOrCtrl+Right',
+                click() { historyForward(); }
             },
             {
                 label: 'Show / hide sidebar',

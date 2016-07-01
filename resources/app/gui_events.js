@@ -7,6 +7,7 @@ $(document).ready(function () {
         renderNotesLinks();
         toggleSidebar();
         searchNotes($("#screen-search #input-search").val());
+        historyPos = settings.history.length -1;
     });
 
 
@@ -56,16 +57,8 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '#notes-links-area .note-link', function (e) {
-
-        navigatorPos = navigatorList.indexOf(parseInt($(this).attr('data-id')));
-
-        $("#notes-links-area .note-link").removeClass('active');
-        $(this).addClass('active');
-        var noteId = $(this).attr('data-id');
-        $('body').animate({ scrollTop: $('a[name=note_'+noteId+']').offset().top -100 }, 0, function () {
-
-        });
-
+        triggerNoteLink(parseInt($(this).attr('data-id')));
+        addToHistory($(this).attr('data-id'));
     });
 
     // $(document).on('selectionchange', '.note', function (e) {
@@ -96,11 +89,22 @@ $(document).ready(function () {
             }
             clipTitle = $(".note[data-id="+noteID+"]").find(".title").text();
             clipBody = stripHtml(getHTMLOfSelection());
+
+        }
+
+    });
+
+    $(document).on('click', "#search-results-area .note", function () {
+        var noteID = parseInt($(this).attr('data-id'));
+        if (settings.history[settings.history.length -1] != noteID) {
+            addToHistory(noteID);
         }
     });
 
     $(document).on('click', ".button-edit-note", function () {
-        showScreenEdit($(this).attr('data-id'));
+        var noteID = parseInt($(this).attr('data-id'));
+        showScreenEdit(noteID);
+        addToHistory(noteID);
     });
 
     $(document).on('click', "#button-clear-clips", function () {

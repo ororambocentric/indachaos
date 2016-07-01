@@ -22,6 +22,10 @@ function SettingsManager() {
             $key: 'local_keymap',
             $value: 'ru'
         });
+        self.settingsDb.run("INSERT INTO params (key, value) VALUES ($key, $value)", {
+            $key: 'history',
+            $value: '[]'
+        });
 
     }
 
@@ -49,9 +53,15 @@ function SettingsManager() {
                     $key: 'local_keymap',
                     $value: 'ru'
                 },function () {
-                    self.settingsDb.all("SELECT * FROM params", function (err, rows) {
-                        callback(err, rows)
+                    self.settingsDb.run("INSERT INTO params (key, value) VALUES ($key, $value)", {
+                        $key: 'history',
+                        $value: '[]'
+                    }, function () {
+                        self.settingsDb.all("SELECT * FROM params", function (err, rows) {
+                            callback(err, rows)
+                        });
                     });
+
                 });
             });
 

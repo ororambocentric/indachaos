@@ -5,6 +5,8 @@ var searchMatchesCount = 0;
 var activeScreen = 'search';
 var navigatorList = [];
 var navigatorPos = 0;
+var historyPos = -1;
+
 
 const {clipboard} = require('electron');
 
@@ -112,6 +114,7 @@ function renderFoundNote(note, patternArray) {
 }
 
 function searchNotes(pattern, id) {
+
     var nm = new DBManager();
     nm.setDB(settings.path_to_db);
     nm.createDB();
@@ -475,15 +478,27 @@ function registerShortcuts() {
             return false;
         }
 
-        //ctrl + Left
-        if(e.which == 37 && e.ctrlKey) {
-            $("#button-gotoresult-backward").trigger('click');
+        //F3 / Shift+F3
+        if(e.which == 114) {
+            if (e.shiftKey){
+                $("#button-gotoresult-backward").trigger('click');
+            } else {
+                $("#button-gotoresult-forward").trigger('click');
+            }
             return false;
         }
 
-        //ctrl + Right
+        // Ctrl + Left
+        if(e.which == 37 && e.ctrlKey) {
+            $("#input-search").blur();
+            historyBack();
+            return false;
+        }
+
+        // Ctrl + Right
         if(e.which == 39 && e.ctrlKey) {
-            $("#button-gotoresult-forward").trigger('click');
+            $("#input-search").blur();
+            historyForward();
             return false;
         }
 
@@ -525,12 +540,12 @@ function afterSettingsLoading(callback) {
     sm.createDB();
     sm.getParams(function (err, rows) {
         rows.forEach(function (param) {
-            settings[param.key] = param.value;
-            // if (param.key == 'path_to_db') {
-            //     settings.path_to_db = param.value;
-            // } else if (param.key == 'local_keymap') {
-            //     settings.local_keymap = param.value;
-            // }
+
+            if (param.key == 'history') {
+                settings.history = JSON.parse(param.value);
+            } else {
+                settings[param.key] = param.value;
+            }
         });
         callback();
     });
@@ -674,4 +689,70 @@ function markActiveNoteLink(noteID) {
     // $("#sidebar #notes-links-area").animate({ scrollTop: $("#sidebar .note-link[data-id="+noteID+"]").offset().top -100 }, 0, function () {
     //
     // });
+}
+
+function historyBack() {
+
+    if (historyPos == 0) {
+        historyPos = settings.history.length -1;
+    } else {
+        historyPos --;
+    }
+
+    var historyRecord = settings.history[historyPos];
+    historyRecord.n = parseInt(historyRecord.n);
+
+    if (navigatorList.indexOf(historyRecord.n) < 0) {
+        $("#input-search").val(historyRecord.s);
+        searchNotes(historyRecord.s);
+    }
+
+    triggerNoteLink(historyRecord.n);
+
+}
+
+function historyForward() {
+
+    if (historyPos == settings.history.length -1) {
+        historyPos = 0;
+    } else {
+        historyPos ++;
+    }
+
+    var historyRecord = settings.history[historyPos];
+    historyRecord.n = parseInt(historyRecord.n);
+
+    if (navigatorList.indexOf(historyRecord.n) < 0) {
+        $("#input-search").val(historyRecord.s);
+        searchNotes(historyRecord.s);
+    }
+    triggerNoteLink(historyRecord.n);
+
+}
+
+function addToHistory(noteID) {
+    if (settings.history.length == 100) {
+        settings.history.shift();
+    }
+    var historyRecord = {
+        's': $("#screen-search #input-search").val(),
+        'n': noteID,
+    };
+    settings.history.push(historyRecord);
+    var sm = new SettingsManager();
+    sm.setDB('indachaos_settings.db');
+    sm.createDB();
+    sm.updateSettings('history', JSON.stringify(settings.history));
+    sm.closeDB();
+}
+
+function triggerNoteLink(noteID) {
+
+    var noteLinkElem = $("#notes-links-area .note-link[data-id="+noteID+"]");
+    navigatorPos = navigatorList.indexOf(noteID);
+    $("#notes-links-area .note-link").removeClass('active');
+    noteLinkElem.addClass('active');
+    $('body').animate({ scrollTop: $('a[name=note_'+noteID+']').offset().top -100 }, 0, function () {
+
+    });
 }
