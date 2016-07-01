@@ -45,6 +45,10 @@ function hideAllScreens() {
 }
 
 function showScreenSettings() {
+    if (activeScreen == 'settings') {
+        showScreenSearch();
+        return;
+    }
     activeScreen = 'settings';
     hideAllScreens();
     $("#screen-settings #path-to-db").val(settings.path_to_db);
@@ -53,6 +57,10 @@ function showScreenSettings() {
 }
 
 function showScreenAbout() {
+    if (activeScreen == 'about') {
+        showScreenSearch();
+        return;
+    }
     activeScreen = 'about';
     hideAllScreens();
     $("#screen-about").fadeIn(animationSpeed);
@@ -97,6 +105,10 @@ function showScreenEdit(id) {
 }
 
 function showScreenClips() {
+    if (activeScreen == 'clips') {
+        showScreenSearch();
+        return;
+    }
     activeScreen = 'clips';
     searchClips();
     hideAllScreens();
