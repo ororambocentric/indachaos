@@ -144,9 +144,9 @@ h2 {
     height: 100%;
     z-index: 3;
 }
-#sidebar #notes-links-area {
-    padding-bottom: 120px;
-}
+/*#sidebar #notes-links-area {*/
+    /*padding-bottom: 120px;*/
+/*}*/
 #sidebar .note-link {
     margin-bottom: -6px;
     font-size: 12px;

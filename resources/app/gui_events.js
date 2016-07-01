@@ -207,5 +207,16 @@ $(document).ready(function () {
         toggleSidebar();
     });
 
+    function setSidebarHeight() {
+        var h = $(window).height();
+        $('#sidebar').css('height', (h - 89 - 26)+'px');
+    }
+    $(window).load(function (e) {
+        setSidebarHeight();
+    });
+    $(window).resize(function (e) {
+        setSidebarHeight();
+    });
+
 
 });
