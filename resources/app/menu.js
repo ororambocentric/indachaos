@@ -36,7 +36,7 @@ const template = [
             },
             {
                 label: 'Clips',
-                accelerator: 'CmdOrCtrl+Y',
+                accelerator: 'CmdOrCtrl+K',
                 click() { $("#button-clips").trigger('click'); }
             },
             {
@@ -58,14 +58,19 @@ const template = [
                 click() { $("#button-gotoresult-forward").trigger('click'); }
             },
             {
-                label: 'Go to previous note',
+                label: 'Go to previous occurrence',
                 accelerator: 'Shift+F3',
-                click() { $("#button-navigator-backward").trigger('click'); }
+                click() { $("#button-gotoresult-backward").trigger('click'); }
             },
             {
                 label: 'Go to next note',
                 accelerator: 'CmdOrCtrl+Down',
                 click() { $("#button-navigator-forward").trigger('click'); }
+            },
+            {
+                label: 'Go to previous note',
+                accelerator: 'CmdOrCtrl+Up',
+                click() { $("#button-navigator-backward").trigger('click'); }
             },
             {
                 label: 'History back',
@@ -78,7 +83,7 @@ const template = [
                 click() { historyForward(); }
             },
             {
-                label: 'Show / hide sidebar',
+                label: 'Toggle sidebar',
                 accelerator: 'CmdOrCtrl+L',
                 click() { $("#button-sidebar-toggle").trigger('click'); }
             },
