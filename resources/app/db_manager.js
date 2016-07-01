@@ -94,6 +94,9 @@ function DBManager() {
     };
 
     function afterAddNote() {
+        self.db.get("SELECT id FROM note ORDER BY id DESC LIMIT 1", function (err, row) {
+            addToHistory(row.id);
+        });
         renderNotesLinks();
         searchNotes($("#screen-search #input-search").val());
         showScreenSearch();

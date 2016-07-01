@@ -96,9 +96,7 @@ $(document).ready(function () {
 
     $(document).on('click', "#search-results-area .note", function () {
         var noteID = parseInt($(this).attr('data-id'));
-        if (settings.history[settings.history.length -1] != noteID) {
-            addToHistory(noteID);
-        }
+        addToHistory(noteID);
     });
 
     $(document).on('click', ".button-edit-note", function () {

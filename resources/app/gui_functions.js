@@ -731,6 +731,9 @@ function historyForward() {
 }
 
 function addToHistory(noteID) {
+    if (settings.history[settings.history.length -1].n == noteID) {
+        return;
+    }
     if (settings.history.length == 100) {
         settings.history.shift();
     }
@@ -744,6 +747,7 @@ function addToHistory(noteID) {
     sm.createDB();
     sm.updateSettings('history', JSON.stringify(settings.history));
     sm.closeDB();
+    historyPos = settings.history.length -1;
 }
 
 function triggerNoteLink(noteID) {
