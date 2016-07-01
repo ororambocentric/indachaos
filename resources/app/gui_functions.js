@@ -731,7 +731,7 @@ function historyForward() {
 }
 
 function addToHistory(noteID) {
-    if (settings.history[settings.history.length -1].n == noteID) {
+    if (settings.history.length && settings.history[settings.history.length -1].n == noteID) {
         return;
     }
     if (settings.history.length == 100) {
