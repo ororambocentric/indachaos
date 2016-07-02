@@ -46,6 +46,7 @@ $(document).ready(function () {
     $(document).on('click', "#button-settings-save", function () {
         updateSettings();
         activeScreen = 'search';
+        renderNotesLinks();
         showScreenSearch();
         searchNotes($("#screen-search #input-search").val());
     });
