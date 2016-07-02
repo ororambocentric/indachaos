@@ -156,6 +156,11 @@ h2 {
     word-break: break-all;
     padding: 10px;
     font-weight: bold;
+    border-radius: 0px;
+}
+
+#sidebar .note-link:first-child {
+    border-radius: 0 3px 0 0;
 }
 
 #sidebar .note-link:hover {
