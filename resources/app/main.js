@@ -55,7 +55,7 @@ function createWindow () {
       app.exit(0);
     }}
   ]);
-  appIcon.setToolTip('indachaos');
+  appIcon.setToolTip('Indachaos');
   appIcon.setContextMenu(contextMenu);
   appIcon.on('click', function () {
     mainWindow.show();
