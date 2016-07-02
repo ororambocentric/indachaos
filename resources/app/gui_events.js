@@ -28,10 +28,8 @@ $(document).ready(function () {
         $(".container").fadeIn(animationSpeed);
         registerShortcuts();
         showScreenSearch();
-        renderNotesLinks();
         toggleSidebar();
-        searchNotes($("#screen-search #input-search").val());
-        historyPos = settings.history.length -1;
+        renderNotesLinks();
     });
 
 

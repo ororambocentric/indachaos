@@ -250,12 +250,18 @@ function renderNotesLinks() {
     var extra = " ORDER BY id DESC";
 
     nm.getNotes(function (err, rows) {
+
         var html = '';
         rows.forEach(function (note) {
             html += renderNoteLink(note);
         });
         $("#notes-links-area").html(html);
+
+        searchNotes($("#screen-search #input-search").val());
+        historyPos = settings.history.length -1;
+
     }, extra);
+    nm.closeDB();
 }
 
 function renderFoundClip(clip) {
