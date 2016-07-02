@@ -157,6 +157,7 @@ h2 {
     padding: 10px;
     font-weight: bold;
     border-radius: 0px;
+    border-left: none;
 }
 
 #sidebar .note-link:first-child {
