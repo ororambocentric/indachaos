@@ -181,6 +181,10 @@ h2 {
 
 #button-add-note {
     margin-right: 10px !important;
+    border-radius: 4px;
+}
+button, input, textarea, select {
+    border-radius: 0 !important;
 }
 #button-sidebar-toggle {
     margin-right: 10px !important;
