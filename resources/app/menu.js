@@ -387,10 +387,6 @@ const editorBodyContextMenuTemplate = [
         role: 'pasteandmatchstyle'
     },
     {
-        label: 'Delete',
-        role: 'delete'
-    },
-    {
         label: 'Select All',
         accelerator: 'CmdOrCtrl+A',
         role: 'selectall'
@@ -454,10 +450,6 @@ const editorTitleContextMenuTemplate = [
         label: 'Paste and Match Style',
         accelerator: 'Shift+Command+V',
         role: 'pasteandmatchstyle'
-    },
-    {
-        label: 'Delete',
-        role: 'delete'
     },
     {
         label: 'Select All',
