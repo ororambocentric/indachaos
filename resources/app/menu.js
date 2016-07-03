@@ -130,7 +130,7 @@ const template = [
     //             click() { copyText(false); }
     //         },
     //         {
-    //             label: 'Copy and clip',
+    //             label: "Copy'n'clip",
     //             accelerator: 'CmdOrCtrl+Shift+C',
     //             //role: 'copy'
     //             click() { copyText(); }
@@ -305,7 +305,7 @@ const searchResultsContextMenuTemplate = [
         click() { copyText(false); }
     },
     {
-        label: 'Copy and clip',
+        label: "Copy'n'clip",
         accelerator: 'CmdOrCtrl+Shift+C',
         //role: 'copy'
         click() { copyText(); }
@@ -371,7 +371,7 @@ const editorBodyContextMenuTemplate = [
         click() { copyText(false); }
     },
     // {
-    //     label: 'Copy and clip',
+    //     label: "Copy'n'clip",
     //     accelerator: 'CmdOrCtrl+Shift+C',
     //     //role: 'copy'
     //     click() { copyText(); }
@@ -436,7 +436,7 @@ const editorTitleContextMenuTemplate = [
         role: 'copy',
     },
     // {
-    //     label: 'Copy and clip',
+    //     label: "Copy'n'clip",
     //     accelerator: 'CmdOrCtrl+Shift+C',
     //     //role: 'copy'
     //     click() { copyText(); }

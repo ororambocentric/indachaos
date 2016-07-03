@@ -33,6 +33,7 @@ var historyPos = -1;
 var contextCurrentNoteID = 0;
 
 
+
 const {clipboard} = require('electron');
 
 
@@ -55,6 +56,7 @@ function showScreenSettings() {
     $("#screen-settings #path-to-db").val(settings.path_to_db);
     $("#screen-settings #local-keymap").val(settings.local_keymap);
     $("#screen-settings").fadeIn(animationSpeed);
+    $('#screen-settings #path-to-db').focus();
 }
 
 function showScreenAbout() {

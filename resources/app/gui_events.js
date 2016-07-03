@@ -241,3 +241,9 @@ $(document).on('contextmenu', '#screen-edit #title', function (e) {
     e.preventDefault();
     editorTitleContextMenu.popup(remote.getCurrentWindow());
 });
+
+$(document).on('submit', '#screen-edit form', function (e) {
+    e.preventDefault();
+    $('#screen-edit #body').focus();
+});
+
