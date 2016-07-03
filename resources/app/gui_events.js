@@ -127,9 +127,17 @@ $(document).ready(function () {
 
     });
 
-    $(document).on('click', "#search-results-area .note", function () {
+    $(document).on('click', "#search-results-area .note", function (e) {
         var noteID = parseInt($(this).attr('data-id'));
         addToHistory(noteID);
+    });
+
+    $(document).on('mousedown', "#search-results-area .note", function (e) {
+        if (e.which == 2) {
+            e.preventDefault();
+            contextCurrentNoteID = parseInt($(this).attr('data-id'));
+            actionEditNote(contextCurrentNoteID);
+        }
     });
 
     $(document).on('click', ".button-edit-note", function () {
@@ -230,6 +238,14 @@ $(document).on('contextmenu', '#notes-links-area .note-link', function (e) {
     e.preventDefault();
     contextCurrentNoteID = parseInt($(this).attr('data-id'));
     notesLinksContextMenu.popup(remote.getCurrentWindow());
+});
+
+$(document).on('mousedown', "#notes-links-area .note-link", function (e) {
+    if (e.which == 2) {
+        e.preventDefault();
+        contextCurrentNoteID = parseInt($(this).attr('data-id'));
+        actionEditNote(contextCurrentNoteID);
+    }
 });
 
 $(document).on('contextmenu', '#screen-edit #body', function (e) {
