@@ -210,12 +210,17 @@ $(document).ready(function () {
         var h = $(window).height();
         $('#sidebar').css('height', (h - 89 - 26)+'px');
     }
+    function setEditorHeight() {
+        var h = $(window).height();
+        $('#screen-edit #body').css('height', (h - 175)+'px');
+    }
     $(window).load(function (e) {
         setSidebarHeight();
+        setEditorHeight();
     });
     $(window).resize(function (e) {
         setSidebarHeight();
+        setEditorHeight();
     });
-
 
 });
