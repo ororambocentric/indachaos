@@ -30,6 +30,7 @@ var activeScreen = 'search';
 var navigatorList = [];
 var navigatorPos = 0;
 var historyPos = -1;
+var contextCurrentNoteID = 0;
 
 
 const {clipboard} = require('electron');
@@ -801,4 +802,15 @@ function triggerNoteLink(noteID) {
     $('body').animate({ scrollTop: $('a[name=note_'+noteID+']').offset().top -100 }, 0, function () {
 
     });
+}
+
+function actionDeleteNote(noteID) {
+    if (confirm('Are you sure you want to delete this note?')) {
+        deleteNote(noteID);
+    }
+}
+
+function actionEditNote(noteID) {
+    showScreenEdit(noteID);
+    addToHistory(noteID);
 }

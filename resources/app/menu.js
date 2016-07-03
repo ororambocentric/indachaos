@@ -130,7 +130,7 @@ const template = [
                 click() { copyText(false); }
             },
             {
-                label: 'Copy with saving to clips',
+                label: 'Copy and clip',
                 accelerator: 'CmdOrCtrl+Shift+C',
                 //role: 'copy'
                 click() { copyText(); }
@@ -189,14 +189,14 @@ const template = [
                         focusedWindow.setFullScreen(!focusedWindow.isFullScreen());
                 }
             },
-            // {
-            //     label: 'Toggle Developer Tools',
-            //     accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
-            //     click(item, focusedWindow) {
-            //         if (focusedWindow)
-            //             focusedWindow.webContents.toggleDevTools();
-            //     }
-            // },
+            {
+                label: 'Toggle Developer Tools',
+                accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
+                click(item, focusedWindow) {
+                    if (focusedWindow)
+                        focusedWindow.webContents.toggleDevTools();
+                }
+            },
         ]
     },
     {
@@ -292,7 +292,32 @@ if (process.platform === 'darwin') {
 const menu = Menu.buildFromTemplate(template);
 Menu.setApplicationMenu(menu);
 
-window.addEventListener('contextmenu', (e) => {
-    e.preventDefault();
-menu.popup(remote.getCurrentWindow());
-}, false);
+// window.addEventListener('contextmenu', (e) => {
+//     e.preventDefault();
+// menu.popup(remote.getCurrentWindow());
+// }, false);
+
+const searchResultsContextMenuTemplate = [
+    {
+        label: 'Copy',
+        accelerator: 'CmdOrCtrl+C',
+        //role: 'copy',
+        click() { copyText(false); }
+    },
+    {
+        label: 'Copy and clip',
+        accelerator: 'CmdOrCtrl+Shift+C',
+        //role: 'copy'
+        click() { copyText(); }
+    },
+    {
+        label: 'Edit note',
+        click() { actionEditNote(contextCurrentNoteID); }
+    },
+    {
+        label: 'Delete note',
+        click() { actionDeleteNote(contextCurrentNoteID); }
+    },
+];
+const searchResultsContextMenu = Menu.buildFromTemplate(searchResultsContextMenuTemplate);
+

@@ -133,9 +133,7 @@ $(document).ready(function () {
     });
 
     $(document).on('click', ".button-edit-note", function () {
-        var noteID = parseInt($(this).attr('data-id'));
-        showScreenEdit(noteID);
-        addToHistory(noteID);
+        actionEditNote(parseInt($(this).attr('data-id')));
     });
 
     $(document).on('click', "#button-clear-clips", function () {
@@ -184,12 +182,9 @@ $(document).ready(function () {
             updateNote($("#screen-edit").attr('data-id'), title, body);
         }
     });
-
+    
     $(document).on('click', ".button-delete-note", function () {
-        if (confirm('Are you sure you want to delete this note?')) {
-            var id = $(this).attr('data-id');
-            deleteNote(id);
-        }
+        actionDeleteNote($(this).attr('data-id'));
     });
 
 
@@ -223,4 +218,10 @@ $(document).ready(function () {
         setEditorHeight();
     });
 
+});
+
+$(document).on('contextmenu', '#search-results-area .note', function (e) {
+    e.preventDefault();
+    contextCurrentNoteID = parseInt($(this).attr('data-id'));
+    searchResultsContextMenu.popup(remote.getCurrentWindow());
 });
