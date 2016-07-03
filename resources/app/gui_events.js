@@ -231,3 +231,13 @@ $(document).on('contextmenu', '#notes-links-area .note-link', function (e) {
     contextCurrentNoteID = parseInt($(this).attr('data-id'));
     notesLinksContextMenu.popup(remote.getCurrentWindow());
 });
+
+$(document).on('contextmenu', '#screen-edit #body', function (e) {
+    e.preventDefault();
+    editorBodyContextMenu.popup(remote.getCurrentWindow());
+});
+
+$(document).on('contextmenu', '#screen-edit #title', function (e) {
+    e.preventDefault();
+    editorTitleContextMenu.popup(remote.getCurrentWindow());
+});

@@ -342,3 +342,128 @@ const notesLinksContextMenuTemplate = [
     },
 ];
 const notesLinksContextMenu = Menu.buildFromTemplate(notesLinksContextMenuTemplate);
+
+
+
+const editorBodyContextMenuTemplate = [
+    {
+        label: 'Undo',
+        accelerator: 'CmdOrCtrl+Z',
+        role: 'undo'
+    },
+    {
+        label: 'Redo',
+        accelerator: 'Shift+CmdOrCtrl+Z',
+        role: 'redo'
+    },
+    {
+        type: 'separator'
+    },
+    {
+        label: 'Cut',
+        accelerator: 'CmdOrCtrl+X',
+        role: 'cut'
+    },
+    {
+        label: 'Copy',
+        accelerator: 'CmdOrCtrl+C',
+        //role: 'copy',
+        click() { copyText(false); }
+    },
+    // {
+    //     label: 'Copy and clip',
+    //     accelerator: 'CmdOrCtrl+Shift+C',
+    //     //role: 'copy'
+    //     click() { copyText(); }
+    // },
+    {
+        label: 'Paste',
+        accelerator: 'CmdOrCtrl+V',
+        role: 'paste'
+    },
+    {
+        label: 'Paste and Match Style',
+        accelerator: 'Shift+Command+V',
+        role: 'pasteandmatchstyle'
+    },
+    {
+        label: 'Delete',
+        role: 'delete'
+    },
+    {
+        label: 'Select All',
+        accelerator: 'CmdOrCtrl+A',
+        role: 'selectall'
+    },
+    {
+        label: 'Paste line',
+        accelerator: 'CmdOrCtrl+-',
+        click() { pasteLine(); }
+    },
+    {
+        label: 'Paste double line',
+        accelerator: 'CmdOrCtrl+=',
+        click() { pasteDoubleLine(); }
+    },
+    {
+        label: 'Generate and paste password',
+        accelerator: 'CmdOrCtrl+P',
+        click() { pastePassword(); }
+    },
+];
+const editorBodyContextMenu = Menu.buildFromTemplate(editorBodyContextMenuTemplate);
+
+
+
+const editorTitleContextMenuTemplate = [
+    {
+        label: 'Undo',
+        accelerator: 'CmdOrCtrl+Z',
+        role: 'undo'
+    },
+    {
+        label: 'Redo',
+        accelerator: 'Shift+CmdOrCtrl+Z',
+        role: 'redo'
+    },
+    {
+        type: 'separator'
+    },
+    {
+        label: 'Cut',
+        accelerator: 'CmdOrCtrl+X',
+        role: 'cut'
+    },
+    {
+        label: 'Copy',
+        accelerator: 'CmdOrCtrl+C',
+        role: 'copy',
+    },
+    // {
+    //     label: 'Copy and clip',
+    //     accelerator: 'CmdOrCtrl+Shift+C',
+    //     //role: 'copy'
+    //     click() { copyText(); }
+    // },
+    {
+        label: 'Paste',
+        accelerator: 'CmdOrCtrl+V',
+        role: 'paste'
+    },
+    {
+        label: 'Paste and Match Style',
+        accelerator: 'Shift+Command+V',
+        role: 'pasteandmatchstyle'
+    },
+    {
+        label: 'Delete',
+        role: 'delete'
+    },
+    {
+        label: 'Select All',
+        accelerator: 'CmdOrCtrl+A',
+        role: 'selectall'
+    },
+
+];
+const editorTitleContextMenu = Menu.buildFromTemplate(editorTitleContextMenuTemplate);
