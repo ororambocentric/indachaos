@@ -545,9 +545,30 @@ function registerShortcuts() {
             return false;
         }
 
+        // Editor: Ctrl + -
+        if(e.which == 109 && e.ctrlKey) {
+            pasteLine();
+            return false;
+        }
+        // Editor: Ctrl + -
+        if(e.which == 189 && e.ctrlKey) {
+            pasteLine();
+            return false;
+        }
+        // Editor: Ctrl + =
+        if(e.which == 187 && e.ctrlKey) {
+            pasteDoubleLine();
+            return false;
+        }
+        // Editor: Ctrl + P
+        if(e.which == 80 && e.ctrlKey) {
+            pastePassword();
+            return false;
+        }
 
 
-        
+
+
     });
 }
 
