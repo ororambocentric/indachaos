@@ -327,3 +327,18 @@ const searchResultsContextMenuTemplate = [
 ];
 const searchResultsContextMenu = Menu.buildFromTemplate(searchResultsContextMenuTemplate);
 
+
+const notesLinksContextMenuTemplate = [
+    {
+        label: 'Edit note',
+        click() { actionEditNote(contextCurrentNoteID); }
+    },
+    {
+        type: 'separator'
+    },
+    {
+        label: 'Delete note',
+        click() { actionDeleteNote(contextCurrentNoteID); }
+    },
+];
+const notesLinksContextMenu = Menu.buildFromTemplate(notesLinksContextMenuTemplate);

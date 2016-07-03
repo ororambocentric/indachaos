@@ -225,3 +225,9 @@ $(document).on('contextmenu', '#search-results-area .note', function (e) {
     contextCurrentNoteID = parseInt($(this).attr('data-id'));
     searchResultsContextMenu.popup(remote.getCurrentWindow());
 });
+
+$(document).on('contextmenu', '#notes-links-area .note-link', function (e) {
+    e.preventDefault();
+    contextCurrentNoteID = parseInt($(this).attr('data-id'));
+    notesLinksContextMenu.popup(remote.getCurrentWindow());
+});
