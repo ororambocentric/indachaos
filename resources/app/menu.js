@@ -311,8 +311,14 @@ const searchResultsContextMenuTemplate = [
         click() { copyText(); }
     },
     {
+        type: 'separator'
+    },
+    {
         label: 'Edit note',
         click() { actionEditNote(contextCurrentNoteID); }
+    },
+    {
+        type: 'separator'
     },
     {
         label: 'Delete note',
