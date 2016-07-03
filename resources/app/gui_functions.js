@@ -759,6 +759,8 @@ function markActiveNoteLink(noteID) {
 
 function historyBack() {
 
+    if (!settings.history.length) return;
+
     if (historyPos == 0) {
         historyPos = settings.history.length -1;
     } else {
@@ -778,6 +780,8 @@ function historyBack() {
 }
 
 function historyForward() {
+
+    if (!settings.history.length) return;
 
     if (historyPos == settings.history.length -1) {
         historyPos = 0;
