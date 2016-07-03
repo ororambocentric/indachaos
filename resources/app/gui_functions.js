@@ -837,3 +837,16 @@ function actionEditNote(noteID) {
     showScreenEdit(noteID);
     addToHistory(noteID);
 }
+
+function actionClearHistory() {
+    if (confirm('Are you sure you want to clear history?')) {
+        settings.history = [];
+        historyPos = -1;
+        var sm = new SettingsManager();
+        sm.setDB('indachaos_settings.db');
+        sm.createDB();
+        sm.updateSettings('history', '[]');
+        sm.closeDB();
+        alert('History is successful cleared.');
+    }
+}

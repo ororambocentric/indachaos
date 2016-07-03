@@ -89,6 +89,10 @@ $(document).ready(function () {
         historyForward();
     });
 
+    $(document).on('click', "#screen-settings #button-clear-history", function () {
+        actionClearHistory();
+    });
+
     $(document).on('click', '#notes-links-area .note-link', function (e) {
         triggerNoteLink(parseInt($(this).attr('data-id')));
         addToHistory($(this).attr('data-id'));
