@@ -138,7 +138,7 @@ $(document).ready(function () {
 
     $(document).on('mousedown', "#search-results-area .note", function (e) {
         if (e.which == 2) {
-            e.preventDefault();
+            //e.preventDefault();
             contextCurrentNoteID = parseInt($(this).attr('data-id'));
             actionEditNote(contextCurrentNoteID);
         }
@@ -246,7 +246,7 @@ $(document).on('contextmenu', '#notes-links-area .note-link', function (e) {
 
 $(document).on('mousedown', "#notes-links-area .note-link", function (e) {
     if (e.which == 2) {
-        e.preventDefault();
+        //e.preventDefault();
         contextCurrentNoteID = parseInt($(this).attr('data-id'));
         actionEditNote(contextCurrentNoteID);
     }

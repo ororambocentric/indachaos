@@ -53,6 +53,14 @@ const template = [
 
             },
             {
+                label: 'Go to last editing',
+                accelerator: 'CmdOrCtrl+E',
+                click() {
+                    actionGoToLastEditing();
+                }
+
+            },
+            {
                 label: 'Go to next occurrence',
                 accelerator: 'F3',
                 click() { $("#button-gotoresult-forward").trigger('click'); }

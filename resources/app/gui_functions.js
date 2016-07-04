@@ -31,6 +31,7 @@ var navigatorList = [];
 var navigatorPos = 0;
 var historyPos = -1;
 var contextCurrentNoteID = 0;
+var lastEditingNoteID = 0;
 
 
 
@@ -838,6 +839,7 @@ function actionDeleteNote(noteID) {
 }
 
 function actionEditNote(noteID) {
+    lastEditingNoteID = noteID;
     showScreenEdit(noteID);
     addToHistory(noteID);
 }
@@ -853,4 +855,10 @@ function actionClearHistory() {
         sm.closeDB();
         alert('History is successful cleared.');
     }
+}
+
+function actionGoToLastEditing() {
+    if (!lastEditingNoteID) return;
+    if (activeScreen == 'edit') return;
+    actionEditNote(lastEditingNoteID);
 }
