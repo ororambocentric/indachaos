@@ -400,6 +400,9 @@ const editorBodyContextMenuTemplate = [
         role: 'selectall'
     },
     {
+        type: 'separator'
+    },
+    {
         label: 'Paste line',
         accelerator: 'CmdOrCtrl+-',
         click() { pasteLine(); }
