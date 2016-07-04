@@ -1,7 +1,7 @@
 node_modules
 .idea
 keybinds
-indachaos_settings.db
+indachaos_settings
 indachaos_notes.db
 releases
 run.sh

@@ -31,7 +31,7 @@ var navigatorList = [];
 var navigatorPos = 0;
 var historyPos = -1;
 var contextCurrentNoteID = 0;
-var lastEditingNoteID = 0;
+
 
 
 
@@ -601,35 +601,6 @@ function alterKeymap(str, from, to) {
     return str;
 }
 
-function afterSettingsLoading(callback) {
-    var sm = new SettingsManager();
-    sm.setDB('indachaos_settings.db');
-    sm.createDB();
-    sm.getParams(function (err, rows) {
-        rows.forEach(function (param) {
-
-            if (param.key == 'history') {
-                settings.history = JSON.parse(param.value);
-            } else {
-                settings[param.key] = param.value;
-            }
-        });
-        callback();
-    });
-    sm.closeDB();
-}
-
-function updateSettings() {
-    settings.path_to_db = $("#screen-settings #path-to-db").val();
-    settings.local_keymap = $("#screen-settings #local-keymap").val();
-    var sm = new SettingsManager();
-    sm.setDB('indachaos_settings.db');
-    sm.createDB();
-    sm.updateSettings('path_to_db', settings.path_to_db);
-    sm.updateSettings('local_keymap', settings.local_keymap);
-    sm.closeDB();
-}
-
 function insertAtCaret(areaId,text) {
     var txtarea = document.getElementById(areaId);
     var scrollPos = txtarea.scrollTop;
@@ -813,11 +784,7 @@ function addToHistory(noteID) {
         'n': noteID,
     };
     settings.history.push(historyRecord);
-    var sm = new SettingsManager();
-    sm.setDB('indachaos_settings.db');
-    sm.createDB();
-    sm.updateSettings('history', JSON.stringify(settings.history));
-    sm.closeDB();
+    updateAppSettings();
     historyPos = settings.history.length -1;
 }
 
@@ -839,7 +806,8 @@ function actionDeleteNote(noteID) {
 }
 
 function actionEditNote(noteID) {
-    lastEditingNoteID = noteID;
+    settings.last_editing_note_id = noteID;
+    updateAppSettings();
     showScreenEdit(noteID);
     addToHistory(noteID);
 }
@@ -848,17 +816,13 @@ function actionClearHistory() {
     if (confirm('Are you sure you want to clear history?')) {
         settings.history = [];
         historyPos = -1;
-        var sm = new SettingsManager();
-        sm.setDB('indachaos_settings.db');
-        sm.createDB();
-        sm.updateSettings('history', '[]');
-        sm.closeDB();
+        updateAppSettings();
         alert('History is successful cleared.');
     }
 }
 
 function actionGoToLastEditing() {
-    if (!lastEditingNoteID) return;
+    if (!settings.last_editing_note_id) return;
     if (activeScreen == 'edit') return;
-    actionEditNote(lastEditingNoteID);
+    actionEditNote(settings.last_editing_note_id);
 }

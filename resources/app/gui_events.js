@@ -24,7 +24,7 @@
 
 $(document).ready(function () {
 
-    afterSettingsLoading(function () {
+    loadAppSettings(function () {
         $(".container").fadeIn(animationSpeed);
         registerShortcuts();
         showScreenSearch();
@@ -42,7 +42,9 @@ $(document).ready(function () {
     });
 
     $(document).on('click', "#button-settings-save", function () {
-        updateSettings();
+        settings.path_to_db = $("#screen-settings #path-to-db").val();
+        settings.local_keymap = $("#screen-settings #local-keymap").val();
+        updateAppSettings();
         activeScreen = 'search';
         renderNotesLinks();
         showScreenSearch();

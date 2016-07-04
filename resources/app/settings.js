@@ -23,5 +23,22 @@
  */
 
 var settings = {
-
+    path_to_db: 'indachaos_notes.db',
+    local_keymap: 'ru',
+    history: [],
+    last_editing_note_id: 0
 };
+
+function loadAppSettings(callback) {
+    require('fs').readFile('./indachaos_settings', function read(err, data) {
+        if (data) {
+            settings = JSON.parse(data);
+        }
+        callback();
+    });
+}
+
+function updateAppSettings() {
+    require('fs').writeFile('./indachaos_settings', JSON.stringify(settings));
+}
+
