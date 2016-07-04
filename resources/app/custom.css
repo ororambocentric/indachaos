@@ -115,6 +115,9 @@ h2 {
     font-family: Monospaced, monospace;
     font-size: 15px;
     color: #000000;
+    white-space: pre;
+    overflow: scroll;
+
 }
 
 #screen-edit #title {
