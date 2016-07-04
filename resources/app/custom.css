@@ -195,3 +195,7 @@ button, input, textarea, select {
 #screen-edit textarea.form-control {
     height: 400px;
 }
+
+#screen-settings label {
+    margin-right: 10px;
+}

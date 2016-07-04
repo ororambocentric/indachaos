@@ -60,17 +60,17 @@ SOFTWARE.
       <form class="form-horizontal" role="form">
         <label for="path-to-db" class="control-label">Path to database</label>
         <input type="text" class="form-control" id="path-to-db">
-        <br>
+        <hr>
         <label for="local-keymap" class="control-label">Local keymap</label>
         <!--<input type="text" class="form-control" id="local-keymap">-->
         <select name="local_keymap" id="local-keymap">
           <option value="ru">RU</option>
         </select>
         <hr>
-        <label>History</label>
-        <div style="text-align: left">
-          <button id="button-clear-history" type="button" class="btn btn-default">Clear history</button>
-        </div>
+        <label>History max limit</label>
+        <input id="history-length" type="number" min="1" max="1000" step="1">
+        <button style="margin-left: 50px" id="button-clear-history" type="button" class="btn btn-default">Clear history</button>
+
         <hr>
         <div class="pull-right">
           <button id="button-settings-save" type="button" class="btn btn-default">Save (Ctrl+S)</button>

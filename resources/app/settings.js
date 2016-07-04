@@ -26,7 +26,8 @@ var settings = {
     path_to_db: 'indachaos_notes.db',
     local_keymap: 'ru',
     history: [],
-    last_editing_note_id: 0
+    last_editing_note_id: 0,
+    history_length: 30
 };
 
 function loadAppSettings(callback) {

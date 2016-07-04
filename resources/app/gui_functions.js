@@ -55,6 +55,7 @@ function showScreenSettings() {
     hideAllScreens();
     $("#screen-settings #path-to-db").val(settings.path_to_db);
     $("#screen-settings #local-keymap").val(settings.local_keymap);
+    $("#screen-settings #history-length").val(settings.history_length);
     $("#screen-settings").fadeIn(animationSpeed);
     $('#screen-settings #path-to-db').focus();
 }
@@ -783,7 +784,7 @@ function addToHistory(noteID) {
     if (settings.history.length && settings.history[settings.history.length -1].n == noteID) {
         return;
     }
-    if (settings.history.length == 100) {
+    if (settings.history.length == settings.history_length) {
         settings.history.shift();
     }
     var historyRecord = {

@@ -44,6 +44,7 @@ $(document).ready(function () {
     $(document).on('click', "#button-settings-save", function () {
         settings.path_to_db = $("#screen-settings #path-to-db").val();
         settings.local_keymap = $("#screen-settings #local-keymap").val();
+        settings.history_length = $("#screen-settings #history-length").val();
         updateAppSettings();
         activeScreen = 'search';
         renderNotesLinks();
