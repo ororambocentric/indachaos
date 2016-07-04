@@ -325,6 +325,10 @@ function deleteNote(id) {
     nm.createDB();
     nm.deleteNote(id);
     nm.closeDB();
+    if (settings.last_editing_note_id == id) {
+        settings.last_editing_note_id = 0;
+    }
+    updateAppSettings();
 }
 
 function deleteClip(id) {
