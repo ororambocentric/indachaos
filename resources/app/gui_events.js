@@ -138,6 +138,10 @@ $(document).ready(function () {
         addToHistory(noteID);
     });
 
+    $(document).on('click', "#search-results-area .btn", function (e) {
+        return false;
+    });
+
     $(document).on('mousedown', "#search-results-area .note", function (e) {
         if (e.which == 2) {
             //e.preventDefault();

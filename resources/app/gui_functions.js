@@ -37,7 +37,6 @@ var contextCurrentNoteID = 0;
 
 const {clipboard} = require('electron');
 
-
 function hideAllScreens() {
     $("[id^=screen]").hide();
     if ($("#sidebar").css('display') != 'none') {
@@ -325,9 +324,13 @@ function deleteNote(id) {
     nm.createDB();
     nm.deleteNote(id);
     nm.closeDB();
+
     if (settings.last_editing_note_id == id) {
         settings.last_editing_note_id = 0;
     }
+
+    deleteNoteFromHistory(id);
+    deleteDuplicatesFromHistory();
     updateAppSettings();
 }
 
@@ -829,4 +832,27 @@ function actionGoToLastEditing() {
     if (!settings.last_editing_note_id) return;
     if (activeScreen == 'edit') return;
     actionEditNote(settings.last_editing_note_id);
+}
+
+function deleteNoteFromHistory(noteID) {
+
+    for (var i = 0; i < settings.history.length; i++) {
+        if (settings.history[i].n == noteID) {
+            settings.history.splice(i, 1);
+            i--;
+        }
+    }
+
+}
+function deleteDuplicatesFromHistory() {
+
+    for (var i = 0; i < settings.history.length; i++) {
+        if (i < settings.history.length -1) {
+            if (settings.history[i].n == settings.history[i+1].n) {
+                settings.history.splice(i, 1);
+                i--;
+            }
+        }
+    }
+
 }
