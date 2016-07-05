@@ -40,6 +40,6 @@ function loadAppSettings(callback) {
 }
 
 function updateAppSettings() {
-    require('fs').writeFile('./indachaos_settings', JSON.stringify(settings));
+    require('fs').writeFile('./indachaos_settings', JSON.stringify(settings, null, 2));
 }
 
