@@ -646,7 +646,7 @@ function pastePseudoCheckbox() {
 function pasteCurrentDate() {
     if (activeScreen == 'edit') {
         if ($('#body').is(':focus')) {
-            $('#body').insertAtCaret(new Date());
+            $('#body').insertAtCaret(new Date()+"");
         }
     }
 }
