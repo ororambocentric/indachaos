@@ -30,8 +30,6 @@ var settings = {
     history_length: 30
 };
 
-var lastSearchPattern = '-';
-
 function loadAppSettings(callback) {
     require('fs').readFile('./indachaos_settings', function read(err, data) {
         if (data) {
