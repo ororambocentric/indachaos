@@ -274,7 +274,9 @@ $(document).on('submit', '#screen-edit form', function (e) {
     $('#screen-edit #body').focus();
 });
 
-$(document).on('submit', '#screen-settings form', function (e) {
-    return false;
+$(window).scroll(function (e) {
+    if (activeScreen == 'search') {
+        windowScrollTop = $(window).scrollTop();
+    }
 });
 

@@ -122,17 +122,21 @@ function DBManager() {
             addToHistory(row.id);
         });
         renderNotesLinks();
-        searchNotes($("#screen-search #input-search").val());
+        //searchNotes($("#screen-search #input-search").val());
         showScreenSearch();
+        researchNotes();
     }
     function afterUpdateNote() {
         renderNotesLinks();
-        searchNotes($("#screen-search #input-search").val());
+        //searchNotes($("#screen-search #input-search").val());
         showScreenSearch();
+        researchNotes();
+
     }
     function afterDeleteNote() {
         renderNotesLinks();
-        searchNotes($("#screen-search #input-search").val());
+        //searchNotes($("#screen-search #input-search").val());
+        researchNotes();
     }
     function afterDeleteClip() {
         showScreenClips();

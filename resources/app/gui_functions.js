@@ -31,7 +31,7 @@ var navigatorList = [];
 var navigatorPos = 0;
 var historyPos = -1;
 var contextCurrentNoteID = 0;
-var lastSearchPattern = '-';
+var windowScrollTop = 0;
 
 
 
@@ -82,6 +82,7 @@ function showScreenSearch() {
     $("#screen-search #input-search").focus();
     $("#screen-edit #title").val('');
     $("#screen-edit #body").val('');
+    $(window).scrollTop(windowScrollTop);
 }
 
 function showScreenEdit(id) {
@@ -807,9 +808,17 @@ function triggerNoteLink(noteID) {
     });
 }
 
+function researchNotes() {
+    lastSearchPattern = '-';
+    searchNotes($("#screen-search #input-search").val());
+    $("#sidebar").scrollTop(0);
+    $(window).scrollTop(0);
+}
+
 function actionDeleteNote(noteID) {
     if (confirm('Are you sure you want to delete this note?')) {
         deleteNote(noteID);
+        //$("#notes-links-area").scrollTop(0);
     }
 }
 
