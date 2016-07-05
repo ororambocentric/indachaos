@@ -50,7 +50,7 @@ function hideAllScreens() {
 
 function showScreenSettings() {
     if (activeScreen == 'settings') {
-        showScreenSearch();
+        //showScreenSearch();
         return;
     }
     activeScreen = 'settings';
@@ -64,7 +64,7 @@ function showScreenSettings() {
 
 function showScreenAbout() {
     if (activeScreen == 'about') {
-        showScreenSearch();
+        //showScreenSearch();
         return;
     }
     activeScreen = 'about';
@@ -113,7 +113,7 @@ function showScreenEdit(id) {
 
 function showScreenClips() {
     if (activeScreen == 'clips') {
-        showScreenSearch();
+        //showScreenSearch();
         return;
     }
     activeScreen = 'clips';
@@ -484,6 +484,7 @@ function registerShortcuts() {
 
         // ESC
         if(e.which == 27) {
+            if (activeScreen != 'search')
             showScreenSearch();
         }
 
