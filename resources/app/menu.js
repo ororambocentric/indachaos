@@ -422,6 +422,11 @@ const editorBodyContextMenuTemplate = [
         accelerator: 'CmdOrCtrl+P',
         click() { pastePassword(); }
     },
+    {
+        label: 'Paste current date',
+        accelerator: 'CmdOrCtrl+D',
+        click() { pasteCurrentDate(); }
+    },
 ];
 const editorBodyContextMenu = Menu.buildFromTemplate(editorBodyContextMenuTemplate);
 

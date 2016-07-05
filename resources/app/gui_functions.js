@@ -581,6 +581,11 @@ function registerShortcuts() {
             pastePassword();
             return false;
         }
+        // Editor: Ctrl + D
+        if(e.which == 68 && e.ctrlKey) {
+            pasteCurrentDate();
+            return false;
+        }
 
 
 
@@ -634,6 +639,14 @@ function pastePseudoCheckbox() {
     if (activeScreen == 'edit') {
         if ($('#body').is(':focus')) {
             $('#body').insertAtCaret('[ ] ');
+        }
+    }
+}
+
+function pasteCurrentDate() {
+    if (activeScreen == 'edit') {
+        if ($('#body').is(':focus')) {
+            $('#body').insertAtCaret(new Date());
         }
     }
 }
