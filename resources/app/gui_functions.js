@@ -352,7 +352,7 @@ function navigatorForward() {
 
     var pos = navigatorPos;
     if (pos < navigatorList.length - 1) {
-        $('body').animate({ scrollTop: $('[name=note_'+navigatorList[pos+1]+']').offset().top -90 }, 0, function () {
+        $('body').animate({ scrollTop: $('[name=note_'+navigatorList[pos+1]+']').offset().top -80 }, 0, function () {
             navigatorPos = ++pos;
             $("#search-results-area [name=note_"+navigatorList[pos]+"] + .note .button-edit-note").focus();
         });
@@ -372,7 +372,7 @@ function navigatorBackward() {
 
     var pos = navigatorPos;
     if (pos > 0) {
-        $('body').animate({ scrollTop: $('[name=note_'+navigatorList[pos-1]+']').offset().top -90 }, 0, function () {
+        $('body').animate({ scrollTop: $('[name=note_'+navigatorList[pos-1]+']').offset().top -80 }, 0, function () {
             navigatorPos = --pos;
             $("#search-results-area [name=note_"+navigatorList[pos]+"] + .note .button-edit-note").focus();
         });
@@ -782,7 +782,7 @@ function triggerNoteLink(noteID) {
     navigatorPos = navigatorList.indexOf(noteID);
     $("#notes-links-area .note-link").removeClass('active');
     noteLinkElem.addClass('active');
-    $('body').animate({ scrollTop: $('a[name=note_'+noteID+']').offset().top -90 }, 0, function () {
+    $('body').animate({ scrollTop: $('a[name=note_'+noteID+']').offset().top -80 }, 0, function () {
 
     });
 }
