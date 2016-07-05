@@ -162,8 +162,6 @@ function searchNotes(pattern, id) {
         lastSearchPattern = pattern;
     }
 
-    console.log('search!');
-
     var nm = new DBManager();
     nm.setDB(settings.path_to_db);
     nm.createDB();
