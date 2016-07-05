@@ -691,6 +691,7 @@ function pastePassword() {
 }
 
 function toggleSidebar() {
+    if (activeScreen != 'search') return;
     if ($("#sidebar").css('display') == 'none') {
         $("#button-sidebar-toggle").addClass('active');
         $("#sidebar").fadeIn(animationSpeed);
