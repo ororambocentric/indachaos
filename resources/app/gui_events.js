@@ -186,8 +186,8 @@ $(document).ready(function () {
     // });
 
     $(document).on('click', "#screen-edit #button-ok", function () {
-        var title = $("#screen-edit #title").val();
-        var body = $("#screen-edit #body").val();
+        var title = $("#screen-edit #title").val().trim();
+        var body = $("#screen-edit #body").val().trim();
         if (body == '') {
             alert('Field Body is required.');
             return;
