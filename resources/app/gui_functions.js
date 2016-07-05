@@ -823,6 +823,7 @@ function actionEditNote(noteID) {
 function actionClearHistory() {
     if (confirm('Are you sure you want to clear history?')) {
         settings.history = [];
+        settings.last_editing_note_id = 0;
         historyPos = -1;
         updateAppSettings();
         alert('History is successful cleared.');
