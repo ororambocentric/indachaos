@@ -31,6 +31,7 @@ var navigatorList = [];
 var navigatorPos = 0;
 var historyPos = -1;
 var contextCurrentNoteID = 0;
+var lastSearchPattern = '-';
 
 
 
@@ -154,6 +155,14 @@ function renderFoundNote(note, patternArray) {
 }
 
 function searchNotes(pattern, id) {
+
+    if (pattern == lastSearchPattern && id === undefined) {
+        return;
+    } else {
+        lastSearchPattern = pattern;
+    }
+
+    console.log('search!');
 
     var nm = new DBManager();
     nm.setDB(settings.path_to_db);
