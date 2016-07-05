@@ -49,7 +49,7 @@ $(document).ready(function () {
         activeScreen = 'search';
         renderNotesLinks();
         showScreenSearch();
-        searchNotes($("#screen-search #input-search").val());
+        researchNotes();
     });
 
     $(document).on('click', "#button-clips-back", function () {
