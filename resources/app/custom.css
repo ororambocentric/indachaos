@@ -216,6 +216,6 @@ button, input, textarea, select {
 ::-webkit-scrollbar-thumb {
     -webkit-border-radius: 10px;
     border-radius: 10px;
-    background: #d7d7d7;SSS
+    background: #d7d7d7;
     -webkit-box-shadow: inset 0 0 0px rgba(0,0,0,0.2);
 }
