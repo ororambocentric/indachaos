@@ -571,6 +571,11 @@ function registerShortcuts() {
             pasteDoubleLine();
             return false;
         }
+        // Editor: Ctrl + [
+        if(e.which == 219 && e.ctrlKey) {
+            pastePseudoCheckbox();
+            return false;
+        }
         // Editor: Ctrl + P
         if(e.which == 80 && e.ctrlKey) {
             pastePassword();
@@ -655,6 +660,14 @@ function pasteDoubleLine() {
     if (activeScreen == 'edit') {
         if ($('#body').is(':focus')) {
             insertAtCaret('body', '===========================================\n');
+        }
+    }
+}
+
+function pastePseudoCheckbox() {
+    if (activeScreen == 'edit') {
+        if ($('#body').is(':focus')) {
+            insertAtCaret('body', '[ ] ');
         }
     }
 }

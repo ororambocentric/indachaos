@@ -413,6 +413,11 @@ const editorBodyContextMenuTemplate = [
         click() { pasteDoubleLine(); }
     },
     {
+        label: 'Paste checkbox',
+        accelerator: 'CmdOrCtrl+[',
+        click() { pastePseudoCheckbox(); }
+    },
+    {
         label: 'Generate and paste password',
         accelerator: 'CmdOrCtrl+P',
         click() { pastePassword(); }
