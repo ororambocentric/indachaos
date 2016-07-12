@@ -33,6 +33,7 @@ var historyPos = -1;
 var contextCurrentNoteID = 0;
 var windowScrollTop = 0;
 var lastSearchPattern = '-';
+var settingsFileLock = false;
 
 
 

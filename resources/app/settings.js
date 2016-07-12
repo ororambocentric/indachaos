@@ -40,6 +40,9 @@ function loadAppSettings(callback) {
 }
 
 function updateAppSettings() {
+    if (settingsFileLock) return;
+    settingsFileLock = true;
     require('fs').writeFile('./indachaos_settings', JSON.stringify(settings, null, 2));
+    settingsFileLock = false;
 }
 
