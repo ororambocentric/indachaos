@@ -1,0 +1,292 @@
+/*
+ The MIT License (MIT)
+
+ Copyright (c) 2016 Sergei Tolokonnikov
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+*/
+
+
+body {
+    overflow-y: scroll;
+    background: #2b2b2b;
+    color: #bbb;
+}
+.container {
+    padding-top: 10px;
+    display: none;
+}
+
+#screen-* {
+    display: none;
+}
+
+#screen-search .toolbar {
+    padding-bottom: 30px;
+    background: #2b2b2b;
+
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#2b2b2b+24,2b2b2b+100&1+94,0+100 */
+    background: -moz-linear-gradient(top,  rgba(43,43,43,1) 24%, rgba(43,43,43,1) 94%, rgba(43,43,43,0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(43,43,43,1) 24%,rgba(43,43,43,1) 94%,rgba(43,43,43,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(43,43,43,1) 24%,rgba(43,43,43,1) 94%,rgba(43,43,43,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2b2b2b', endColorstr='#002b2b2b',GradientType=0 ); /* IE6-9 */
+
+
+}
+
+#screen-search .toolbar .input-group {
+    margin: 15px 30px 0px 30px;
+}
+
+
+h1 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #D6BF55;
+}
+
+h2 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#search-results-area {
+    margin-top: 70px;
+}
+
+#search-results-area .note{
+    margin-bottom: 30px;
+}
+
+#search-results-area .note:hover{
+
+    background: #242424;
+}
+
+#search-results-area .note .body{
+    white-space: pre-line;
+    word-break: break-all;
+    font-family: Monospaced, monospace;
+    font-size: 15px;
+    color: #ddd;
+}
+
+.status-bar {
+    background: #2b2b2b;
+    padding: 4px;
+    color: #ddd;
+    font-size: 12px;
+    text-align: right;
+}
+
+.clip button {
+    text-align: left;
+    margin-bottom: 20px;
+    white-space: pre-line;
+    word-break: break-all;
+}
+.clip-text {
+    font-weight: bold;
+}
+
+.highlight {
+    background: #ff5856;
+    color: #fff;
+}
+
+.highlight-current {
+    font-weight: bold;
+}
+
+#screen-edit #body {
+    font-family: Monospaced, monospace;
+    font-size: 15px;
+    color: #000000;
+    white-space: pre;
+    overflow: scroll;
+
+}
+
+#screen-edit #title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #D6BF55;
+}
+
+#screen-settings .section-title {
+    text-align: right;
+}
+
+#sidebar {
+    margin-top: 80px;
+    width: 240px;
+    overflow-y: scroll;
+    background: #2b2b2b;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    z-index: 3;
+}
+/*#sidebar #notes-links-area {*/
+/*padding-bottom: 120px;*/
+/*}*/
+#sidebar .note-link {
+    margin-bottom: -6px;
+    font-size: 13px;
+    text-align: left;
+    padding-left: 10px;
+    white-space: pre-line;
+    word-break: break-all;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 0px;
+    border-left: none;
+}
+
+#sidebar .note-link:first-child {
+    border-radius: 0 3px 0 0;
+}
+
+#sidebar .note-link:hover {
+    background: #3a3a3a !important;
+}
+
+#sidebar .note-link:hover:active {
+    background: #393939 !important;
+    border-color: #666666;
+}
+
+#sidebar .note-link.active {
+    background: #393939 !important;
+    border-color: #393939;
+}
+
+#sidebar .note-link {
+    border-color: #2b2b2b;
+    background: #2b2b2b;
+    color: #D6BF55;
+    font-weight: normal;
+}
+
+.container.with-sidebar{
+    padding-left: 270px;
+}
+
+#button-add-note {
+    margin-right: 10px !important;
+    border-radius: 4px;
+}
+button, input, textarea, select {
+    border-radius: 0 !important;
+}
+#button-sidebar-toggle {
+    margin-right: 10px !important;
+}
+
+.col-sm-12 {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+#screen-edit textarea.form-control {
+    height: 400px;
+}
+
+#screen-settings label {
+    margin-right: 10px;
+}
+
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 0px #232323;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    background: #232323;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #4e4e4e;
+    -webkit-box-shadow: inset 0 0 0px rgba(0,0,0,0.2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #5b5b5b;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+#search-results-area h2.title {
+    color: #D6BF55;
+}
+
+.btn-default {
+    background: #35393a;
+    border-color: #2d2d2d;
+    color: #bbb;
+}
+
+.btn-default:active, .btn-default:focus,
+.btn-default.active, .btn-default.active:hover {
+    background: #656e6f !important;
+    background-color: #474d4e !important;
+    border-color: #2d2d2d;
+    box-shadow: none;
+    color: #bbb;
+}
+
+
+
+.btn:hover {
+    background: #474d4e;
+    border-color: #2d2d2d;
+    color: #bbb;
+}
+
+.glyphicon {
+    color: #e1e1e1;
+}
+
+#screen-clips .btn-block{
+    color: #bbb;
+}
+
+#screen-clips .clip-text{
+    color: #D6BF55;
+}
+
+input[type=search], input[type=text],
+input[type=number], select, textarea {
+    background: #1e1e1e !important;
+    color: #bbb !important;
+    border: none !important;
+}
+
+hr {
+    border-color: #5b5b5b;
+}
