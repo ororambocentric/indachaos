@@ -25,6 +25,7 @@
 $(document).ready(function () {
 
     loadAppSettings(function () {
+        setColorTheme(settings.color_theme);
         $(".container").fadeIn(animationSpeed);
         registerShortcuts();
         showScreenSearch();
@@ -45,6 +46,8 @@ $(document).ready(function () {
         settings.path_to_db = $("#screen-settings #path-to-db").val();
         settings.local_keymap = $("#screen-settings #local-keymap").val();
         settings.history_length = $("#screen-settings #history-length").val();
+        settings.color_theme = $("[name=color_theme]:checked").val();
+        setColorTheme(settings.color_theme);
         updateAppSettings();
         activeScreen = 'search';
         renderNotesLinks();

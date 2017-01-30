@@ -39,7 +39,6 @@ SOFTWARE.
   <script src="menu.js"></script>
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="custom.css">
-  <link rel="stylesheet" href="theme-dark.css">
 </head>
 <body>
 <div class="container col-sm-12">
@@ -72,7 +71,13 @@ SOFTWARE.
         <label>History max limit</label>
         <input id="history-length" type="number" min="1" max="1000" step="1">
         <button style="margin-left: 50px" id="button-clear-history" type="button" class="btn btn-default">Clear history</button>
-
+        <hr>
+        <p><strong>Color theme</strong></p>
+        <label for="theme-default">Default</label>
+        <input type="radio" id="theme-default" class="color-theme default" name="color_theme" value="default">
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <label for="theme-dark">Dark</label>
+        <input type="radio" id="theme-dark" class="color-theme dark" name="color_theme" value="dark">
         <hr>
         <div class="pull-right">
           <button id="button-settings-save" type="button" class="btn btn-default">Save (Ctrl+S)</button>
@@ -193,7 +198,7 @@ SOFTWARE.
       <div style="text-align: center">
         <img src="images/app-icon.png" alt="">
         <h2>Indachaos</h2>
-        <p>v 1.0.1</p>
+        <p>v 1.0.2</p>
         <p>Supersonic notes manager.</p>
         <p>&copy; 2016 Sergei Tolokonnikov</p>
         <br>

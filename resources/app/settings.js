@@ -27,7 +27,8 @@ var settings = {
     local_keymap: 'ru',
     history: [],
     last_editing_note_id: 0,
-    history_length: 30
+    history_length: 30,
+    color_theme: 'default'
 };
 
 function loadAppSettings(callback) {

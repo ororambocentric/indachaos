@@ -59,6 +59,7 @@ function showScreenSettings() {
     $("#screen-settings #path-to-db").val(settings.path_to_db);
     $("#screen-settings #local-keymap").val(settings.local_keymap);
     $("#screen-settings #history-length").val(settings.history_length);
+    $("#screen-settings #theme-"+settings.color_theme+".color-theme").prop('checked', 'checked');
     $("#screen-settings").fadeIn(animationSpeed);
     $('#screen-settings #path-to-db').focus();
 }
@@ -869,4 +870,12 @@ function deleteDuplicatesFromHistory() {
         }
     }
 
+}
+
+function setColorTheme(name) {
+    if (name != 'default') {
+        $('head').append('<link id="add-color-theme" rel="stylesheet" href="theme-'+name+'.css">')
+    } else {
+        $('#add-color-theme').remove();
+    }
 }
