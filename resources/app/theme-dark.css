@@ -111,7 +111,9 @@ h2 {
 }
 
 .highlight-current {
+    background: #fff;
     font-weight: bold;
+    color: #000;
 }
 
 #screen-edit #body {
