@@ -47,50 +47,67 @@ SOFTWARE.
     <div id="notes-links-area"></div>
   </div>
 
-    <div id="screen-settings">
-      <div class="toolbar navbar-fixed-top">
-        <button id="button-settings-back" type="button" class="btn btn-default pull-right">
-          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-        </button>
-      </div>
-      <div style="clear: both"></div>
-      <h1>Settings</h1>
-      <hr>
-
-
-      <form class="form-horizontal" role="form">
-        <label for="path-to-db" class="control-label">Path to database</label>
-        <input type="text" class="form-control" id="path-to-db">
-        <hr>
-        <label for="local-keymap" class="control-label">Local keymap</label>
-        <!--<input type="text" class="form-control" id="local-keymap">-->
-        <select name="local_keymap" id="local-keymap">
-          <option value="ru">RU</option>
-        </select>
-        <hr>
-        <label>History max limit</label>
-        <input id="history-length" type="number" min="1" max="1000" step="1">
-        <button style="margin-left: 50px" id="button-clear-history" type="button" class="btn btn-default">Clear history</button>
-        <hr>
-        <p><strong>Color theme</strong></p>
-        <label for="theme-default">Default</label>
-        <input type="radio" id="theme-default" class="color-theme default" name="color_theme" value="default">
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <label for="theme-dark">Dark</label>
-        <input type="radio" id="theme-dark" class="color-theme dark" name="color_theme" value="dark">
-        <hr>
-        <div class="pull-right">
-          <button id="button-settings-save" type="button" class="btn btn-default">Save (Ctrl+S)</button>
-        </div>
-      </form>
-      <br>
-
-
-
+  <div id="screen-settings">
+    <div class="toolbar navbar-fixed-top">
+      <button id="button-settings-back" type="button" class="btn btn-default pull-right">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+      </button>
     </div>
-    <div id="screen-search">
-      <div class="toolbar navbar-fixed-top">
-        <div class="input-group">
+    <div style="clear: both"></div>
+    <h1>Settings</h1>
+    <hr>
+
+
+    <form class="form-horizontal" role="form">
+
+      <table class="settings-table">
+        <tbody>
+        <tr>
+          <td>Path to database</td>
+          <td>
+            <input type="text" class="form-control" id="path-to-db">
+          </td>
+        </tr>
+        <tr>
+          <td>Local keymap</td>
+          <td>
+            <select name="local_keymap" id="local-keymap">
+              <option value="ru">RU</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>History max limit</td>
+          <td>
+            <input id="history-length" type="number" min="1" max="1000" step="1">
+            <button style="margin-left: 50px" id="button-clear-history" type="button" class="btn btn-default">Clear history</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Color theme</td>
+          <td>
+            <label for="theme-default">Default</label>
+            <input type="radio" id="theme-default" class="color-theme default" name="color_theme" value="default">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <label for="theme-dark">Dark</label>
+            <input type="radio" id="theme-dark" class="color-theme dark" name="color_theme" value="dark">
+
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="pull-right">
+        <button id="button-settings-save" type="button" class="btn btn-default">Save (Ctrl+S)</button>
+      </div>
+    </form>
+    <br>
+
+
+
+  </div>
+  <div id="screen-search">
+    <div class="toolbar navbar-fixed-top">
+      <div class="input-group">
         <span class="input-group-btn">
           <button id="button-add-note" type="button" class="btn btn-default" title="Add note (Ctrl+N)">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -111,7 +128,7 @@ SOFTWARE.
           </button>
 
         </span>
-          <input id="input-search" type="search" class="form-control" placeholder="Search...">
+        <input id="input-search" type="search" class="form-control" placeholder="Search...">
         <span class="input-group-btn">
 
           <button id="button-gotoresult-backward" class="btn btn-default" type="button" title="Go to previous occurrence (Shift+F3)">
@@ -133,78 +150,78 @@ SOFTWARE.
           <!--<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>-->
           <!--</button>-->
         </span>
-          <div class="status-bar navbar-fixed-bottom">
-            Found: <span class="found-counter">0</span>&nbsp;
-          </div>
-
+        <div class="status-bar navbar-fixed-bottom">
+          Found: <span class="found-counter">0</span>&nbsp;
         </div>
 
       </div>
 
-      <div id="search-results-area"></div>
     </div>
-    <div id="screen-edit">
-      <div class="toolbar navbar-fixed-top">
-        <button id="button-edit-back" type="button" class="btn btn-default pull-right" title="Close (ESC)">
-          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-        </button>
-      </div>
-      <div style="clear: both"></div>
-      <h1 id="edit-screen-title">Add note</h1>
-      <form class="form-horizontal col-md-12" role="form">
-        <div class="form-group">
 
-            <input type="text" class="form-control" id="title" placeholder="Title...">
-
-        </div>
-        <div class="form-group" style="height: 100%">
-
-            <textarea id="body" class="form-control" rows="15" placeholder="Body..."></textarea>
-
-        </div>
-        <div class="form-group">
-          <div class="">
-            <button id="button-ok" type="button" class="btn btn-default">Save (Ctrl+S)</button>
-          </div>
-        </div>
-      </form>
+    <div id="search-results-area"></div>
+  </div>
+  <div id="screen-edit">
+    <div class="toolbar navbar-fixed-top">
+      <button id="button-edit-back" type="button" class="btn btn-default pull-right" title="Close (ESC)">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+      </button>
     </div>
-    <div id="screen-clips">
-      <div class="toolbar navbar-fixed-top">
-        <button id="button-clips-back" type="button" class="btn btn-default pull-right" title="Close (ESC)">
-          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-        </button>
-      </div>
-      <div style="clear: both"></div>
-      <h1>Clips
-        <button id="button-clear-clips" type="button" class="btn btn-default" title="Clear all">
-          <span class="glyphicon glyphicon-erase" aria-hidden="true"></span>
-        </button>
-      </h1>
+    <div style="clear: both"></div>
+    <h1 id="edit-screen-title">Add note</h1>
+    <form class="form-horizontal col-md-12" role="form">
+      <div class="form-group">
 
-      <hr>
-      <div id="clips-area" class="col-xs-12">
+        <input type="text" class="form-control" id="title" placeholder="Title...">
 
       </div>
+      <div class="form-group" style="height: 100%">
+
+        <textarea id="body" class="form-control" rows="15" placeholder="Body..."></textarea>
+
+      </div>
+      <div class="form-group">
+        <div class="">
+          <button id="button-ok" type="button" class="btn btn-default">Save (Ctrl+S)</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div id="screen-clips">
+    <div class="toolbar navbar-fixed-top">
+      <button id="button-clips-back" type="button" class="btn btn-default pull-right" title="Close (ESC)">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+      </button>
     </div>
-    <div id="screen-about">
-      <div class="toolbar navbar-fixed-top">
-        <button id="button-about-back" type="button" class="btn btn-default pull-right" title="Close (ESC)">
-          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-        </button>
-      </div>
-      <div style="clear: both"></div>
-      <h1 id="edit-about-title">About</h1>
-      <div style="text-align: center">
-        <img src="images/app-icon.png" alt="">
-        <h2>Indachaos</h2>
-        <p>v 1.0.2</p>
-        <p>Supersonic notes manager.</p>
-        <p>&copy; 2016 Sergei Tolokonnikov</p>
-        <br>
-        <p>ororambocentric@yandex.ru</p>
-        <p>github.com/ororambocentric/indachaos</p>
-      </div>
+    <div style="clear: both"></div>
+    <h1>Clips
+      <button id="button-clear-clips" type="button" class="btn btn-default" title="Clear all">
+        <span class="glyphicon glyphicon-erase" aria-hidden="true"></span>
+      </button>
+    </h1>
+
+    <hr>
+    <div id="clips-area" class="col-xs-12">
+
+    </div>
+  </div>
+  <div id="screen-about">
+    <div class="toolbar navbar-fixed-top">
+      <button id="button-about-back" type="button" class="btn btn-default pull-right" title="Close (ESC)">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+      </button>
+    </div>
+    <div style="clear: both"></div>
+    <h1 id="edit-about-title">About</h1>
+    <div style="text-align: center">
+      <img src="images/app-icon.png" alt="">
+      <h2>Indachaos</h2>
+      <p>v 1.0.2</p>
+      <p>Supersonic notes manager.</p>
+      <p>&copy; 2016 Sergei Tolokonnikov</p>
+      <br>
+      <p>ororambocentric@yandex.ru</p>
+      <p>github.com/ororambocentric/indachaos</p>
+    </div>
 
   </div>
 </div>

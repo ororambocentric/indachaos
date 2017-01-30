@@ -227,3 +227,7 @@ button, input, textarea, select {
 .btn {
     cursor: pointer;
 }
+
+.settings-table td:last-child{
+    padding: 20px;
+}
