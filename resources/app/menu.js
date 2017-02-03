@@ -479,4 +479,13 @@ const editorTitleContextMenuTemplate = [
     },
 
 ];
+
+const clipsContextMenuTemplate = [
+    {
+        label: 'Delete clip',
+        click() { actionDeleteClip(currentClipID); }
+    },
+];
+
 const editorTitleContextMenu = Menu.buildFromTemplate(editorTitleContextMenuTemplate);
+const clipsContextMenu = Menu.buildFromTemplate(clipsContextMenuTemplate);

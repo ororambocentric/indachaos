@@ -31,6 +31,7 @@ var navigatorList = [];
 var navigatorPos = 0;
 var historyPos = -1;
 var contextCurrentNoteID = 0;
+var currentClipID = 0;
 var windowScrollTop = 0;
 var lastSearchPattern = '-';
 var settingsFileLock = false;
@@ -283,7 +284,7 @@ function renderFoundClip(clip) {
     var render = '';
     var title = escapeHtml(clip.title);
     var body = escapeHtml(clip.body);
-    render += '<div class="row clip">';
+    render += '<div class="row clip" data-id="'+clip.id+'">';
     render += '<button class="btn btn-default btn-block" type="submit" title="Copy it">';
     render += '<p class="clip-title">From "'+title+'"</p>';
     render += '<p class="clip-text">'+body+'</p>';
@@ -823,6 +824,12 @@ function actionDeleteNote(noteID) {
     if (confirm('Are you sure you want to delete this note?')) {
         deleteNote(noteID);
         //$("#notes-links-area").scrollTop(0);
+    }
+}
+
+function actionDeleteClip(clipID) {
+    if (confirm('Are you sure you want to delete this clip?')) {
+        deleteClip(clipID);
     }
 }
 

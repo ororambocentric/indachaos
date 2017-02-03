@@ -212,10 +212,17 @@ $(document).ready(function () {
 
 
     $(document).on('click', "#clips-area .clip", function () {
+        currentClipID = $(this).data('id');
         var clip = $(this).find(".clip-text").text();
         clipboard.writeText(clip);
         clipboard.writeText(clip, 'selection');
         $("#button-clips-back").trigger('click');
+    });
+
+    $(document).on('contextmenu', "#clips-area .clip", function (e) {
+        e.preventDefault();
+        currentClipID = $(this).data('id');
+        clipsContextMenu.popup(remote.getCurrentWindow());
     });
 
 

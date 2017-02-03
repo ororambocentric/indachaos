@@ -139,11 +139,11 @@ function DBManager() {
         researchNotes();
     }
     function afterDeleteClip() {
-        showScreenClips();
+        searchClips();
     }
 
     function afterDeleteClips() {
-        showScreenClips();
+        searchClips();
     }
 
 }
