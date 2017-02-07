@@ -25,6 +25,8 @@
 const {remote} = require('electron');
 const {Menu, MenuItem} = remote;
 
+const ipcRenderer = require('electron').ipcRenderer;
+
 const template = [
     {
         label: 'Application',
@@ -489,3 +491,7 @@ const clipsContextMenuTemplate = [
 
 const editorTitleContextMenu = Menu.buildFromTemplate(editorTitleContextMenuTemplate);
 const clipsContextMenu = Menu.buildFromTemplate(clipsContextMenuTemplate);
+
+ipcRenderer.on('add-from-clipboard', function() {
+    addFromClipboard();
+});

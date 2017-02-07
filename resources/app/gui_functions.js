@@ -37,8 +37,6 @@ var lastSearchPattern = '-';
 var settingsFileLock = false;
 
 
-
-
 const {clipboard} = require('electron');
 
 function hideAllScreens() {
@@ -885,4 +883,22 @@ function setColorTheme(name) {
     } else {
         $('#add-color-theme').remove();
     }
+}
+
+function addFromClipboard() {
+
+    var body = clipboard.readText();
+    if (body == '') {
+        alert('Clipboard is empty.');
+        return;
+    }
+    var title = '#clipboard ...' + body.substr(0, 30)+'...'.trim();
+
+    // title = prompt('Title?', '');
+    // if (title == '') {
+    //     title = body.substr(0, 30)+'...'.trim();
+    // }
+
+    addNote(title, body);
+    alert('Added.');
 }
