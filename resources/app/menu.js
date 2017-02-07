@@ -507,3 +507,4 @@ ipcRenderer.on('clips', function() {
 ipcRenderer.on('settings', function() {
     traySettings();
 });
+

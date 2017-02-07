@@ -889,7 +889,9 @@ function trayAddFromClipboard() {
 
     var body = clipboard.readText();
     if (body == '') {
-        alert('Clipboard is empty.');
+        new Notification('', {
+            body: 'Clipboard is empty.'
+        })
         return;
     }
     var title = '#clipboard ...' + body.substr(0, 30)+'...'.trim();
@@ -900,7 +902,9 @@ function trayAddFromClipboard() {
     // }
 
     addNote(title, body);
-    alert('Added.');
+    new Notification('', {
+        body: 'Note added.'
+    })
 }
 
 function trayAdd() {
