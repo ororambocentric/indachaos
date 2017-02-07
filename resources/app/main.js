@@ -47,8 +47,22 @@ function createWindow () {
 
     appIcon = new Tray('app-icon.png');
     const contextMenu = Menu.buildFromTemplate([
+        {label: 'Add', type: 'normal', click: function () {
+            mainWindow.webContents.send('add');
+            mainWindow.show();
+        }},
         {label: 'Quick add from clipboard', type: 'normal', click: function () {
             mainWindow.webContents.send('add-from-clipboard');
+        }},
+        {type: 'separator'},
+        {label: 'Clips', type: 'normal', click: function () {
+            mainWindow.webContents.send('clips');
+            mainWindow.show();
+        }},
+        {type: 'separator'},
+        {label: 'Settings', type: 'normal', click: function () {
+            mainWindow.webContents.send('settings');
+            mainWindow.show();
         }},
         {type: 'separator'},
 

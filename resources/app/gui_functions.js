@@ -885,7 +885,7 @@ function setColorTheme(name) {
     }
 }
 
-function addFromClipboard() {
+function trayAddFromClipboard() {
 
     var body = clipboard.readText();
     if (body == '') {
@@ -901,4 +901,16 @@ function addFromClipboard() {
 
     addNote(title, body);
     alert('Added.');
+}
+
+function trayAdd() {
+    showScreenEdit();
+}
+
+function trayClips() {
+    showScreenClips();
+}
+
+function traySettings() {
+    showScreenSettings();
 }

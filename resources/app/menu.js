@@ -493,5 +493,17 @@ const editorTitleContextMenu = Menu.buildFromTemplate(editorTitleContextMenuTemp
 const clipsContextMenu = Menu.buildFromTemplate(clipsContextMenuTemplate);
 
 ipcRenderer.on('add-from-clipboard', function() {
-    addFromClipboard();
+    trayAddFromClipboard();
+});
+
+ipcRenderer.on('add', function() {
+    trayAdd();
+});
+
+ipcRenderer.on('clips', function() {
+    trayClips();
+});
+
+ipcRenderer.on('settings', function() {
+    traySettings();
 });
