@@ -44,9 +44,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.12374369"
-     inkscape:cx="1924.988"
-     inkscape:cy="-57.041579"
+     inkscape:zoom="0.49497476"
+     inkscape:cx="495.89173"
+     inkscape:cy="332.91255"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -86,7 +86,7 @@
      transform="translate(0,-308.27218)">
     <path
        transform="matrix(0.87493349,0,0,0.87493349,463.70816,782.11232)"
-       d="m -880,364.09003 a 420,420 0 1 1 -840,0 420,420 0 1 1 840,0 z"
+       d="m -880,364.09003 c 0,231.95959 -188.0404,420 -420,420 -231.9596,0 -420,-188.04041 -420,-420 0,-231.9596 188.0404,-420.000003 420,-420.000003 231.9596,0 420,188.040403 420,420.000003 z"
        sodipodi:ry="420"
        sodipodi:rx="420"
        sodipodi:cy="364.09003"
@@ -102,7 +102,7 @@
        sodipodi:cy="364.09003"
        sodipodi:rx="420"
        sodipodi:ry="420"
-       d="m -880,364.09003 a 420,420 0 1 1 -840,0 420,420 0 1 1 840,0 z"
+       d="m -880,364.09003 c 0,231.95959 -188.0404,420 -420,420 -231.9596,0 -420,-188.04041 -420,-420 0,-231.9596 188.0404,-420.000003 420,-420.000003 231.9596,0 420,188.040403 420,420.000003 z"
        transform="matrix(0.87493349,0,0,0.87493349,96.0126,301.27976)" />
     <path
        sodipodi:type="arc"
@@ -112,17 +112,17 @@
        sodipodi:cy="364.09003"
        sodipodi:rx="420"
        sodipodi:ry="420"
-       d="m -880,364.09003 a 420,420 0 1 1 -840,0 420,420 0 1 1 840,0 z"
+       d="m -880,364.09003 c 0,231.95959 -188.0404,420 -420,420 -231.9596,0 -420,-188.04041 -420,-420 0,-231.9596 188.0404,-420.000003 420,-420.000003 231.9596,0 420,188.040403 420,420.000003 z"
        transform="matrix(0.87493349,0,0,0.87493349,1174.8556,-579.57331)" />
     <path
        transform="matrix(0.87493349,0,0,0.87493349,1510.2059,361.86856)"
-       d="m -880,364.09003 a 420,420 0 1 1 -840,0 420,420 0 1 1 840,0 z"
+       d="m -880,364.09003 c 0,231.95959 -188.0404,420 -420,420 -231.9596,0 -420,-188.04041 -420,-420 0,-231.9596 188.0404,-420.000003 420,-420.000003 231.9596,0 420,188.040403 420,420.000003 z"
        sodipodi:ry="420"
        sodipodi:rx="420"
        sodipodi:cy="364.09003"
        sodipodi:cx="-1300"
        id="path3804"
-       style="fill:#2d2d2d;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:0;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#1b395f;fill-opacity:0.83858269;fill-rule:nonzero;stroke:#ffffff;stroke-width:0;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        sodipodi:type="arc"
        inkscape:export-filename="/home/idzn/dev/indachaos/resources/app/app-icon.png"
        inkscape:export-xdpi="7.8364553"
