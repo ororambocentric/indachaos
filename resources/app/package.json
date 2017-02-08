@@ -4,6 +4,7 @@
   "description": "Notes manager with focus on fast data access.",
   "main": "main.js",
   "scripts": {
+    "build": "./node_modules/.bin/electron-rebuild",
     "start": "electron main.js"
   },
   "repository": {
