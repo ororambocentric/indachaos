@@ -34,9 +34,10 @@ var contextCurrentNoteID = 0;
 var currentClipID = 0;
 var windowScrollTop = 0;
 var lastSearchPattern = '-';
-var settingsFileLock = false;
+var windowMustBeHidden = false;
+var addingFromClipboard = false;
 
-
+//const {remote} = require('electron');
 const {clipboard} = require('electron');
 
 function hideAllScreens() {
@@ -44,6 +45,10 @@ function hideAllScreens() {
     if ($("#sidebar").css('display') != 'none') {
         $("#sidebar").hide();
         $(".container").removeClass('with-sidebar');
+    }
+    if (activeScreen != 'edit') {
+        windowMustBeHidden = false;
+        addingFromClipboard = false;
     }
 
 }
@@ -886,21 +891,21 @@ function setColorTheme(name) {
 }
 
 function trayAddFromClipboard() {
-
-    var body = clipboard.readText();
+    var body = clipboard.readText().trim();
     if (body == '') {
         alert('Clipboard is empty.');
+        if (windowMustBeHidden) {
+            windowMustBeHidden = false;
+            const { remote } = require('electron');
+            remote.BrowserWindow.getAllWindows()[0].minimize();
+        }
+        windowMustBeHidden = false;
+        addingFromClipboard = false;
         return;
     }
-    var title = '#clipboard ...' + body.substr(0, 30)+'...'.trim();
-
-    // title = prompt('Title?', '');
-    // if (title == '') {
-    //     title = body.substr(0, 30)+'...'.trim();
-    // }
-
-    addNote(title, body);
-    alert('Note added.');
+    showScreenEdit();
+    $("#screen-edit #body").val(body);
+    addingFromClipboard = true;
 }
 
 function trayAdd() {

@@ -508,3 +508,7 @@ ipcRenderer.on('settings', function() {
     traySettings();
 });
 
+ipcRenderer.on('window-must-be-hidden', function() {
+    windowMustBeHidden = true;
+});
+

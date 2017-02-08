@@ -26,7 +26,7 @@ const electron = require('electron');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 
-const {Tray, Menu} = require('electron');
+const {Tray, Menu, clipboard} = require('electron');
 
 let mainWindow;
 let appIcon = null;
@@ -52,7 +52,12 @@ function createWindow () {
             mainWindow.show();
         }},
         {label: 'Quick add from clipboard', type: 'normal', click: function () {
+
+            if (mainWindow.isMinimized() || !mainWindow.isVisible()) {
+                mainWindow.webContents.send('window-must-be-hidden');
+            }
             mainWindow.webContents.send('add-from-clipboard');
+            mainWindow.show();
         }},
         {type: 'separator'},
         {label: 'Clips', type: 'normal', click: function () {

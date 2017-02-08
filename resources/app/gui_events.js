@@ -196,12 +196,22 @@ $(document).ready(function () {
             return;
         }
         if (title == '') {
-            title = body.substr(0, 30)+'...'.trim();
+            var prefix = '';
+            if (addingFromClipboard) {
+                prefix = '#clipboard ';
+                addingFromClipboard = false;
+            }
+            title = prefix + body.substr(0, 30)+'...'.trim();
         }
         if ($("#screen-edit").attr('data-id') === undefined) {
             addNote(title, body);
         } else {
             updateNote($("#screen-edit").attr('data-id'), title, body);
+        }
+        if (windowMustBeHidden) {
+            windowMustBeHidden = false;
+            const { remote } = require('electron');
+            remote.BrowserWindow.getFocusedWindow().minimize();
         }
     });
     
