@@ -3,10 +3,11 @@ Supersonic notes manager.
 
 ##Install
 
-cd resources/app
-npm install & npm build
+* cd resources/app
+* npm install
+* npm build
 
 ##Run
 
-cd resources/app
-npm start
+* cd resources/app
+* npm start
