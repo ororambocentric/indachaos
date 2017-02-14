@@ -55,7 +55,7 @@ const template = [
 
             },
             {
-                label: 'Go to last editing',
+                label: 'Open recent',
                 accelerator: 'CmdOrCtrl+E',
                 click() {
                     actionGoToLastEditing();
@@ -498,6 +498,10 @@ ipcRenderer.on('add-from-clipboard', function() {
 
 ipcRenderer.on('add', function() {
     trayAdd();
+});
+
+ipcRenderer.on('open-recent', function() {
+    trayOpenRecent();
 });
 
 ipcRenderer.on('clips', function() {

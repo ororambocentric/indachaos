@@ -60,6 +60,11 @@ function createWindow () {
             mainWindow.show();
         }},
         {type: 'separator'},
+        {label: 'Open recent', type: 'normal', click: function () {
+            mainWindow.webContents.send('open-recent');
+            mainWindow.show();
+        }},
+        {type: 'separator'},
         {label: 'Clips', type: 'normal', click: function () {
             mainWindow.webContents.send('clips');
             mainWindow.show();

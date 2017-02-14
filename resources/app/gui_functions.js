@@ -100,6 +100,7 @@ function showScreenEdit(id) {
         $("#edit-screen-title").text('Add note');
         $("#screen-edit #title").val('');
         $("#screen-edit #body").val('');
+
     } else {
         $("#edit-screen-title").text('Edit note');
         var nm = new DBManager();
@@ -109,12 +110,17 @@ function showScreenEdit(id) {
             $("#screen-edit").attr('data-id', row.id);
             $("#screen-edit #title").val(row.title);
             $("#screen-edit #body").val(row.body);
+
         });
         nm.closeDB();
 
     }
     $("#screen-edit").fadeIn(animationSpeed);
-    $("#screen-edit #title").focus();
+    if (id === undefined) {
+        $("#screen-edit #title").focus();
+    } else {
+        $("#screen-edit #body").focus();
+    }
 }
 
 function showScreenClips() {
@@ -910,6 +916,10 @@ function trayAddFromClipboard() {
 
 function trayAdd() {
     showScreenEdit();
+}
+
+function trayOpenRecent() {
+    actionGoToLastEditing();
 }
 
 function trayClips() {
