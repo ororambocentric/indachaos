@@ -61,6 +61,9 @@ function createWindow () {
         }},
         {type: 'separator'},
         {label: 'Open recent', type: 'normal', click: function () {
+            if (mainWindow.isMinimized() || !mainWindow.isVisible()) {
+                mainWindow.webContents.send('window-must-be-hidden');
+            }
             mainWindow.webContents.send('open-recent');
             mainWindow.show();
         }},
@@ -87,7 +90,12 @@ function createWindow () {
     appIcon.setToolTip('Indachaos');
     appIcon.setContextMenu(contextMenu);
     appIcon.on('click', function () {
-        mainWindow.show();
+        if (mainWindow.isMinimized() || !mainWindow.isVisible()) {
+            mainWindow.show();
+        } else {
+            mainWindow.hide();
+        }
+
     });
 }
 
