@@ -51,7 +51,7 @@ function createWindow () {
             mainWindow.webContents.send('add');
             mainWindow.show();
         }},
-        {label: 'Quick add from clipboard', type: 'normal', click: function () {
+        {label: 'Add from clipboard', type: 'normal', click: function () {
 
             if (mainWindow.isMinimized() || !mainWindow.isVisible()) {
                 mainWindow.webContents.send('window-must-be-hidden');
@@ -70,6 +70,15 @@ function createWindow () {
         {type: 'separator'},
         {label: 'Clips', type: 'normal', click: function () {
             mainWindow.webContents.send('clips');
+            mainWindow.show();
+        }},
+        {type: 'separator'},
+        {label: 'Todo from clipboard', type: 'normal', click: function () {
+            mainWindow.webContents.send('todo-from-clipboard');
+        }},
+        {type: 'separator'},
+        {label: 'Todo', type: 'normal', click: function () {
+            mainWindow.webContents.send('todolist');
             mainWindow.show();
         }},
         {type: 'separator'},

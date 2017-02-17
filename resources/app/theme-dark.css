@@ -292,3 +292,8 @@ input[type=number], select, textarea {
 hr {
     border-color: #5b5b5b;
 }
+
+#todo-list .strikeout {
+    text-decoration: line-through;
+    color: #606060;
+}

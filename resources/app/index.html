@@ -32,6 +32,7 @@ SOFTWARE.
   <script src="node_modules/jquery.scrollto/jquery.scrollTo.min.js"></script>
   <script src="node_modules/insert-at-caret/jquery.insert-at-caret.min.js"></script>
   <script src="jquery.highlight.js"></script>
+  <script src="node_modules/vue/dist/vue.js"></script>
   <script src="settings.js"></script>
   <script src="db_manager.js"></script>
   <script src="gui_functions.js"></script>
@@ -116,6 +117,9 @@ SOFTWARE.
           <button id="button-clips" type="button" class="btn btn-default" title="Clips (Ctrl+K)">
             <span class="glyphicon glyphicon-copy" aria-hidden="true"></span>
           </button>
+          <button id="button-todo" type="button" class="btn btn-default" title="Todo list(Ctrl+T)">
+            <span class="glyphicon glyphicon glyphicon-bell" aria-hidden="true"></span>
+          </button>
           <button id="button-sidebar-toggle" type="button" class="btn btn-default" title="Show / hide sidebar (Ctrl+L)">
             <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
           </button>
@@ -186,6 +190,41 @@ SOFTWARE.
       </div>
     </form>
   </div>
+
+  <div id="screen-todo">
+    <div class="toolbar navbar-fixed-top">
+      <button id="button-todo-back" type="button" class="btn btn-default pull-right" title="Close (ESC)">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+      </button>
+    </div>
+    <div style="clear: both"></div>
+    <h1>Todo list
+      <button id="button-clear-todo" type="button" class="btn btn-default" title="Delete all">
+        <span class="glyphicon glyphicon-erase" aria-hidden="true"></span>
+      </button>
+    </h1>
+    <div id="todo-list">
+
+
+
+      <div class="toolbar">
+        <div class="input-group">
+          <input v-model="newItemInput" @keyup.enter="addItem" id="input-todo" type="text"  class="form-control" placeholder="To do...">
+        </div>
+      </div>
+    <ul>
+      <todo-item v-for="(item, index) in todos" :key="index" :item="item" @delete="deleteItem(index)" @strike="strikeItem(index)"></todo-item>
+    </ul>
+
+    </div>
+  </div>
+  <script>
+
+
+
+
+
+  </script>
   <div id="screen-clips">
     <div class="toolbar navbar-fixed-top">
       <button id="button-clips-back" type="button" class="btn btn-default pull-right" title="Close (ESC)">
@@ -200,9 +239,7 @@ SOFTWARE.
     </h1>
 
     <hr>
-    <div id="clips-area" class="col-xs-12">
-
-    </div>
+    <div id="clips-area" class="col-xs-12"></div>
   </div>
   <div id="screen-about">
     <div class="toolbar navbar-fixed-top">
@@ -225,6 +262,6 @@ SOFTWARE.
 
   </div>
 </div>
-
+<script src="todolist.js"></script>
 </body>
 </html>

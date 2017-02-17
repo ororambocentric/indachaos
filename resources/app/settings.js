@@ -28,7 +28,8 @@ var settings = {
     history: [],
     last_editing_note_id: 0,
     history_length: 30,
-    color_theme: 'default'
+    color_theme: 'default',
+    todos: []
 };
 
 function loadAppSettings(callback) {

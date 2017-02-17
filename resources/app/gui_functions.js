@@ -68,6 +68,18 @@ function showScreenSettings() {
     $('#screen-settings #path-to-db').focus();
 }
 
+function showScreenTodo() {
+
+    if (activeScreen == 'todo') {
+        //showScreenSearch();
+        return;
+    }
+    activeScreen = 'todo';
+    hideAllScreens();
+    $("#screen-todo").fadeIn(animationSpeed);
+    $("#screen-todo #input-todo").focus();
+}
+
 function showScreenAbout() {
     if (activeScreen == 'about') {
         //showScreenSearch();
@@ -77,6 +89,7 @@ function showScreenAbout() {
     hideAllScreens();
     $("#screen-about").fadeIn(animationSpeed);
 }
+
 
 function showScreenSearch() {
     activeScreen = 'search';
@@ -914,6 +927,16 @@ function trayAddFromClipboard() {
     addingFromClipboard = true;
 }
 
+function trayTodoFromClipboard() {
+    var body = clipboard.readText().trim();
+    if (body == '') {
+        alert('Clipboard is empty.');
+        return;
+    }
+    vmTodoList.newItemInput = body;
+    vmTodoList.addItem();
+}
+
 function trayAdd() {
     showScreenEdit();
 }
@@ -924,6 +947,10 @@ function trayOpenRecent() {
 
 function trayClips() {
     showScreenClips();
+}
+
+function trayTodoList() {
+    showScreenTodo();
 }
 
 function traySettings() {

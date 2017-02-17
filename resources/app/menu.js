@@ -42,6 +42,11 @@ const template = [
                 click() { $("#button-clips").trigger('click'); }
             },
             {
+                label: 'Todo list',
+                accelerator: 'CmdOrCtrl+T',
+                click() { $("#button-todo").trigger('click'); }
+            },
+            {
                 label: 'Go to search',
                 accelerator: 'CmdOrCtrl+F',
                 click() { 
@@ -496,6 +501,10 @@ ipcRenderer.on('add-from-clipboard', function() {
     trayAddFromClipboard();
 });
 
+ipcRenderer.on('todo-from-clipboard', function() {
+    trayTodoFromClipboard();
+});
+
 ipcRenderer.on('add', function() {
     trayAdd();
 });
@@ -506,6 +515,10 @@ ipcRenderer.on('open-recent', function() {
 
 ipcRenderer.on('clips', function() {
     trayClips();
+});
+
+ipcRenderer.on('todolist', function() {
+    trayTodoList();
 });
 
 ipcRenderer.on('settings', function() {

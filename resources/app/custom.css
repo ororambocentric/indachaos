@@ -231,3 +231,8 @@ button, input, textarea, select {
 .settings-table td:last-child{
     padding: 20px;
 }
+
+#todo-list .strikeout {
+    text-decoration: line-through;
+    color: #aaa;
+}

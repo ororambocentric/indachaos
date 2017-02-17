@@ -28,9 +28,10 @@ $(document).ready(function () {
         setColorTheme(settings.color_theme);
         $(".container").fadeIn(animationSpeed);
         registerShortcuts();
-        showScreenSearch();
+        showScreenTodo();
         toggleSidebar();
         renderNotesLinks();
+        vmTodoList.todos = settings.todos;
     });
 
 
@@ -55,16 +56,24 @@ $(document).ready(function () {
         researchNotes();
     });
 
-    $(document).on('click', "#button-clips-back", function () {
-        showScreenSearch();
-    });
-
     $(document).on('click', "#button-add-note", function () {
         showScreenEdit();
     });
 
+    $(document).on('click', "#button-todo", function () {
+        showScreenTodo();
+    });
+
+    $(document).on('click', "#button-todo-back", function () {
+        showScreenSearch();
+    });
+
     $(document).on('click', "#button-clips", function () {
         showScreenClips();
+    });
+
+    $(document).on('click', "#button-clips-back", function () {
+        showScreenSearch();
     });
 
     $(document).on('click', "#button-gotoresult-forward", function () {
