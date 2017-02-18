@@ -72,6 +72,7 @@ function showScreenTodo() {
 
     if (activeScreen == 'todo') {
         //showScreenSearch();
+        $("#screen-todo #input-todo").focus();
         return;
     }
     activeScreen = 'todo';
@@ -509,7 +510,7 @@ function registerShortcuts() {
 
         // ESC
         if(e.which == 27) {
-            if (activeScreen != 'search')
+            if (activeScreen != 'search' && activeScreen != 'todo')
             showScreenSearch();
         }
 

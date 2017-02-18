@@ -9,7 +9,7 @@ Vue.component('todo-item', {
     template: '\
       <li class="list-group-item">\
       <input type="checkbox" @click="$emit(\'strike\')" :checked="item.strikeout">\
-      <div class="input-group editor-group"><textarea class="editor" v-focus="true" @keydown.enter="$emit(\'save\')" @blur="editmode.enabled = false" @keyup.esc="editmode.enabled = false" v-model.trim="item.text" v-if="editmode.enabled && editmode.index == index" type="text"></textarea></div>\
+      <div class="input-group editor-group"><textarea class="editor" v-focus="true" @keydown.enter="$emit(\'save\')" @blur="editmode.enabled = false" @keydown.prevent.esc="editmode.enabled = false" v-model.trim="item.text" v-if="editmode.enabled && editmode.index == index" type="text"></textarea></div>\
       <div class="item-text" v-if="!(editmode.enabled && editmode.index == index)" :class="{strikeout: item.strikeout}"  @dblclick="$emit(\'edit\');">{{item.text}}</div>\
         <div class="btn-group">\
             <button type="button" class="btn btn-default" title="Delete item" @click="$emit(\'delete\')">\
