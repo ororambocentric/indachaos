@@ -213,7 +213,7 @@ SOFTWARE.
         </div>
       </div>
     <ul class="list-group">
-      <todo-item v-for="(item, index) in todos" :key="index" :item="item" @delete="deleteItem(index)" @strike="strikeItem(index)"></todo-item>
+      <todo-item v-for="(item, index) in todos" :key="index" :item="item" @delete="deleteItem(index)" @strike="strikeItem(index)" @edit="editItem(index)"></todo-item>
     </ul>
 
     </div>

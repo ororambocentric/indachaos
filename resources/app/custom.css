@@ -267,4 +267,9 @@ button, input, textarea, select {
     border: 0;
 }
 
+#todo-list input[type="checkbox"] {
+    float: left;
+    margin: 10px;
+}
+
 

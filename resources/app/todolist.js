@@ -2,7 +2,8 @@ Vue.component('todo-item', {
     props: ['item'],
     template: '\
       <li class="list-group-item">\
-      <div class="item-text" :class="{strikeout: item.strikeout}" @click="$emit(\'strike\')">{{item.text}}</div>\
+      <input type="checkbox" @click="$emit(\'strike\')" :checked="item.strikeout">\
+      <div class="item-text" :class="{strikeout: item.strikeout}" @dblclick="$emit(\'edit\')">{{item.text}}</div>\
         <div class="btn-group">\
             <button type="button" class="btn btn-default" title="Delete item" @click="$emit(\'delete\')">\
                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>\
@@ -16,7 +17,8 @@ var vmTodoList = new Vue({
     el: '#todo-list',
     data: {
         newItemInput: '',
-        todos: settings.todos
+        todos: settings.todos,
+        editMode: false
     },
     methods: {
         addItem: function () {
@@ -35,6 +37,9 @@ var vmTodoList = new Vue({
         strikeItem: function (index) {
             this.todos[index].strikeout = !this.todos[index].strikeout;
             this.save()
+        },
+        editItem: function (index) {
+            console.log('111');
         },
         save: function () {
             settings.todos = vmTodoList.todos;
