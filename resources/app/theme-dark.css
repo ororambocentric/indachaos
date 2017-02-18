@@ -297,3 +297,50 @@ hr {
     text-decoration: line-through;
     color: #606060;
 }
+
+#todo-list .input-group {
+    width: 100%;
+}
+
+#todo-list ul {
+    margin-top: 120px;
+}
+
+#todo-list li {
+    padding: 0;
+    border-left: none;
+    border-right: none;
+    background: #2d2d2d;
+    border-color: #3f3f3f;
+}
+
+#todo-list li:hover {
+    background: #272727;
+}
+
+
+
+#todo-list .todo-list-header {
+    background: #2b2b2b;
+
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#2b2b2b+24,2b2b2b+100&1+94,0+100 */
+    background: -moz-linear-gradient(top,  rgba(43,43,43,1) 24%, rgba(43,43,43,1) 94%, rgba(43,43,43,0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(43,43,43,1) 24%,rgba(43,43,43,1) 94%,rgba(43,43,43,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(43,43,43,1) 24%,rgba(43,43,43,1) 94%,rgba(43,43,43,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2b2b2b', endColorstr='#002b2b2b',GradientType=0 ); /* IE6-9 */
+
+}
+
+
+#todo-list .navbar-fixed-top {
+    background: #2d2d2d;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#2b2b2b+24,2b2b2b+100&1+94,0+100 */
+    background: -moz-linear-gradient(top,  rgba(43,43,43,1) 24%, rgba(43,43,43,1) 94%, rgba(43,43,43,0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(43,43,43,1) 24%,rgba(43,43,43,1) 94%,rgba(43,43,43,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(43,43,43,1) 24%,rgba(43,43,43,1) 94%,rgba(43,43,43,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2b2b2b', endColorstr='#002b2b2b',GradientType=0 ); /* IE6-9 */
+
+}
+
+
+

@@ -4,6 +4,8 @@ Vue.directive('focus', {
     }
 });
 
+
+
 Vue.component('todo-item', {
     props: ['item', 'index', 'editmode'],
     template: '\
@@ -37,7 +39,7 @@ var vmTodoList = new Vue({
     methods: {
         addItem: function () {
             if (!this.newItemInput) return;
-            this.todos.push({
+            this.todos.unshift({
                 text: this.newItemInput,
                 strikeout: false
             });

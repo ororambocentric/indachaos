@@ -192,20 +192,23 @@ SOFTWARE.
   </div>
 
   <div id="screen-todo">
-    <div class="toolbar navbar-fixed-top">
-      <button id="button-todo-back" type="button" class="btn btn-default pull-right" title="Close (ESC)">
-        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-      </button>
-    </div>
-    <div style="clear: both"></div>
-    <h1>Todo list</h1>
+
     <div id="todo-list">
-      <div class="toolbar">
+      <div class="toolbar navbar-fixed-top">
+        <div class="todo-list-header">
+        <h1>Todo list</h1>
         <div class="input-group">
           <input v-model.trim="newItemInput" id="input-todo" type="text"  class="form-control" placeholder="To do..."
                  @keyup.enter="addItem">
         </div>
+        </div>
       </div>
+      <div class="toolbar navbar-fixed-top">
+        <button id="button-todo-back" type="button" class="btn btn-default pull-right" title="Close (ESC)">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </div>
+      <div style="clear: both"></div>
       <ul class="list-group">
         <todo-item v-for="(item, index) in todos"
                    :key="index" :index="index"
