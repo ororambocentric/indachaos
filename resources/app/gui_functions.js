@@ -510,7 +510,7 @@ function registerShortcuts() {
 
         // ESC
         if(e.which == 27) {
-            if (activeScreen != 'search' && activeScreen != 'todo')
+            if (activeScreen != 'search')
             showScreenSearch();
         }
 

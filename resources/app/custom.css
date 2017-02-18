@@ -187,6 +187,10 @@ button, input, textarea, select {
     margin-right: 10px !important;
 }
 
+#button-todo {
+    margin-right: 10px !important;
+}
+
 .col-sm-12 {
     padding-left: 30px;
     padding-right: 30px;

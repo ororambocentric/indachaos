@@ -28,7 +28,7 @@ $(document).ready(function () {
         setColorTheme(settings.color_theme);
         $(".container").fadeIn(animationSpeed);
         registerShortcuts();
-        showScreenTodo();
+        showScreenSearch();
         toggleSidebar();
         renderNotesLinks();
         vmTodoList.todos = settings.todos;
