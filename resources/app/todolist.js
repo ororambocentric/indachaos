@@ -47,8 +47,10 @@ var vmTodoList = new Vue({
             this.save()
         },
         deleteItem: function (index) {
-            this.todos.splice(index, 1);
-            this.save()
+            if (confirm('Are you sure you want to delete this todo?')) {
+                this.todos.splice(index, 1);
+                this.save()
+            }
         },
         strikeItem: function (index) {
             this.todos[index].strikeout = !this.todos[index].strikeout;

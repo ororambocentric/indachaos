@@ -1,6 +1,6 @@
 {
   "name": "indachaos",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "Notes manager with focus on fast data access.",
   "main": "main.js",
   "scripts": {
