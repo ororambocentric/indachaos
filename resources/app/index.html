@@ -212,7 +212,7 @@ SOFTWARE.
           <input v-model="newItemInput" @keyup.enter="addItem" id="input-todo" type="text"  class="form-control" placeholder="To do...">
         </div>
       </div>
-    <ul>
+    <ul class="list-group">
       <todo-item v-for="(item, index) in todos" :key="index" :item="item" @delete="deleteItem(index)" @strike="strikeItem(index)"></todo-item>
     </ul>
 

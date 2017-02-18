@@ -1,10 +1,13 @@
 Vue.component('todo-item', {
     props: ['item'],
     template: '\
-      <li><span :class="{strikeout: item.strikeout}" @click="$emit(\'strike\')">{{item.text}}</span>\
-        <button type="button" class="btn btn-default" title="Delete item" @click="$emit(\'delete\')">\
-          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>\
-        </button>\
+      <li class="list-group-item">\
+      <div class="item-text" :class="{strikeout: item.strikeout}" @click="$emit(\'strike\')">{{item.text}}</div>\
+        <div class="btn-group">\
+            <button type="button" class="btn btn-default" title="Delete item" @click="$emit(\'delete\')">\
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>\
+            </button>\
+        </div>\
       </li>\
       '
 });

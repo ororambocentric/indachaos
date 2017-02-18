@@ -236,3 +236,35 @@ button, input, textarea, select {
     text-decoration: line-through;
     color: #aaa;
 }
+
+#todo-list .input-group {
+    width: 100%;
+}
+
+#todo-list ul {
+    margin-top: 20px;
+}
+
+#todo-list li {
+    padding: 0;
+    border-left: none;
+    border-right: none;
+}
+
+#todo-list li .item-text {
+    padding: 7px 50px 7px 10px;
+}
+
+
+#todo-list li .btn-group {
+    margin-left: 50px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    display: block;
+    cursor: pointer;
+    border: 0;
+}
+
+
