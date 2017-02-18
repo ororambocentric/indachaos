@@ -204,27 +204,26 @@ SOFTWARE.
       </button>
     </h1>
     <div id="todo-list">
-
-
-
       <div class="toolbar">
         <div class="input-group">
-          <input v-model="newItemInput" @keyup.enter="addItem" id="input-todo" type="text"  class="form-control" placeholder="To do...">
+          <input v-model="newItemInput" id="input-todo" type="text"  class="form-control" placeholder="To do..."
+                 @keyup.enter="addItem">
         </div>
       </div>
-    <ul class="list-group">
-      <todo-item v-for="(item, index) in todos" :key="index" :item="item" @delete="deleteItem(index)" @strike="strikeItem(index)" @edit="editItem(index)"></todo-item>
-    </ul>
+      <ul class="list-group">
+        <todo-item v-for="(item, index) in todos"
+                   :key="index" :index="index"
+                   :item="item"
+                   :editmode="editMode"
+                   @delete="deleteItem(index)"
+                   @strike="strikeItem(index)"
+                   @edit="editItem(index)"
+                   @save="saveItem"
 
+          ></todo-item>
+      </ul>
     </div>
   </div>
-  <script>
-
-
-
-
-
-  </script>
   <div id="screen-clips">
     <div class="toolbar navbar-fixed-top">
       <button id="button-clips-back" type="button" class="btn btn-default pull-right" title="Close (ESC)">

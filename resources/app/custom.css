@@ -272,4 +272,7 @@ button, input, textarea, select {
     margin: 10px;
 }
 
+#todo-list .editor {
+    width: 100%;
+}
 
