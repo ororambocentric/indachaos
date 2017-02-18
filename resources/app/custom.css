@@ -274,5 +274,12 @@ button, input, textarea, select {
 
 #todo-list .editor {
     width: 100%;
+    display: inline-block;
 }
+
+#todo-list .editor-group {
+    width: 100%;
+    display: block
+}
+
 

@@ -198,15 +198,11 @@ SOFTWARE.
       </button>
     </div>
     <div style="clear: both"></div>
-    <h1>Todo list
-      <button id="button-clear-todo" type="button" class="btn btn-default" title="Delete all">
-        <span class="glyphicon glyphicon-erase" aria-hidden="true"></span>
-      </button>
-    </h1>
+    <h1>Todo list</h1>
     <div id="todo-list">
       <div class="toolbar">
         <div class="input-group">
-          <input v-model="newItemInput" id="input-todo" type="text"  class="form-control" placeholder="To do..."
+          <input v-model.trim="newItemInput" id="input-todo" type="text"  class="form-control" placeholder="To do..."
                  @keyup.enter="addItem">
         </div>
       </div>
@@ -219,7 +215,6 @@ SOFTWARE.
                    @strike="strikeItem(index)"
                    @edit="editItem(index)"
                    @save="saveItem"
-
           ></todo-item>
       </ul>
     </div>
