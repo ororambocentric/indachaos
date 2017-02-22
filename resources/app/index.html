@@ -118,7 +118,7 @@ SOFTWARE.
             <span class="glyphicon glyphicon-copy" aria-hidden="true"></span>
           </button>
           <button id="button-todo" type="button" class="btn btn-default" title="Todo list(Ctrl+T)">
-            <span class="glyphicon glyphicon glyphicon-bell" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
           </button>
           <button id="button-sidebar-toggle" type="button" class="btn btn-default" title="Show / hide sidebar (Ctrl+L)">
             <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
@@ -221,6 +221,7 @@ SOFTWARE.
                    @strike="strikeItem(index)"
                    @edit="editItem(index)"
                    @save="saveItem"
+                   @check_remind="checkRemind(index)"
           ></todo-item>
       </ul>
     </div>

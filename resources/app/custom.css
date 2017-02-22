@@ -287,7 +287,8 @@ button, input, textarea, select {
 
 #todo-list .editor-group {
     width: 100%;
-    display: block
+    display: block;
+    background: #eee;
 }
 
 #todo-list .todo-list-header {
@@ -315,6 +316,23 @@ button, input, textarea, select {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
 
 }
+
+#todo-list .editor-group {
+    margin: 20px;
+}
+#todo-list .red {
+    color: indianred !important;
+}
+
+#todo-list .remaind-toggle-area *{
+    padding: 0 !important;
+    margin: 5px !important;
+}
+#todo-list .editor-save-group {
+    text-align: center;
+    width: 100%;
+}
+
 
 
 

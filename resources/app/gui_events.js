@@ -31,10 +31,12 @@ $(document).ready(function () {
         showScreenSearch();
         toggleSidebar();
         renderNotesLinks();
-        vmTodoList.todos = settings.todos;
+        vmTodoList.todos = settings.todos.slice(0);
     });
 
-
+    var appTimer = setInterval(function () {
+        watchTodoRemainds();
+    }, 1000);
 
     $(document).on('click', "#button-settings-back", function () {
         activeScreen = 'search';

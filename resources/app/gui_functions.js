@@ -39,7 +39,6 @@ var addingFromClipboard = false;
 var editorDataModified = false;
 var dontCloseScreen = false;
 
-//const {remote} = require('electron');
 const {clipboard} = require('electron');
 
 function hideAllScreens() {
@@ -540,6 +539,11 @@ function registerShortcuts() {
         //ctrl + S / ctrl + shift + S
         if(e.which == 83 && e.ctrlKey) {
 
+            if (activeScreen == 'settings') {
+                $("#screen-settings #button-settings-save").trigger('click');
+                return;
+            }
+
             if (activeScreen == 'edit') {
 
                 if (e.shiftKey) {
@@ -973,4 +977,30 @@ function trayTodoList() {
 
 function traySettings() {
     showScreenSettings();
+}
+
+function watchTodoRemainds() {
+    for (var i in settings.todos) {
+        if (!settings.todos[i].remind_enabled) continue;
+        var now = new Date();
+        var now_date = now.getFullYear() + '-' + ("0" + (now.getMonth() + 1)).slice(-2) + '-' + ("0" + now.getDate()).slice(-2);
+        var now_time = ("0" + now.getHours()).slice(-2) + ':' + ("0" + now.getMinutes()).slice(-2);
+        if (settings.todos[i].remind_date != now_date || settings.todos[i].remind_time != now_time) continue;
+
+        var notification = new Notification('Indachaos reminds', {
+            body: now_date + ' at '+ now_time + '\n\r' + settings.todos[i].text,
+            icon: 'images/app-icon.png'
+        });
+
+        const noise = new Audio('sound/notif_1.wav');
+        noise.play();
+
+        notification.onclick = function() {
+            require('electron').remote.getCurrentWindow().webContents.send('todolist');
+            require('electron').remote.getCurrentWindow().show();
+        };
+
+        settings.todos[i].remind_enabled = false;
+        updateAppSettings();
+    }
 }
