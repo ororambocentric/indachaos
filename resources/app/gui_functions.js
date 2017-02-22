@@ -36,6 +36,8 @@ var windowScrollTop = 0;
 var lastSearchPattern = '-';
 var windowMustBeHidden = false;
 var addingFromClipboard = false;
+var editorDataModified = false;
+var dontCloseScreen = false;
 
 //const {remote} = require('electron');
 const {clipboard} = require('electron');
@@ -50,6 +52,8 @@ function hideAllScreens() {
         windowMustBeHidden = false;
         addingFromClipboard = false;
     }
+    dontCloseScreen = false;
+    editorDataModified = false;
 
 }
 
@@ -129,6 +133,7 @@ function showScreenEdit(id) {
         nm.closeDB();
 
     }
+    displayEditorSaveButton();
     $("#screen-edit").fadeIn(animationSpeed);
     if (id === undefined) {
         $("#screen-edit #title").focus();
@@ -511,7 +516,7 @@ function registerShortcuts() {
         // ESC
         if(e.which == 27) {
             if (activeScreen != 'search')
-            showScreenSearch();
+                showScreenSearch();
         }
 
         //ctrl + N
@@ -532,13 +537,16 @@ function registerShortcuts() {
         //     return false;
         // }
 
-        //ctrl + S
+        //ctrl + S / ctrl + shift + S
         if(e.which == 83 && e.ctrlKey) {
-            if (activeScreen == 'settings') {
-                $("#button-settings-save").trigger('click');
-                return;
-            }
+
             if (activeScreen == 'edit') {
+
+                if (e.shiftKey) {
+                    $("#screen-edit #button-save").trigger('click');
+                    return;
+                }
+
                 $("#screen-edit #button-ok").trigger('click');
                 return;
             }
@@ -908,6 +916,15 @@ function setColorTheme(name) {
     } else {
         $('#add-color-theme').remove();
     }
+}
+
+function displayEditorSaveButton() {
+    if (editorDataModified) {
+        $("#screen-edit #button-save").show(animationSpeed);
+    } else {
+        $("#screen-edit #button-save").hide(animationSpeed);
+    }
+
 }
 
 function trayAddFromClipboard() {

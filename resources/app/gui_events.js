@@ -197,6 +197,26 @@ $(document).ready(function () {
     //
     // });
 
+
+    $(document).on('keydown', "#screen-edit #title, #screen-edit #body", function (e) {
+
+        if (addingFromClipboard || $("#screen-edit").attr('data-id') === undefined) {
+            return;
+        }
+        editorDataModified = true;
+        displayEditorSaveButton();
+    });
+
+
+    $(document).on('click', "#screen-edit #button-save", function () {
+
+        if (!editorDataModified) return;
+
+        dontCloseScreen = true;
+        windowMustBeHidden = false;
+        $("#screen-edit #button-ok").trigger('click');
+    });
+
     $(document).on('click', "#screen-edit #button-ok", function () {
         var title = $("#screen-edit #title").val().trim();
         var body = $("#screen-edit #body").val().trim();
@@ -222,6 +242,8 @@ $(document).ready(function () {
             const { remote } = require('electron');
             remote.BrowserWindow.getFocusedWindow().minimize();
         }
+        editorDataModified = false;
+        displayEditorSaveButton();
     });
     
     $(document).on('click', ".button-delete-note", function () {

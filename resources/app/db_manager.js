@@ -129,7 +129,10 @@ function DBManager() {
     function afterUpdateNote() {
         renderNotesLinks();
         //searchNotes($("#screen-search #input-search").val());
-        showScreenSearch();
+        if (!dontCloseScreen) {
+            showScreenSearch();
+        }
+        dontCloseScreen = false;
         researchNotes();
 
     }
