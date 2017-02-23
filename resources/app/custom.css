@@ -335,9 +335,16 @@ button, input, textarea, select {
     text-align: center;
     width: 100%;
 
-}#todo-list .remind-label {
+}
+
+#todo-list .remind-label {
     margin-right: 10px;
 }
+
+.strikeout .remind-label {
+    background: #5b5b5b;
+}
+
 
 /*#todo-list .remind-wrap input[type='date'],*/
 /*#todo-list .remind-wrap input[type='time']{*/

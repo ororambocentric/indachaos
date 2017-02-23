@@ -25,7 +25,7 @@ Vue.component('todo-item', {
       </div>\
       </div>\
       <div class="item-text" v-if="!(editmode.enabled && editmode.index == index)" :class="{strikeout: item.strikeout}">\
-      <div class="label label-danger remind-label" v-if="item.remind_enabled">\
+      <div class="label label-primary remind-label" v-if="item.remind_enabled">\
       <span class="glyphicon glyphicon-bell white" aria-hidden="true"></span>&nbsp;{{item.remind_date + \' \' + item.remind_time}}\
       </div>\
       {{item.text}}\
