@@ -12,8 +12,8 @@ Vue.component('todo-item', {
       <div class="input-group editor-group" @keydown.stop.esc="$emit(\'cancel\')" v-if="editmode.enabled && editmode.index == index">\
       <textarea class="editor" v-focus="true" @keydown.ctrl.83="$emit(\'save\')" v-model.trim="item.text" type="text"></textarea>\
       <div class="remind-wrap">\
-      <div class="remind-toggle-area">\
-        <input type="checkbox" @keydown.ctrl.83="$emit(\'save\')" @click="$emit(\'check_remind\')" :checked="item.remind_enabled">\
+      <div class="remind-toggle-area" @click="$emit(\'check_remind\')">\
+        <input type="checkbox" @keydown.ctrl.83="$emit(\'save\')" :checked="item.remind_enabled">\
         Remind\
       </div>\
       <input type="date" v-model="item.remind_date" @keydown.ctrl.83="$emit(\'save\')">\
