@@ -334,6 +334,9 @@ button, input, textarea, select {
 #todo-list .editor-save-group {
     text-align: center;
     width: 100%;
+
+}#todo-list .remind-label {
+    margin-right: 10px;
 }
 
 /*#todo-list .remind-wrap input[type='date'],*/

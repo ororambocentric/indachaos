@@ -987,6 +987,7 @@ function traySettings() {
 function watchTodoRemainds() {
     for (var i in settings.todos) {
         if (!settings.todos[i].remind_enabled) continue;
+        if (settings.todos[i].strikeout) continue;
         var now_timestamp = (new Date()).getTime();
         var remind_timestamp = (new Date(settings.todos[i].remind_date + ' ' + settings.todos[i].remind_time)).getTime();
 

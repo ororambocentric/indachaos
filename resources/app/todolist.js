@@ -8,7 +8,7 @@ Vue.component('todo-item', {
     props: ['item', 'index', 'editmode'],
     template: '\
       <li class="list-group-item">\
-      <input type="checkbox"  v-if="!(editmode.enabled && editmode.index == index)" @click="$emit(\'strike\')" :checked="item.strikeout">\
+      <input type="checkbox" v-if="!(editmode.enabled && editmode.index == index)" @click="$emit(\'strike\')" :checked="item.strikeout">\
       <div class="input-group editor-group" @keydown.ctrl.83="$emit(\'save\')" @keydown.stop.esc="$emit(\'cancel\')" v-if="editmode.enabled && editmode.index == index">\
       <textarea class="editor" v-focus="true" v-model.trim="item.text" type="text"></textarea>\
       <div class="remind-wrap">\
@@ -25,7 +25,9 @@ Vue.component('todo-item', {
       </div>\
       </div>\
       <div class="item-text" v-if="!(editmode.enabled && editmode.index == index)" :class="{strikeout: item.strikeout}">\
-      <span :title="item.remind_date + \' \' + item.remind_time" v-if="item.remind_enabled" class="glyphicon glyphicon-bell red" aria-hidden="true"></span>\
+      <div class="label label-danger remind-label" v-if="item.remind_enabled">\
+      <span class="glyphicon glyphicon-bell white" aria-hidden="true"></span>&nbsp;{{item.remind_date + \' \' + item.remind_time}}\
+      </div>\
       {{item.text}}\
       </div>\
         <div class="btn-group">\
@@ -66,7 +68,8 @@ var vmTodoList = new Vue({
 
             });
             this.newItemInput = '';
-            this.save()
+            loadTodosToSettings();
+            updateAppSettings();
         },
         deleteItem: function (index) {
             if (confirm('Are you sure you want to delete this todo?')) {
@@ -75,6 +78,8 @@ var vmTodoList = new Vue({
         },
         strikeItem: function (index) {
             this.todos[index].strikeout = !this.todos[index].strikeout;
+            loadTodosToSettings(index);
+            updateAppSettings();
         },
         checkRemind: function (index) {
             this.todos[index].remind_enabled = !this.todos[index].remind_enabled;
@@ -86,15 +91,12 @@ var vmTodoList = new Vue({
         },
         saveItem: function () {
             this.editMode.enabled = !this.editMode.enabled;
-             this.save()
+            loadTodosToSettings();
+            updateAppSettings();
         },
         cancelChanges: function (index) {
             this.editMode.enabled = false;
             loadTodosFromSettings(index);
-        },
-        save: function () {
-            loadTodosToSettings();
-            updateAppSettings();
         }
     }
 
