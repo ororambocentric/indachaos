@@ -9,8 +9,8 @@ Vue.component('todo-item', {
     template: '\
       <li class="list-group-item">\
       <input type="checkbox"  v-if="!(editmode.enabled && editmode.index == index)" @click="$emit(\'strike\')" :checked="item.strikeout">\
-      <div class="input-group editor-group" v-if="editmode.enabled && editmode.index == index">\
-      <textarea class="editor" v-focus="true" @keydown.ctrl.83="$emit(\'save\')" @keydown.prevent.esc="editmode.enabled = false" v-model.trim="item.text" type="text"></textarea>\
+      <div class="input-group editor-group" @keydown.prevent.esc="$emit(\'cancel\')" v-if="editmode.enabled && editmode.index == index">\
+      <textarea class="editor" v-focus="true" @keydown.ctrl.83="$emit(\'save\')" v-model.trim="item.text" type="text"></textarea>\
       <div class="remind-wrap">\
       <div class="remind-toggle-area">\
         <input type="checkbox" @keydown.ctrl.83="$emit(\'save\')" @click="$emit(\'check_remind\')" :checked="item.remind_enabled">\
@@ -88,9 +88,9 @@ var vmTodoList = new Vue({
             this.editMode.enabled = !this.editMode.enabled;
              this.save()
         },
-        cancelChanges: function () {
+        cancelChanges: function (index) {
             this.editMode.enabled = false;
-            loadTodosFromSettings();
+            loadTodosFromSettings(index);
         },
         save: function () {
             loadTodosToSettings();

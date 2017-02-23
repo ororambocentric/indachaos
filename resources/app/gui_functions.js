@@ -514,6 +514,11 @@ function registerShortcuts() {
 
         // ESC
         if(e.which == 27) {
+
+            if (activeScreen == 'todo') {
+                if (vmTodoList.editMode.enabled) return;
+            }
+
             if (activeScreen != 'search')
                 showScreenSearch();
         }
@@ -1006,12 +1011,24 @@ function watchTodoRemainds() {
     }
 }
 
-function loadTodosFromSettings() {
-    var todos = $.extend(true, [], settings.todos);
-    vmTodoList.todos = todos;
+function loadTodosFromSettings(index) {
+    if (index) {
+        var todo = $.extend(true, [], settings.todos)[index];
+        vmTodoList.todos[index] = todo;
+    } else {
+        var todos = $.extend(true, [], settings.todos);
+        vmTodoList.todos = todos;
+    }
+
 }
 
-function loadTodosToSettings() {
-    var todos = $.extend(true, [], vmTodoList.todos);
-    settings.todos = todos;
+function loadTodosToSettings(index) {
+    if (index) {
+        var todo = $.extend(true, [], vmTodoList.todos)[index];
+        settings.todos[index] = todo;
+    } else {
+        var todos = $.extend(true, [], vmTodoList.todos);
+        settings.todos = todos;
+    }
+
 }
