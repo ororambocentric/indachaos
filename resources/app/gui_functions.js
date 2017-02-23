@@ -1002,5 +1002,16 @@ function watchTodoRemainds() {
 
         settings.todos[i].remind_enabled = false;
         updateAppSettings();
+        loadTodosFromSettings();
     }
+}
+
+function loadTodosFromSettings() {
+    var todos = $.extend(true, [], settings.todos);
+    vmTodoList.todos = todos;
+}
+
+function loadTodosToSettings() {
+    var todos = $.extend(true, [], vmTodoList.todos);
+    settings.todos = todos;
 }

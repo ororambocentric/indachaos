@@ -31,7 +31,7 @@ $(document).ready(function () {
         showScreenSearch();
         toggleSidebar();
         renderNotesLinks();
-        vmTodoList.todos = settings.todos.slice(0);
+        loadTodosFromSettings();
     });
 
     var appTimer = setInterval(function () {

@@ -21,7 +21,7 @@ Vue.component('todo-item', {
       </div>\
       <div class="editor-save-group">\
         <button type="button" class="btn btn-default" @click="$emit(\'save\')">Save</button>\
-        <button type="button" class="btn btn-default" @click="editmode.enabled = false">Cancel</button>\
+        <button type="button" class="btn btn-default" @click="$emit(\'cancel\')">Cancel</button>\
       </div>\
       </div>\
       <div class="item-text" v-if="!(editmode.enabled && editmode.index == index)" :class="{strikeout: item.strikeout}">\
@@ -71,15 +71,14 @@ var vmTodoList = new Vue({
         deleteItem: function (index) {
             if (confirm('Are you sure you want to delete this todo?')) {
                 this.todos.splice(index, 1);
-                this.save()
             }
         },
         strikeItem: function (index) {
             this.todos[index].strikeout = !this.todos[index].strikeout;
-            this.save()
         },
         checkRemind: function (index) {
             this.todos[index].remind_enabled = !this.todos[index].remind_enabled;
+
         },
         editItem: function (index) {
             this.editMode.index = index;
@@ -89,8 +88,12 @@ var vmTodoList = new Vue({
             this.editMode.enabled = !this.editMode.enabled;
              this.save()
         },
+        cancelChanges: function () {
+            this.editMode.enabled = false;
+            loadTodosFromSettings();
+        },
         save: function () {
-            settings.todos = vmTodoList.todos.slice(0);
+            loadTodosToSettings();
             updateAppSettings();
         }
     }
