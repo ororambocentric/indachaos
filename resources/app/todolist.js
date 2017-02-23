@@ -22,7 +22,8 @@ Vue.component('todo-item', {
       <input type="time" v-model="item.remind_time" @keydown.ctrl.83="$emit(\'save\')">\
       </div>\
       <div class="editor-save-group">\
-        <button type="button" class="btn btn-default" @click="$emit(\'save\')">Save & Close</button>\
+        <button type="button" class="btn btn-default" @click="$emit(\'save\')">Save</button>\
+        <button type="button" class="btn btn-default" @click="editmode.enabled = false">Cancel</button>\
       </div>\
       </div>\
       <div class="item-text" v-if="!(editmode.enabled && editmode.index == index)" :class="{strikeout: item.strikeout}"  @dblclick="$emit(\'edit\');">\
