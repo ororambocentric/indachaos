@@ -10,13 +10,13 @@ Vue.component('todo-item', {
     props: ['item', 'index', 'editmode'],
     template: '\
       <li class="list-group-item">\
-      <input type="checkbox" @click="$emit(\'strike\')" :checked="item.strikeout">\
+      <input type="checkbox"  v-if="!(editmode.enabled && editmode.index == index)" @click="$emit(\'strike\')" :checked="item.strikeout">\
       <div class="input-group editor-group" v-if="editmode.enabled && editmode.index == index">\
       <textarea class="editor" v-focus="true" @keydown.ctrl.83="$emit(\'save\')" @keydown.prevent.esc="editmode.enabled = false" v-model.trim="item.text" type="text"></textarea>\
       <div class="remind-wrap">\
       <div class="remaind-toggle-area">\
         <input type="checkbox" @keydown.ctrl.83="$emit(\'save\')" @click="$emit(\'check_remind\')" :checked="item.remind_enabled">\
-        \
+        Remind\
       </div>\
       <input type="date" v-model="item.remind_date" @keydown.ctrl.83="$emit(\'save\')">\
       <input type="time" v-model="item.remind_time" @keydown.ctrl.83="$emit(\'save\')">\
