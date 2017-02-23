@@ -9,7 +9,7 @@ Vue.component('todo-item', {
     template: '\
       <li class="list-group-item">\
       <input type="checkbox"  v-if="!(editmode.enabled && editmode.index == index)" @click="$emit(\'strike\')" :checked="item.strikeout">\
-      <div class="input-group editor-group" @keydown.prevent.esc="$emit(\'cancel\')" v-if="editmode.enabled && editmode.index == index">\
+      <div class="input-group editor-group" @keydown.stop.esc="$emit(\'cancel\')" v-if="editmode.enabled && editmode.index == index">\
       <textarea class="editor" v-focus="true" @keydown.ctrl.83="$emit(\'save\')" v-model.trim="item.text" type="text"></textarea>\
       <div class="remind-wrap">\
       <div class="remind-toggle-area">\
@@ -20,8 +20,8 @@ Vue.component('todo-item', {
       <input type="time" v-model="item.remind_time" @keydown.ctrl.83="$emit(\'save\')">\
       </div>\
       <div class="editor-save-group">\
-        <button type="button" class="btn btn-default" @click="$emit(\'save\')">Save</button>\
-        <button type="button" class="btn btn-default" @click="$emit(\'cancel\')">Cancel</button>\
+        <button type="button" class="btn btn-default" @click="$emit(\'save\')" title="Ctrl+S">Save</button>\
+        <button type="button" class="btn btn-default" @click="$emit(\'cancel\')" title="ESC">Cancel</button>\
       </div>\
       </div>\
       <div class="item-text" v-if="!(editmode.enabled && editmode.index == index)" :class="{strikeout: item.strikeout}">\

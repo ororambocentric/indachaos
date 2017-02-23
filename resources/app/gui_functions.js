@@ -515,9 +515,9 @@ function registerShortcuts() {
         // ESC
         if(e.which == 27) {
 
-            if (activeScreen == 'todo') {
-                if (vmTodoList.editMode.enabled) return;
-            }
+            // if (activeScreen == 'todo') {
+            //     if (vmTodoList.editMode.enabled) return;
+            // }
 
             if (activeScreen != 'search')
                 showScreenSearch();
