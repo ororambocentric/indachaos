@@ -4,8 +4,6 @@ Vue.directive('focus', {
     }
 });
 
-
-
 Vue.component('todo-item', {
     props: ['item', 'index', 'editmode'],
     template: '\

@@ -982,13 +982,13 @@ function traySettings() {
 function watchTodoRemainds() {
     for (var i in settings.todos) {
         if (!settings.todos[i].remind_enabled) continue;
-        var now = new Date();
-        var now_date = now.getFullYear() + '-' + ("0" + (now.getMonth() + 1)).slice(-2) + '-' + ("0" + now.getDate()).slice(-2);
-        var now_time = ("0" + now.getHours()).slice(-2) + ':' + ("0" + now.getMinutes()).slice(-2);
-        if (settings.todos[i].remind_date != now_date || settings.todos[i].remind_time != now_time) continue;
+        var now_timestamp = (new Date()).getTime();
+        var remind_timestamp = (new Date(settings.todos[i].remind_date + ' ' + settings.todos[i].remind_time)).getTime();
+
+        if (now_timestamp < remind_timestamp) continue;
 
         var notification = new Notification('Indachaos reminds', {
-            body: now_date + ' at '+ now_time + '\n\r' + settings.todos[i].text,
+            body: settings.todos[i].remind_date + ' at '+ settings.todos[i].remind_time + '\n\r' + settings.todos[i].text,
             icon: 'images/app-icon.png'
         });
 
