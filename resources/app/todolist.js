@@ -24,11 +24,14 @@ Vue.component('todo-item', {
         <button type="button" class="btn btn-default" @click="editmode.enabled = false">Cancel</button>\
       </div>\
       </div>\
-      <div class="item-text" v-if="!(editmode.enabled && editmode.index == index)" :class="{strikeout: item.strikeout}"  @dblclick="$emit(\'edit\');">\
+      <div class="item-text" v-if="!(editmode.enabled && editmode.index == index)" :class="{strikeout: item.strikeout}">\
       <span :title="item.remind_date + \' \' + item.remind_time" v-if="item.remind_enabled" class="glyphicon glyphicon-bell red" aria-hidden="true"></span>\
       {{item.text}}\
       </div>\
         <div class="btn-group">\
+            <button type="button" class="btn btn-default" title="Edit item" @click="$emit(\'edit\');" v-if="!(editmode.enabled && editmode.index == index)">\
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>\
+            </button>\
             <button type="button" class="btn btn-default" title="Delete item" @click="$emit(\'delete\')" v-if="!(editmode.enabled && editmode.index == index)">\
                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>\
             </button>\
