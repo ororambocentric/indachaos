@@ -324,7 +324,7 @@ button, input, textarea, select {
     color: indianred !important;
 }
 
-#todo-list .remaind-toggle-area *{
+#todo-list .remind-toggle-area *{
     padding: 0 !important;
     margin: 5px !important;
 }
@@ -332,6 +332,11 @@ button, input, textarea, select {
     text-align: center;
     width: 100%;
 }
+
+/*#todo-list .remind-wrap input[type='date'],*/
+/*#todo-list .remind-wrap input[type='time']{*/
+    /*font-size: 20px;*/
+/*}*/
 
 
 
