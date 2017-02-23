@@ -9,15 +9,15 @@ Vue.component('todo-item', {
     template: '\
       <li class="list-group-item">\
       <input type="checkbox"  v-if="!(editmode.enabled && editmode.index == index)" @click="$emit(\'strike\')" :checked="item.strikeout">\
-      <div class="input-group editor-group" @keydown.stop.esc="$emit(\'cancel\')" v-if="editmode.enabled && editmode.index == index">\
-      <textarea class="editor" v-focus="true" @keydown.ctrl.83="$emit(\'save\')" v-model.trim="item.text" type="text"></textarea>\
+      <div class="input-group editor-group" @keydown.ctrl.83="$emit(\'save\')" @keydown.stop.esc="$emit(\'cancel\')" v-if="editmode.enabled && editmode.index == index">\
+      <textarea class="editor" v-focus="true" v-model.trim="item.text" type="text"></textarea>\
       <div class="remind-wrap">\
       <div class="remind-toggle-area" @click="$emit(\'check_remind\')">\
-        <input type="checkbox" @keydown.ctrl.83="$emit(\'save\')" :checked="item.remind_enabled">\
+        <input type="checkbox" :checked="item.remind_enabled">\
         Remind\
       </div>\
-      <input type="date" v-model="item.remind_date" @keydown.ctrl.83="$emit(\'save\')">\
-      <input type="time" v-model="item.remind_time" @keydown.ctrl.83="$emit(\'save\')">\
+      <input type="date" v-model="item.remind_date">\
+      <input type="time" v-model="item.remind_time">\
       </div>\
       <div class="editor-save-group">\
         <button type="button" class="btn btn-default" @click="$emit(\'save\')" title="Ctrl+S">Save</button>\
