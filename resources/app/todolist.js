@@ -35,7 +35,7 @@ Vue.component('todo-item', {
       </div>\
       <div class="item-text" v-if="!(editmode.enabled && editmode.index == index)" :class="{strikeout: item.strikeout}">\
       <div class="label label-primary remind-label" v-if="item.remind_enabled">\
-      <span class="glyphicon glyphicon-bell white" aria-hidden="true"></span>&nbsp;{{item.remind_date + \' \' + item.remind_time + getRepeatStr(item.remind_repeat)}}\
+      <span class="glyphicon glyphicon-bell white" aria-hidden="true"></span>&nbsp;{{moment(item.remind_date + \' \' + item.remind_time).format(\'DD.MM.YYYY HH:mm\') + getRepeatStr(item.remind_repeat)}}\
       </div><br v-if="item.remind_enabled">\
       {{item.text}}\
       </div>\
@@ -74,8 +74,12 @@ Vue.component('todo-item', {
                     return ' and every year';
                     break;
             }
+        },
+        moment: function(something) {
+            return moment(something)
         }
     },
+
     inserted: function (el) {
         // Focus the element
         el.focus()
@@ -100,7 +104,7 @@ var vmTodoList = new Vue({
                 strikeout: false,
                 remind_enabled: false,
                 remind_date: convertDate(new Date()),
-                remind_time: '00:00',
+                remind_time: '23:00',
                 remind_repeat: 0
 
             });
