@@ -1053,21 +1053,22 @@ function watchTodoRemainds() {
     }
 }
 
+// todo if (index) {... !!!!
 function loadTodosFromSettings(index) {
     if (index) {
-        var todo = $.extend(true, [], settings.todos)[index];
-        vmTodoList.todos[index] = todo;
+        var todos = $.extend(true, [], settings.todos);
+        vmTodoList.todos = todos;
     } else {
         var todos = $.extend(true, [], settings.todos);
         vmTodoList.todos = todos;
     }
 
 }
-
+// todo if (index) {... !!!!
 function loadTodosToSettings(index) {
     if (index) {
-        var todo = $.extend(true, [], vmTodoList.todos)[index];
-        settings.todos[index] = todo;
+        var todos = $.extend(true, [], vmTodoList.todos);
+        settings.todos = todos;
     } else {
         var todos = $.extend(true, [], vmTodoList.todos);
         settings.todos = todos;
