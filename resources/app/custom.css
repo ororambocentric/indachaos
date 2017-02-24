@@ -334,7 +334,7 @@ button, input, textarea, select {
 #todo-list .editor-save-group {
     text-align: center;
     width: 100%;
-
+    margin: 20px;
 }
 
 #todo-list .remind-label {

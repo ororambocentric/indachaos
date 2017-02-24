@@ -16,8 +16,17 @@ Vue.component('todo-item', {
         <input type="checkbox" :checked="item.remind_enabled">\
         Remind\
       </div>\
-      <input type="date" v-model="item.remind_date">\
-      <input type="time" v-model="item.remind_time">\
+      <input type="date" v-model="item.remind_date">&nbsp;at&nbsp;\
+      <input type="time" v-model="item.remind_time">&nbsp;repeat&nbsp;\
+      <select v-model="item.remind_repeat">\
+        <option value="0">no repeat</option>\
+        <option value="1">every minute</option>\
+        <option value="2">every hour</option>\
+        <option value="3">every day</option>\
+        <option value="4">every week</option>\
+        <option value="5">every month</option>\
+        <option value="6">every year</option>\
+      </select>\
       </div>\
       <div class="editor-save-group">\
         <button type="button" class="btn btn-default" @click="$emit(\'save\')" title="Ctrl+S">Save</button>\
@@ -63,8 +72,9 @@ var vmTodoList = new Vue({
                 text: this.newItemInput,
                 strikeout: false,
                 remind_enabled: false,
-                remind_date: '',
-                remind_time: ''
+                remind_date: convertDate(new Date()),
+                remind_time: '00:00',
+                remind_repeat: 0
 
             });
             this.newItemInput = '';
@@ -91,6 +101,14 @@ var vmTodoList = new Vue({
         },
         saveItem: function () {
             this.editMode.enabled = !this.editMode.enabled;
+            for (var i in this.todos) {
+                if (!this.todos[i].remind_date) {
+                    this.todos[i].remind_date = convertDate(new Date());
+                }
+                if (!this.todos[i].remind_time) {
+                    this.todos[i].remind_time = '00:00';
+                }
+            }
             loadTodosToSettings();
             updateAppSettings();
         },

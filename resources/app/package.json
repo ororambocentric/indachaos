@@ -34,6 +34,7 @@
     "insert-at-caret": "^1.1.4",
     "jquery": "~2.2.4",
     "jquery.scrollto": "^2.1.2",
+    "moment": "^2.17.1",
     "sqlite3": "^3.1.4",
     "vue": "^2.1.10"
   }

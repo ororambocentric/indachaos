@@ -984,12 +984,30 @@ function traySettings() {
     showScreenSettings();
 }
 
+function convertDate(date) {
+    var yyyy = date.getFullYear().toString();
+    var mm = (date.getMonth()+1).toString();
+    var dd  = date.getDate().toString();
+
+    var mmChars = mm.split('');
+    var ddChars = dd.split('');
+
+    return yyyy + '-' + (mmChars[1]?mm:"0"+mmChars[0]) + '-' + (ddChars[1]?dd:"0"+ddChars[0]);
+}
+
 function watchTodoRemainds() {
+
+    var dateFormat = 'YYYY-MM-DD';
+    var timeFormat = 'HH:mm';
+
     for (var i in settings.todos) {
+
         if (!settings.todos[i].remind_enabled) continue;
         if (settings.todos[i].strikeout) continue;
-        var now_timestamp = (new Date()).getTime();
-        var remind_timestamp = (new Date(settings.todos[i].remind_date + ' ' + settings.todos[i].remind_time)).getTime();
+
+        var now_timestamp = moment().unix();
+        var remind_date_object = moment(settings.todos[i].remind_date + ' ' + settings.todos[i].remind_time);
+        var remind_timestamp = remind_date_object.unix();
 
         if (now_timestamp < remind_timestamp) continue;
 
@@ -1007,6 +1025,29 @@ function watchTodoRemainds() {
         };
 
         settings.todos[i].remind_enabled = false;
+
+        if (settings.todos[i].remind_repeat !== '0') {
+
+            if (settings.todos[i].remind_repeat === '1') {
+                var nextDate = remind_date_object.add(1, 'minute');
+            } else if (settings.todos[i].remind_repeat === '2') {
+                var nextDate = remind_date_object.add(1, 'hour');
+            } else if (settings.todos[i].remind_repeat === '3') {
+                var nextDate = remind_date_object.add(1, 'day');
+            } else if (settings.todos[i].remind_repeat === '4') {
+                var nextDate = remind_date_object.add(1, 'week');
+            } else if (settings.todos[i].remind_repeat === '5') {
+                var nextDate = remind_date_object.add(1, 'month');
+            } else if (settings.todos[i].remind_repeat === '6') {
+                var nextDate = remind_date_object.add(1, 'year');
+            }
+
+            settings.todos[i].remind_date = nextDate.format(dateFormat);
+            settings.todos[i].remind_time = nextDate.format(timeFormat);
+            settings.todos[i].remind_enabled = true;
+
+        }
+
         updateAppSettings();
         loadTodosFromSettings();
     }
