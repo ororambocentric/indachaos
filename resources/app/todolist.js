@@ -35,8 +35,8 @@ Vue.component('todo-item', {
       </div>\
       <div class="item-text" v-if="!(editmode.enabled && editmode.index == index)" :class="{strikeout: item.strikeout}">\
       <div class="label label-primary remind-label" v-if="item.remind_enabled">\
-      <span class="glyphicon glyphicon-bell white" aria-hidden="true"></span>&nbsp;{{item.remind_date + \' \' + item.remind_time}}\
-      </div>\
+      <span class="glyphicon glyphicon-bell white" aria-hidden="true"></span>&nbsp;{{item.remind_date + \' \' + item.remind_time + getRepeatStr(item.remind_repeat)}}\
+      </div><br v-if="item.remind_enabled">\
       {{item.text}}\
       </div>\
         <div class="btn-group">\
@@ -49,6 +49,33 @@ Vue.component('todo-item', {
         </div>\
       </li>\
       ',
+    methods: {
+        getRepeatStr: function (repeat) {
+            switch (repeat) {
+                case '0':
+                    return '';
+                    break;
+                case '1':
+                    return ' and every minute';
+                    break;
+                case '2':
+                    return ' and every hour';
+                    break;
+                case '3':
+                    return ' and every day';
+                    break;
+                case '4':
+                    return ' and every week';
+                    break;
+                case '5':
+                    return ' and every month';
+                    break;
+                case '6':
+                    return ' and every year';
+                    break;
+            }
+        }
+    },
     inserted: function (el) {
         // Focus the element
         el.focus()

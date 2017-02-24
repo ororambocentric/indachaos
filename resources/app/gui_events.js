@@ -115,20 +115,6 @@ $(document).ready(function () {
         addToHistory($(this).attr('data-id'));
     });
 
-    // $(document).on('selectionchange', '.note', function (e) {
-    //     if (window.getSelection().toString() != '') {
-    //         clipTitle = $(this).find(".title").text();
-    //         clipBody = window.getSelection().toString();
-    //         console.log(clipTitle, clipBody);
-    //     } else {
-    //         clipTitle = clipBody = '';
-    //     }
-    //     // clipboard.writeText(window.getSelection().toString());
-    //     // clipboard.writeText(window.getSelection().toString(), 'selection');
-    //     // console.log(clipboard.readText('selection'));
-    //     // console.log(window.getSelection());
-    // });
-
     $(document).on('selectionchange', function (e) {
         if (stripHtml(getHTMLOfSelection()) == '') {
             clipTitle = clipBody = '';
