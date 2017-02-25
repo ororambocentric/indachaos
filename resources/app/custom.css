@@ -363,7 +363,11 @@ button, input, textarea, select {
 
 #todo-list .filters-wrap {
     text-align: right;
-    padding-right: 30px;
     padding-top: 4px;
     font-size: small;
+}
+
+#todo-list .filters-wrap .filter-show-wrap .active {
+    /*background: indianred !important;*/
+    color: #333;
 }

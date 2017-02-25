@@ -346,5 +346,10 @@ hr {
     background: #272727;
 }
 
+#todo-list .filters-wrap .filter-show-wrap .active {
+    background: #D6BF55 !important;
+    color: #2d2d2d;
+}
+
 
 

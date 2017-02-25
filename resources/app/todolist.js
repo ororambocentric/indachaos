@@ -152,6 +152,9 @@ var vmTodoList = new Vue({
         cancelChanges: function (index) {
             this.editMode.enabled = false;
             loadTodosFromSettings(index);
+        },
+        setFilterShow: function (type) {
+            this.show = type;
         }
     }
 

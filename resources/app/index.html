@@ -206,14 +206,23 @@ SOFTWARE.
                    @keyup.enter="addItem">
           </div>
           <div class="input-group filters-wrap">
-            <input v-model="filterText" id="todo-filter-text " type="text" placeholder="Filter...">
 
-            <label for="todo-show-all">All</label>
-            <input v-model="show" id="todo-show-all" type="radio" value="all">
-            <label for="todo-show-active">Active</label>
-            <input v-model="show" id="todo-show-active" type="radio" value="active">
-            <label for="todo-show-completed">Completed</label>
-            <input v-model="show" id="todo-show-completed" type="radio" value="completed">
+            <div class="btn-group btn-group-xs">
+              <button @click="show = 'all' ; filterText=''" type="button" class="btn btn-default" title="Reset filters">
+                <span class="glyphicon glyphicon-erase" aria-hidden="true"></span>
+              </button>&nbsp;
+            </div>
+
+
+            <input v-model="filterText" id="todo-filter-text" type="text" placeholder="Filter...">&nbsp;
+
+            <div class="btn-group btn-group-xs filter-show-wrap" role="group" aria-label="...">
+              <button v-model="show" @click="setFilterShow('all')" :class="{active: (show == 'all')}" type="button" class="btn btn-default">All</button>
+              <button v-model="show" @click="setFilterShow('active')" :class="{active: (show == 'active')}" type="button" class="btn btn-default">Active</button>
+              <button v-model="show" @click="setFilterShow('completed')" :class="{active: (show == 'completed')}" type="button" class="btn btn-default">Completed</button>
+            </div>
+
+
           </div>
         </div>
       </div>
