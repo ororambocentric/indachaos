@@ -279,9 +279,13 @@ button, input, textarea, select {
     margin: 10px;
 }
 
-#todo-list .editor {
+#todo-list .editor-text {
+    margin-bottom: 10px;
+}
+
+#todo-list .editor-details {
     width: 100%;
-    min-height: 100px;
+    min-height: 200px;
     box-sizing: border-box;
     display: inline-block;
 }
@@ -344,13 +348,4 @@ button, input, textarea, select {
 .strikeout .remind-label {
     background: #5b5b5b;
 }
-
-
-/*#todo-list .remind-wrap input[type='date'],*/
-/*#todo-list .remind-wrap input[type='time']{*/
-    /*font-size: 20px;*/
-/*}*/
-
-
-
 

@@ -10,7 +10,10 @@ Vue.component('todo-item', {
       <li class="list-group-item">\
       <input type="checkbox" v-if="!(editmode.enabled && editmode.index == index)" @click="$emit(\'strike\')" :checked="item.strikeout">\
       <div class="input-group editor-group" @keydown.ctrl.83="$emit(\'save\')" @keydown.stop.esc="$emit(\'cancel\')" v-if="editmode.enabled && editmode.index == index">\
-      <textarea class="editor" v-focus="true" v-model.trim="item.text" type="text"></textarea>\
+      <p>Title:</p>\
+      <input class="editor-text form-control" v-focus="true" v-model.trim="item.text" type="text">\
+      <p class="editot-label">Details:</p>\
+      <textarea class="editor-details" v-focus="true" v-model.trim="item.details" type="text"></textarea>\
       <div class="remind-wrap">\
       <div class="remind-toggle-area" @click="$emit(\'check_remind\')">\
         <input type="checkbox" :checked="item.remind_enabled">\
@@ -33,7 +36,7 @@ Vue.component('todo-item', {
         <button type="button" class="btn btn-default" @click="$emit(\'cancel\')" title="ESC">Cancel</button>\
       </div>\
       </div>\
-      <div class="item-text" v-if="!(editmode.enabled && editmode.index == index)" :class="{strikeout: item.strikeout}">\
+      <div class="item-text" :title="item.details" v-if="!(editmode.enabled && editmode.index == index)" :class="{strikeout: item.strikeout}">\
       <div class="label label-primary remind-label" v-if="item.remind_enabled">\
       <span class="glyphicon glyphicon-bell white" aria-hidden="true"></span>&nbsp;{{moment(item.remind_date + \' \' + item.remind_time).format(\'DD.MM.YYYY HH:mm\') + getRepeatStr(item.remind_repeat)}}\
       </div><br v-if="item.remind_enabled">\
@@ -101,6 +104,7 @@ var vmTodoList = new Vue({
             if (!this.newItemInput) return;
             this.todos.unshift({
                 text: this.newItemInput,
+                details: '',
                 strikeout: false,
                 remind_enabled: false,
                 remind_date: convertDate(new Date()),
