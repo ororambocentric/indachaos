@@ -303,6 +303,7 @@ button, input, textarea, select {
     margin-top: 0;
     padding: 30px;
     padding-top: 10px;
+    padding-bottom: 5px;
     background: white;
 
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+24,ffffff+100&1+94,0+100 */
@@ -353,3 +354,16 @@ button, input, textarea, select {
     background: #5b5b5b;
 }
 
+#todo-list .filters-wrap label {
+    margin-right: 10px;
+    margin-left: 20px;
+    cursor: pointer;
+    height: auto;
+}
+
+#todo-list .filters-wrap {
+    text-align: right;
+    padding-right: 30px;
+    padding-top: 4px;
+    font-size: small;
+}

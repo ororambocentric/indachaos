@@ -200,11 +200,21 @@ SOFTWARE.
     <div id="todo-list">
       <div class="toolbar navbar-fixed-top">
         <div class="todo-list-header">
-        <h1>Todo list</h1>
-        <div class="input-group">
-          <input v-model.trim="newItemInput" id="input-todo" type="text"  class="form-control" placeholder="To do..."
-                 @keyup.enter="addItem">
-        </div>
+          <h1>Todo list</h1>
+          <div class="input-group">
+            <input v-model.trim="newItemInput" id="input-todo" type="text"  class="form-control" placeholder="To do..."
+                   @keyup.enter="addItem">
+          </div>
+          <div class="input-group filters-wrap">
+            <input id="todo-filter-text " type="text" placeholder="Filter...">
+            <label for="todo-show-all">All</label>
+
+            <input v-model="show" id="todo-show-all" type="radio" value="all">
+            <label for="todo-show-active">Active</label>
+            <input v-model="show" id="todo-show-active" type="radio" value="active">
+            <label for="todo-show-completed">Completed</label>
+            <input v-model="show" id="todo-show-completed" type="radio" value="completed">
+          </div>
         </div>
       </div>
       <div class="toolbar navbar-fixed-top">
@@ -215,7 +225,7 @@ SOFTWARE.
       <div style="clear: both"></div>
       <ul class="list-group">
         <todo-item v-for="(item, index) in todos"
-                   :key="index" :index="index"
+                   :key="index" :index="index" :show="show"
                    :item="item"
                    :editmode="editMode"
                    @delete="deleteItem(index)"
@@ -224,7 +234,7 @@ SOFTWARE.
                    @save="saveItem"
                    @check_remind="checkRemind(index)"
                    @cancel="cancelChanges(index)"
-          ></todo-item>
+        ></todo-item>
       </ul>
     </div>
   </div>
