@@ -76,6 +76,8 @@ Vue.component('todo-item', {
                 case '6':
                     return ' and every year';
                     break;
+                default:
+                    return ''
             }
         },
         moment: function(something) {
@@ -111,7 +113,7 @@ var vmTodoList = new Vue({
                 remind_enabled: false,
                 remind_date: convertDate(new Date()),
                 remind_time: '23:00',
-                remind_repeat: 0
+                remind_repeat: '0'
 
             });
             this.newItemInput = '';
@@ -122,6 +124,8 @@ var vmTodoList = new Vue({
             if (confirm('Are you sure you want to delete this todo?')) {
                 this.todos.splice(index, 1);
             }
+            loadTodosToSettings();
+            updateAppSettings();
         },
         strikeItem: function (index) {
             this.todos[index].strikeout = !this.todos[index].strikeout;
