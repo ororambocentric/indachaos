@@ -345,6 +345,10 @@ button, input, textarea, select {
     margin-right: 10px;
 }
 
+#todo-list .is_details {
+    cursor: default;
+}
+
 .strikeout .remind-label {
     background: #5b5b5b;
 }

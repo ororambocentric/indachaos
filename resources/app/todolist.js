@@ -36,7 +36,7 @@ Vue.component('todo-item', {
         <button type="button" class="btn btn-default" @click="$emit(\'cancel\')" title="ESC">Cancel</button>\
       </div>\
       </div>\
-      <div class="item-text" :title="item.details" v-if="!(editmode.enabled && editmode.index == index)" :class="{strikeout: item.strikeout}">\
+      <div class="item-text" :class="[{is_details: item.details}, {strikeout: item.strikeout}]" :title="item.details" v-if="!(editmode.enabled && editmode.index == index)">\
       <div class="label label-primary remind-label" v-if="item.remind_enabled">\
       <span class="glyphicon glyphicon-bell white" aria-hidden="true"></span>&nbsp;{{moment(item.remind_date + \' \' + item.remind_time).format(\'DD.MM.YYYY HH:mm\') + getRepeatStr(item.remind_repeat)}}\
       </div><br v-if="item.remind_enabled">\
