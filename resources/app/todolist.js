@@ -5,9 +5,9 @@ Vue.directive('focus', {
 });
 
 Vue.component('todo-item', {
-    props: ['item', 'index', 'editmode', 'show'],
+    props: ['item', 'index', 'editmode', 'show', 'filtertext'],
     template: '\
-      <li v-show="show == \'all\' || (show == \'completed\' && item.strikeout) || (show == \'active\' && !item.strikeout)" class="list-group-item">\
+      <li v-show="(item.text.toLowerCase().indexOf(this.filtertext.toLowerCase()) !== -1) && (show == \'all\' || (show == \'completed\' && item.strikeout) || (show == \'active\' && !item.strikeout))" class="list-group-item">\
       <input type="checkbox" v-if="!(editmode.enabled && editmode.index == index)" @click="$emit(\'strike\')" :checked="item.strikeout">\
       <div class="input-group editor-group" @keydown.ctrl.83="$emit(\'save\')" @keydown.stop.esc="$emit(\'cancel\')" v-if="editmode.enabled && editmode.index == index">\
       <p>Title:</p>\
@@ -98,7 +98,8 @@ var vmTodoList = new Vue({
             enabled: false,
             index: 0
         },
-        show: 'all'
+        show: 'all',
+        filterText: ''
     },
     methods: {
         addItem: function () {

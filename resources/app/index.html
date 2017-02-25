@@ -206,9 +206,9 @@ SOFTWARE.
                    @keyup.enter="addItem">
           </div>
           <div class="input-group filters-wrap">
-            <input id="todo-filter-text " type="text" placeholder="Filter...">
-            <label for="todo-show-all">All</label>
+            <input v-model="filterText" id="todo-filter-text " type="text" placeholder="Filter...">
 
+            <label for="todo-show-all">All</label>
             <input v-model="show" id="todo-show-all" type="radio" value="all">
             <label for="todo-show-active">Active</label>
             <input v-model="show" id="todo-show-active" type="radio" value="active">
@@ -228,6 +228,7 @@ SOFTWARE.
                    :key="index" :index="index" :show="show"
                    :item="item"
                    :editmode="editMode"
+                   :filtertext="filterText"
                    @delete="deleteItem(index)"
                    @strike="strikeItem(index)"
                    @edit="editItem(index)"
