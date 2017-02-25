@@ -347,7 +347,7 @@ button, input, textarea, select {
 }
 
 #todo-list .is_details {
-    cursor: default;
+    cursor: help;
 }
 
 .strikeout .remind-label {
