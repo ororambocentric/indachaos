@@ -111,8 +111,8 @@ var vmTodoList = new Vue({
                 details: '',
                 strikeout: false,
                 remind_enabled: false,
-                remind_date: convertDate(new Date()),
-                remind_time: '23:00',
+                remind_date: moment().add(1, 'day').format('YYYY-MM-DD'),
+                remind_time: '09:00',
                 remind_repeat: '0'
 
             });

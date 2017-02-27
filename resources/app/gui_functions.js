@@ -1003,7 +1003,6 @@ function watchTodoRemainds() {
     for (var i in settings.todos) {
 
         if (!settings.todos[i].remind_enabled) continue;
-        if (settings.todos[i].strikeout) continue;
 
         var now_timestamp = moment().unix();
         var remind_date_object = moment(settings.todos[i].remind_date + ' ' + settings.todos[i].remind_time);
@@ -1046,6 +1045,7 @@ function watchTodoRemainds() {
             settings.todos[i].remind_date = nextDate.format(dateFormat);
             settings.todos[i].remind_time = nextDate.format(timeFormat);
             settings.todos[i].remind_enabled = true;
+            settings.todos[i].strikeout = false;
 
         }
 
