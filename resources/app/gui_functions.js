@@ -40,6 +40,7 @@ var editorDataModified = false;
 var dontCloseScreen = false;
 
 const {clipboard} = require('electron');
+const {ipcRenderer} = require('electron');
 
 function hideAllScreens() {
     $("[id^=screen]").hide();
@@ -82,6 +83,18 @@ function showScreenTodo() {
     hideAllScreens();
     $("#screen-todo").fadeIn(animationSpeed);
     $("#screen-todo #input-todo").focus();
+}
+
+function showScreenNotifications() {
+
+    if (activeScreen == 'notifications') {
+        //showScreenSearch();
+        return;
+    }
+    activeScreen = 'notifications';
+    checkNotifications();
+    hideAllScreens();
+    $("#screen-notifications").fadeIn(animationSpeed);
 }
 
 function showScreenAbout() {
@@ -980,6 +993,10 @@ function trayTodoList() {
     showScreenTodo();
 }
 
+function trayNotifications() {
+    showScreenNotifications();
+}
+
 function traySettings() {
     showScreenSettings();
 }
@@ -1011,8 +1028,8 @@ function watchTodoRemainds() {
         if (now_timestamp < remind_timestamp) continue;
 
         var notification = new Notification('Indachaos reminds', {
-            body: settings.todos[i].remind_date + ' at '+ settings.todos[i].remind_time + '\n\r' +
-            settings.todos[i].text + '\n\r\n\r' + settings.todos[i].details,
+            body: escapeHtml(settings.todos[i].remind_date + ' at '+ settings.todos[i].remind_time + '\n\r' +
+            settings.todos[i].text + '\n\r\n\r' + ((settings.todos[i].details) ? settings.todos[i].details : '')),
             icon: 'images/app-icon.png'
         });
 
@@ -1020,7 +1037,7 @@ function watchTodoRemainds() {
         noise.play();
 
         notification.onclick = function() {
-            require('electron').remote.getCurrentWindow().webContents.send('todolist');
+            require('electron').remote.getCurrentWindow().webContents.send('notifications');
             require('electron').remote.getCurrentWindow().show();
         };
 
@@ -1049,8 +1066,15 @@ function watchTodoRemainds() {
 
         }
 
+        addNotification({
+            time: moment().format(settings.date_format + ' ' + settings.time_format),
+            text: settings.todos[i].text,
+            details: settings.todos[i].details
+        });
+
         updateAppSettings();
         loadTodosFromSettings();
+        loadNotificationsFromSettings();
     }
 }
 
@@ -1076,3 +1100,33 @@ function loadTodosToSettings(index) {
     }
 
 }
+
+function loadNotificationsFromSettings(index) {
+    vmNotifications.notifications = settings.notifications.slice();
+}
+
+function loadNotificationsToSettings(index) {
+    settings.notifications = vmNotifications.notifications.slice();
+}
+
+function addNotification(notification) {
+    settings.notifications.unshift(notification);
+    settings.notifications_is_read = false;
+    checkNotifications();
+}
+
+function checkNotifications() {
+    if (activeScreen == 'notifications') {
+        settings.notifications_is_read = true;
+        updateAppSettings();
+    }
+    if (settings.notifications_is_read) {
+        ipcRenderer.send('set-tray-icon-normal');
+        $("#button-notifications").removeClass('unread');
+    } else {
+        ipcRenderer.send('set-tray-icon-notif');
+        $("#button-notifications").addClass('unread');
+    }
+
+}
+

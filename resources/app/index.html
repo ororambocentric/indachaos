@@ -121,6 +121,9 @@ SOFTWARE.
           <button id="button-todo" type="button" class="btn btn-default" title="Todo list(Ctrl+T)">
             <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
           </button>
+          <button id="button-notifications" type="button" class="btn btn-default" title="Todo list(Ctrl+T)">
+            <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
+          </button>
           <button id="button-sidebar-toggle" type="button" class="btn btn-default" title="Show / hide sidebar (Ctrl+L)">
             <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
           </button>
@@ -217,9 +220,9 @@ SOFTWARE.
             <input v-model="filterText" id="todo-filter-text" type="text" placeholder="Filter...">&nbsp;
 
             <div class="btn-group btn-group-xs filter-show-wrap" role="group" aria-label="...">
-              <button v-model="show" @click="setFilterShow('all')" :class="{active: (show == 'all')}" type="button" class="btn btn-default">All</button>
-              <button v-model="show" @click="setFilterShow('active')" :class="{active: (show == 'active')}" type="button" class="btn btn-default">Active</button>
-              <button v-model="show" @click="setFilterShow('completed')" :class="{active: (show == 'completed')}" type="button" class="btn btn-default">Completed</button>
+              <button @click="setFilterShow('all')" :class="{active: (show == 'all')}" type="button" class="btn btn-default">All</button>
+              <button @click="setFilterShow('active')" :class="{active: (show == 'active')}" type="button" class="btn btn-default">Active</button>
+              <button @click="setFilterShow('completed')" :class="{active: (show == 'completed')}" type="button" class="btn btn-default">Completed</button>
             </div>
 
 
@@ -247,6 +250,40 @@ SOFTWARE.
         ></todo-item>
       </ul>
     </div>
+  </div>
+  <div id="screen-notifications">
+    <div id="notifications-area">
+
+      <div class="toolbar navbar-fixed-top">
+        <div class="notifications-header">
+          <h1>Notifications
+            <button @click="clearAll" id="button-clear-notifications" type="button" class="btn btn-default" title="Clear all">
+              <span class="glyphicon glyphicon-erase" aria-hidden="true"></span>
+            </button>
+          </h1>
+
+
+        </div>
+      </div>
+      <div class="toolbar navbar-fixed-top">
+        <button id="button-notifications-back" type="button" class="btn btn-default pull-right" title="Close (ESC)">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </div>
+      <div style="clear: both"></div>
+
+
+
+      <hr>
+      <ul class="notifications-list list-group">
+        <notification-item v-for="(item, index) in notifications"
+                           :index="index"
+                           :item="item"
+        ></notification-item>
+      </ul>
+
+    </div>
+
   </div>
   <div id="screen-clips">
     <div class="toolbar navbar-fixed-top">
@@ -286,5 +323,6 @@ SOFTWARE.
   </div>
 </div>
 <script src="todolist.js"></script>
+<script src="notifications.js"></script>
 </body>
 </html>

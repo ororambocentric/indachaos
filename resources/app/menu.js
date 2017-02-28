@@ -25,8 +25,6 @@
 const {remote} = require('electron');
 const {Menu, MenuItem} = remote;
 
-const ipcRenderer = require('electron').ipcRenderer;
-
 const template = [
     {
         label: 'Application',
@@ -45,6 +43,11 @@ const template = [
                 label: 'Todo list',
                 accelerator: 'CmdOrCtrl+T',
                 click() { $("#button-todo").trigger('click'); }
+            },
+            {
+                label: 'Notifications',
+                accelerator: 'CmdOrCtrl+I',
+                click() { $("#button-notifications").trigger('click'); }
             },
             {
                 label: 'Go to search',
@@ -519,6 +522,10 @@ ipcRenderer.on('clips', function() {
 
 ipcRenderer.on('todolist', function() {
     trayTodoList();
+});
+
+ipcRenderer.on('notifications', function() {
+    trayNotifications();
 });
 
 ipcRenderer.on('settings', function() {

@@ -1,9 +1,8 @@
 node_modules
 .idea
-keybinds
-indachaos_settings
+settings
 indachaos_notes.db
 releases
 run.sh
 npm-debug.log
-indachaos_settings~
+settings~

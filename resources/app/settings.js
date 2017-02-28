@@ -29,11 +29,15 @@ var settings = {
     last_editing_note_id: 0,
     history_length: 30,
     color_theme: 'default',
-    todos: []
+    todos: [],
+    notifications: [],
+    notifications_is_read: true,
+    date_format: "DD.MM.YYYY",
+    time_format: "HH:mm"
 };
 
 function loadAppSettings(callback) {
-    require('fs').readFile('./indachaos_settings', function read(err, data) {
+    require('fs').readFile('./settings', function read(err, data) {
         if (data) {
             settings = JSON.parse(data);
         }
@@ -42,6 +46,12 @@ function loadAppSettings(callback) {
 }
 
 function updateAppSettings() {
-    require('fs').writeFileSync('./indachaos_settings', JSON.stringify(settings, null, 2));
+    require('fs').writeFileSync('./settings', JSON.stringify(settings, null, 2));
+}
+
+function createSettingsFileIfNotExists() {
+    if (!require('fs').existsSync('./settings')) {
+        updateAppSettings();
+    }
 }
 

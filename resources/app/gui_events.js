@@ -24,6 +24,8 @@
 
 $(document).ready(function () {
 
+    createSettingsFileIfNotExists();
+
     loadAppSettings(function () {
         setColorTheme(settings.color_theme);
         $(".container").fadeIn(animationSpeed);
@@ -32,6 +34,8 @@ $(document).ready(function () {
         toggleSidebar();
         renderNotesLinks();
         loadTodosFromSettings();
+        loadNotificationsFromSettings();
+        checkNotifications();
     });
 
     var appTimer = setInterval(function () {
@@ -66,7 +70,15 @@ $(document).ready(function () {
         showScreenTodo();
     });
 
+    $(document).on('click', "#button-notifications", function () {
+        showScreenNotifications();
+    });
+
     $(document).on('click', "#button-todo-back", function () {
+        showScreenSearch();
+    });
+
+    $(document).on('click', "#button-notifications-back", function () {
         showScreenSearch();
     });
 

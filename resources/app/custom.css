@@ -188,6 +188,9 @@ button, input, textarea, select {
 }
 
 #button-todo {
+    margin-left: 10px !important;
+}
+#button-notifications {
     margin-right: 10px !important;
 }
 
@@ -371,3 +374,59 @@ button, input, textarea, select {
     /*background: indianred !important;*/
     color: #333;
 }
+
+#notifications-area .notifications-header {
+
+    margin-top: 0;
+    padding: 30px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    background: white;
+
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+24,ffffff+100&1+94,0+100 */
+    background: -moz-linear-gradient(top,  rgba(255,255,255,1) 24%, rgba(255,255,255,1) 94%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 24%,rgba(255,255,255,1) 94%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(255,255,255,1) 24%,rgba(255,255,255,1) 94%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+
+}
+
+
+#notifications-area .navbar-fixed-top {
+    background: white;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+24,ffffff+100&1+94,0+100 */
+    background: -moz-linear-gradient(top,  rgba(255,255,255,1) 24%, rgba(255,255,255,1) 94%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 24%,rgba(255,255,255,1) 94%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(255,255,255,1) 24%,rgba(255,255,255,1) 94%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+
+}
+
+#button-notifications.unread {
+    color: #ff444d;
+}
+
+#notifications-area .notifications-list {
+    margin-top: 60px;
+}
+
+#notifications-area .notification {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#notifications-area .time {
+    font-style: italic;
+    color: #5e5e5e;
+}
+
+#notifications-area #button-clear-notifications {
+    margin-top: 3px;
+}
+
+#notifications-area .notification .panel {
+    border-radius: 10px;
+    border-color: #ddd;
+    padding: 20px;
+}
+

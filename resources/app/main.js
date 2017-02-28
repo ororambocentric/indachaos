@@ -82,6 +82,11 @@ function createWindow () {
             mainWindow.show();
         }},
         {type: 'separator'},
+        {label: 'Notifications', type: 'normal', click: function () {
+            mainWindow.webContents.send('notifications');
+            mainWindow.show();
+        }},
+        {type: 'separator'},
         {label: 'Settings', type: 'normal', click: function () {
             mainWindow.webContents.send('settings');
             mainWindow.show();
@@ -126,6 +131,7 @@ if (shouldQuit) {
     return;
 }
 
+
 app.on('ready', createWindow);
 
 app.on('activate', function () {
@@ -134,5 +140,10 @@ app.on('activate', function () {
     }
 });
 
-
-
+const {ipcMain} = require('electron')
+ipcMain.on('set-tray-icon-notif', function (event, arg) {
+    appIcon.setImage('images/app-icon-notif.png');
+});
+ipcMain.on('set-tray-icon-normal', function (event, arg) {
+    appIcon.setImage('images/app-icon.png');
+});
