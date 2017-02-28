@@ -9,7 +9,7 @@ Vue.component('todo-item', {
     template: '\
       <li v-show="editmode.enabled || ((show_category == \'0\' || show_category == item.category) && (item.text.toLowerCase().indexOf(this.filtertext.toLowerCase()) !== -1) && (show == \'all\' || (show == \'completed\' && item.strikeout) || (show == \'active\' && !item.strikeout)))" class="list-group-item">\
       <input type="checkbox" v-if="!(editmode.enabled && editmode.index == index)" @click="$emit(\'strike\')" :checked="item.strikeout">\
-      <div class="input-group editor-group" @keydown.ctrl.83="$emit(\'save\')" @keydown.stop.esc="$emit(\'cancel\')" v-if="editmode.enabled && editmode.index == index">\
+      <div class="input-group editor-group" :data-id="index" @keydown.ctrl.83="$emit(\'save\')" @keydown.stop.esc="$emit(\'cancel\')" v-if="editmode.enabled && editmode.index == index">\
          <div class="input-group edit-todo-title-group">\
              <select v-model="item.category" class="editor-category form-control">\
                 <option value="10">Work</option>\
@@ -52,7 +52,7 @@ Vue.component('todo-item', {
       {{item.text}}\
       </div>\
         <div class="btn-group">\
-            <button type="button" class="btn btn-default" title="Edit item" @click="$emit(\'edit\');" v-if="!(editmode.enabled && editmode.index == index)">\
+            <button type="button" :data-id="index" class="btn btn-default edit-todo-button" title="Edit item" @click="$emit(\'edit\');" v-if="!(editmode.enabled && editmode.index == index)">\
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>\
             </button>\
             <button type="button" class="btn btn-default" title="Delete item" @click="$emit(\'delete\')" v-if="!(editmode.enabled && editmode.index == index)">\

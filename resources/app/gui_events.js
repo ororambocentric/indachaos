@@ -247,7 +247,7 @@ $(document).ready(function () {
         displayEditorSaveButton();
     });
     
-    $(document).on('click', ".button-delete-note", function () {
+    $(document).on('click', "#todo-list .button-delete-note", function () {
         actionDeleteNote($(this).attr('data-id'));
     });
 
@@ -268,6 +268,13 @@ $(document).ready(function () {
 
     $(document).on('click', "#button-sidebar-toggle", function () {
         toggleSidebar();
+    });
+
+
+    $(document).on('click', ".edit-todo-button", function () {
+        $('body').animate({
+            scrollTop: $("#todo-list .editor-group[data-id="+$(this).data('id')+"]").offset().top - 93
+        }, settings.animationSpeed);
     });
 
 
