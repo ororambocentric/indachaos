@@ -143,6 +143,7 @@ var vmTodoList = new Vue({
             this.newItemInput = '';
             loadTodosToSettings();
             updateAppSettings();
+            $('body').animate({ scrollTop: 0 }, settings.animationSpeed);
         },
         deleteItem: function (index) {
             if (confirm('Are you sure you want to delete this todo?')) {
@@ -182,16 +183,12 @@ var vmTodoList = new Vue({
             }
             loadTodosToSettings();
             updateAppSettings();
-            $('body').animate({
-                scrollTop: 0
-            }, settings.animationSpeed);
+            // $('body').animate({ scrollTop: 0 }, settings.animationSpeed);
         },
         cancelChanges: function (index) {
             this.editMode.enabled = false;
             loadTodosFromSettings(index);
-            $('body').animate({
-                scrollTop: 0
-            }, settings.animationSpeed);
+            // $('body').animate({ scrollTop: 0 }, settings.animationSpeed);
         },
         setFilterShow: function (type) {
             this.show = type;
