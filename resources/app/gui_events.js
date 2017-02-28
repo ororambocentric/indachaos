@@ -250,8 +250,6 @@ $(document).ready(function () {
         actionDeleteNote($(this).attr('data-id'));
     });
 
-
-
     $(document).on('click', "#clips-area .clip", function () {
         currentClipID = $(this).data('id');
         var clip = $(this).find(".clip-text").text();
@@ -270,6 +268,7 @@ $(document).ready(function () {
     $(document).on('click', "#button-sidebar-toggle", function () {
         toggleSidebar();
     });
+
 
     function setSidebarHeight() {
         var h = $(window).height();

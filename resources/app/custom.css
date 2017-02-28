@@ -293,6 +293,7 @@ button, input, textarea, select {
     display: inline-block;
 }
 
+
 #todo-list .editor-group {
     width: 100%;
     display: block;
@@ -373,6 +374,27 @@ button, input, textarea, select {
 #todo-list .filters-wrap .filter-show-wrap .active {
     /*background: indianred !important;*/
     color: #333;
+}
+
+#todo-list .filters-wrap .category {
+    height: 20px;
+    margin-right: 5px;
+}
+
+#todo-list .add-todo-group select {
+    width: 20%;
+}
+
+#todo-list .add-todo-group input {
+    width: 80%;
+}
+
+#todo-list .edit-todo-title-group select {
+    width: 20%;
+}
+
+#todo-list .edit-todo-title-group input {
+    width: 80%;
 }
 
 #notifications-area .notifications-header {

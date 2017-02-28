@@ -5,15 +5,21 @@ Vue.directive('focus', {
 });
 
 Vue.component('todo-item', {
-    props: ['item', 'index', 'editmode', 'show', 'filtertext'],
+    props: ['item', 'index', 'editmode', 'show', 'filtertext', 'show_category'],
     template: '\
-      <li v-show="(item.text.toLowerCase().indexOf(this.filtertext.toLowerCase()) !== -1) && (show == \'all\' || (show == \'completed\' && item.strikeout) || (show == \'active\' && !item.strikeout))" class="list-group-item">\
+      <li v-show="editmode.enabled || ((show_category == \'0\' || show_category == item.category) && (item.text.toLowerCase().indexOf(this.filtertext.toLowerCase()) !== -1) && (show == \'all\' || (show == \'completed\' && item.strikeout) || (show == \'active\' && !item.strikeout)))" class="list-group-item">\
       <input type="checkbox" v-if="!(editmode.enabled && editmode.index == index)" @click="$emit(\'strike\')" :checked="item.strikeout">\
       <div class="input-group editor-group" @keydown.ctrl.83="$emit(\'save\')" @keydown.stop.esc="$emit(\'cancel\')" v-if="editmode.enabled && editmode.index == index">\
-      <p>Title:</p>\
-      <input class="editor-text form-control" v-focus="true" v-model.trim="item.text" type="text">\
-      <p class="editot-label">Details:</p>\
-      <textarea class="editor-details" v-focus="true" v-model.trim="item.details" type="text"></textarea>\
+         <div class="input-group edit-todo-title-group">\
+             <select v-model="item.category" class="editor-category form-control">\
+                <option value="10">Work</option>\
+                <option value="20">Project</option>\
+                <option value="30">Personal</option>\
+                <option value="40">Family</option>\
+             </select>\
+            <input class="editor-text form-control" v-focus="true" v-model.trim="item.text" type="text" placeholder="Text...">\
+        </div>\
+      <textarea class="editor-details" v-model.trim="item.details" type="text" placeholder="Details..."></textarea>\
       <div class="remind-wrap">\
       <div class="remind-toggle-area" @click="$emit(\'check_remind\')">\
         <input type="checkbox" :checked="item.remind_enabled">\
@@ -37,9 +43,12 @@ Vue.component('todo-item', {
       </div>\
       </div>\
       <div class="item-text" :class="[{is_details: item.details}, {strikeout: item.strikeout}]" :title="item.details" v-if="!(editmode.enabled && editmode.index == index)">\
-      <div class="label label-primary remind-label" v-if="item.remind_enabled">\
+      <div class="label label-danger remind-label" v-if="item.remind_enabled">\
       <span class="glyphicon glyphicon-bell white" aria-hidden="true"></span>&nbsp;{{moment(item.remind_date + \' \' + item.remind_time).format(\'DD.MM.YYYY HH:mm\') + getRepeatStr(item.remind_repeat)}}\
       </div><br v-if="item.remind_enabled">\
+      <div class="badge">\
+      {{getCategoryByID(item.category)}}\
+      </div>&nbsp;\
       {{item.text}}\
       </div>\
         <div class="btn-group">\
@@ -80,6 +89,18 @@ Vue.component('todo-item', {
                     return ''
             }
         },
+        getCategoryByID: function (id) {
+            switch (id) {
+                case '10':
+                    return 'Work';
+                case '20':
+                    return 'Project';
+                case '30':
+                    return 'Personal';
+                case '40':
+                    return 'Family';
+            }
+        },
         moment: function(something) {
             return moment(something)
         }
@@ -101,7 +122,9 @@ var vmTodoList = new Vue({
             index: 0
         },
         show: 'all',
-        filterText: ''
+        filterText: '',
+        showCategory: '0',
+        categoryForNew: '10',
     },
     methods: {
         addItem: function () {
@@ -113,7 +136,8 @@ var vmTodoList = new Vue({
                 remind_enabled: false,
                 remind_date: moment().add(1, 'day').format('YYYY-MM-DD'),
                 remind_time: '09:00',
-                remind_repeat: '0'
+                remind_repeat: '0',
+                category: this.categoryForNew
 
             });
             this.newItemInput = '';
@@ -143,6 +167,12 @@ var vmTodoList = new Vue({
         saveItem: function () {
             this.editMode.enabled = !this.editMode.enabled;
             for (var i in this.todos) {
+                if (!this.todos[i].text) {
+                    this.todos[i].text = 'Nothing';
+                }
+                if (!this.todos[i].category) {
+                    this.todos[i].category = this.categoryForNew;
+                }
                 if (!this.todos[i].remind_date) {
                     this.todos[i].remind_date = convertDate(new Date());
                 }
@@ -159,7 +189,21 @@ var vmTodoList = new Vue({
         },
         setFilterShow: function (type) {
             this.show = type;
+        },
+        cancelFilters: function () {
+            this.show = 'all' ;
+            this.filterText='';
+            this.showCategory = '0';
+            $("#todo-list .filters-wrap .category").val(0).change();
+            $("#todo-list #todo-filter-text").val('');
+        },
+        selectCategory: function (e) {
+            this.showCategory = e.target.value;
+        },
+        setFilterText : function (e) {
+            this.filterText = e.target.value;
         }
+
     }
 
 

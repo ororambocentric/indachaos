@@ -204,27 +204,39 @@ SOFTWARE.
       <div class="toolbar navbar-fixed-top">
         <div class="todo-list-header">
           <h1>Todo list</h1>
-          <div class="input-group">
+          <div class="input-group add-todo-group">
+            <select v-model="categoryForNew" class="category form-control">
+              <option value="10">Work</option>
+              <option value="20">Project</option>
+              <option value="30">Personal</option>
+              <option value="40">Family</option>
+            </select>
             <input v-model.trim="newItemInput" id="input-todo" type="text"  class="form-control" placeholder="To do..."
                    @keyup.enter="addItem">
           </div>
-          <div class="input-group filters-wrap">
+          <div v-show="!editMode.enabled" class="input-group filters-wrap">
 
             <div class="btn-group btn-group-xs">
-              <button @click="show = 'all' ; filterText=''" type="button" class="btn btn-default" title="Reset filters">
+              <button @click="cancelFilters" type="button" class="btn btn-default reset-filters" title="Reset filters">
                 <span class="glyphicon glyphicon-erase" aria-hidden="true"></span>
               </button>&nbsp;
             </div>
 
+            <select @change="selectCategory" class="category">
+              <option value="0">All</option>
+              <option value="10">Work</option>
+              <option value="20">Project</option>
+              <option value="30">Personal</option>
+              <option value="40">Family</option>
+            </select>
 
-            <input v-model="filterText" id="todo-filter-text" type="text" placeholder="Filter...">&nbsp;
+            <input @keyup="setFilterText" id="todo-filter-text" type="text" placeholder="Filter...">&nbsp;
 
             <div class="btn-group btn-group-xs filter-show-wrap" role="group" aria-label="...">
               <button @click="setFilterShow('all')" :class="{active: (show == 'all')}" type="button" class="btn btn-default">All</button>
               <button @click="setFilterShow('active')" :class="{active: (show == 'active')}" type="button" class="btn btn-default">Active</button>
               <button @click="setFilterShow('completed')" :class="{active: (show == 'completed')}" type="button" class="btn btn-default">Completed</button>
             </div>
-
 
           </div>
         </div>
@@ -241,6 +253,7 @@ SOFTWARE.
                    :item="item"
                    :editmode="editMode"
                    :filtertext="filterText"
+                   :show_category="showCategory"
                    @delete="deleteItem(index)"
                    @strike="strikeItem(index)"
                    @edit="editItem(index)"
