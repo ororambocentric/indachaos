@@ -1,3 +1,5 @@
+![](./resources/app/images/app-icon.png?raw=true)
+
 # Indachaos
 Supersonic notes manager.
 
