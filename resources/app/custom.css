@@ -442,6 +442,10 @@ button, input, textarea, select {
     color: #5e5e5e;
 }
 
+#notifications-area .time .badge{
+    font-style: normal;
+}
+
 #notifications-area #button-clear-notifications {
     margin-top: 3px;
 }
