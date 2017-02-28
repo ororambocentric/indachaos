@@ -1028,7 +1028,7 @@ function watchTodoRemainds() {
         if (now_timestamp < remind_timestamp) continue;
 
         var notification = new Notification('Indachaos reminds', {
-            body: escapeHtml(getTodoGategoryByID(settings.todos[i].category) + '\n\r\n\r' + settings.todos[i].remind_date + ' at '+ settings.todos[i].remind_time + '\n\r' +
+            body: escapeHtml(getTodoGategoryByID(settings.todos[i].category) + '\n\r' + settings.todos[i].remind_date + ' at '+ settings.todos[i].remind_time + '\n\r' +
             settings.todos[i].text + '\n\r\n\r' + ((settings.todos[i].details) ? settings.todos[i].details : '')),
             icon: 'images/app-icon.png'
         });
