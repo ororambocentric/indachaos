@@ -182,10 +182,16 @@ var vmTodoList = new Vue({
             }
             loadTodosToSettings();
             updateAppSettings();
+            $('body').animate({
+                scrollTop: 0
+            }, settings.animationSpeed);
         },
         cancelChanges: function (index) {
             this.editMode.enabled = false;
             loadTodosFromSettings(index);
+            $('body').animate({
+                scrollTop: 0
+            }, settings.animationSpeed);
         },
         setFilterShow: function (type) {
             this.show = type;
