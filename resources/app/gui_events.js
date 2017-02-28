@@ -75,6 +75,7 @@ $(document).ready(function () {
     });
 
     $(document).on('click', "#button-todo-back", function () {
+        vmTodoList.editMode.enabled = false;
         showScreenSearch();
     });
 
