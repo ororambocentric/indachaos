@@ -288,7 +288,7 @@ button, input, textarea, select {
 
 #todo-list .editor-details {
     width: 100%;
-    min-height: 200px;
+    min-height: 100px;
     box-sizing: border-box;
     display: inline-block;
 }
