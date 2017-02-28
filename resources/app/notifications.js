@@ -3,7 +3,7 @@ Vue.component('notification-item', {
     <li class="notification list-inline">\
     <div class="well">\
         <p class="time">{{item.time}}</p>\
-        <h2 class="text">{{item.text}}</h2>\
+        <h2 class="text"><span class="badge">{{item.category}}</span>&nbsp;{{item.text}}</h2>\
         <p class="details">{{item.details}}</p>\
     </div>\
     </li>\
