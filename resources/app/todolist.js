@@ -17,9 +17,9 @@ Vue.component('todo-item', {
                 <option value="30">Personal</option>\
                 <option value="40">Family</option>\
              </select>\
-            <input class="editor-text form-control" v-focus="true" v-model.trim="item.text" type="text" placeholder="Text...">\
+            <input class="editor-text form-control" v-model.trim="item.text" type="text" placeholder="Text...">\
         </div>\
-      <textarea class="editor-details" v-model.trim="item.details" type="text" placeholder="Details..."></textarea>\
+      <textarea class="editor-details" v-focus="true" v-model.trim="item.details" type="text" placeholder="Details..."></textarea>\
       <div class="remind-wrap">\
       <div class="remind-toggle-area" @click="$emit(\'check_remind\')">\
         <input type="checkbox" :checked="item.remind_enabled">\
