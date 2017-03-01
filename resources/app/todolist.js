@@ -143,7 +143,9 @@ var vmTodoList = new Vue({
             this.newItemInput = '';
             loadTodosToSettings();
             updateAppSettings();
-            $('body').animate({ scrollTop: 0 }, settings.animationSpeed);
+
+            this.editMode.index = 0;
+            this.editMode.enabled = true;
         },
         deleteItem: function (index) {
             if (confirm('Are you sure you want to delete this todo?')) {
