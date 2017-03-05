@@ -1,10 +1,11 @@
 {
   "name": "indachaos",
-  "version": "1.7.2",
+  "version": "1.7.4",
   "description": "Notes manager with focus on fast data access.",
   "main": "main.js",
   "scripts": {
     "build": "./node_modules/.bin/electron-rebuild",
+    "release": "electron-packager . --out=releases --asar --overwrite --all",
     "start": "electron main.js"
   },
   "repository": {
@@ -15,18 +16,29 @@
     "indachaos",
     "notes",
     "manager",
-    "fast",
-    "data",
-    "access"
+    "supersonic",
+    "notes",
+    "manager",
+    "todo",
+    "notifications",
+    "clips"
   ],
-  "author": "ororambocentric",
+  "author": {
+    "name": "Sergei Tolokonnikov",
+    "email": "ororambocentric@yandex.ru",
+    "url": "https://github.com/ororambocentric/indachaos"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ororambocentric/indachaos/issues"
   },
   "homepage": "https://github.com/ororambocentric/indachaos/blob/master/README.md",
   "devDependencies": {
+<<<<<<< HEAD
     "electron-builder": "^14.5.3",
+=======
+    "electron-packager": "^8.5.2",
+>>>>>>> a19bfc968a7244eda2c8df8b92fc35312e3e5324
     "electron-prebuilt": "^1.2.0",
     "electron-rebuild": "~1.1.5"
   },

@@ -326,7 +326,7 @@ function renderFoundClip(clip) {
     var body = escapeHtml(clip.body);
     render += '<div class="row clip" data-id="'+clip.id+'">';
     render += '<button class="btn btn-default btn-block" type="submit" title="Copy it">';
-    render += '<p class="clip-title">From "'+title+'"</p>';
+    render += '<p class="clip-title">... '+title+'</p>';
     render += '<p class="clip-text">'+body+'</p>';
     render += '</button>';
     render += '</div>';
@@ -975,6 +975,7 @@ function trayTodoFromClipboard() {
     }
     vmTodoList.newItemInput = body;
     vmTodoList.addItem();
+    showScreenTodo();
 }
 
 function trayAdd() {
