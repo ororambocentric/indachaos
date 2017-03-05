@@ -116,6 +116,13 @@ const template = [
                 accelerator: 'F12',
                 click() { showScreenAbout(); }
             },
+            {
+                label: 'Exit',
+                accelerator: 'CmdOrCtrl+Shift+Q',
+                click() {
+                    ipcRenderer.send('system-exit');
+                }
+            }
 
         ]
 

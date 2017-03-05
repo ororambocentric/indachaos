@@ -185,12 +185,23 @@ var vmTodoList = new Vue({
             }
             loadTodosToSettings();
             updateAppSettings();
-            // $('body').animate({ scrollTop: 0 }, settings.animationSpeed);
+
+            if (windowMustBeHidden) {
+                windowMustBeHidden = false;
+                const { remote } = require('electron');
+                remote.BrowserWindow.getFocusedWindow().minimize();
+            }
+
         },
         cancelChanges: function (index) {
             this.editMode.enabled = false;
             loadTodosFromSettings(index);
-            // $('body').animate({ scrollTop: 0 }, settings.animationSpeed);
+
+            if (windowMustBeHidden) {
+                windowMustBeHidden = false;
+                const { remote } = require('electron');
+                remote.BrowserWindow.getFocusedWindow().minimize();
+            }
         },
         setFilterShow: function (type) {
             this.show = type;

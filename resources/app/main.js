@@ -74,7 +74,11 @@ function createWindow () {
         }},
         {type: 'separator'},
         {label: 'Todo from clipboard', type: 'normal', click: function () {
+            if (mainWindow.isMinimized() || !mainWindow.isVisible()) {
+                mainWindow.webContents.send('window-must-be-hidden');
+            }
             mainWindow.webContents.send('todo-from-clipboard');
+            mainWindow.show();
         }},
         {type: 'separator'},
         {label: 'Todo', type: 'normal', click: function () {
@@ -146,4 +150,7 @@ ipcMain.on('set-tray-icon-notif', function (event, arg) {
 });
 ipcMain.on('set-tray-icon-normal', function (event, arg) {
     appIcon.setImage('images/app-icon.png');
+});
+ipcMain.on('system-exit', function (event, arg) {
+    app.exit(0);
 });
