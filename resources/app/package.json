@@ -34,11 +34,6 @@
   },
   "homepage": "https://github.com/ororambocentric/indachaos/blob/master/README.md",
   "devDependencies": {
-<<<<<<< HEAD
-    "electron-builder": "^14.5.3",
-=======
-    "electron-packager": "^8.5.2",
->>>>>>> a19bfc968a7244eda2c8df8b92fc35312e3e5324
     "electron-prebuilt": "^1.2.0",
     "electron-rebuild": "~1.1.5"
   },
