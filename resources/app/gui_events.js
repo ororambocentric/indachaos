@@ -247,7 +247,7 @@ $(document).ready(function () {
         displayEditorSaveButton();
     });
     
-    $(document).on('click', "#todo-list .button-delete-note", function () {
+    $(document).on('click', ".button-delete-note", function () {
         actionDeleteNote($(this).attr('data-id'));
     });
 
