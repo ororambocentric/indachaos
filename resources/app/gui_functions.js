@@ -815,6 +815,7 @@ function historyBack() {
     }
 
     triggerNoteLink(historyRecord.n);
+    $("#search-results-area [name=note_"+historyRecord.n+"] + .note .button-edit-note").focus();
 
 }
 
@@ -836,6 +837,7 @@ function historyForward() {
         searchNotes(historyRecord.s);
     }
     triggerNoteLink(historyRecord.n);
+    $("#search-results-area [name=note_"+historyRecord.n+"] + .note .button-edit-note").focus();
 
 }
 
