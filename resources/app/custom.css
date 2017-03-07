@@ -465,6 +465,10 @@ button, input, textarea, select {
     font-style: normal;
 }
 
+#notifications-area .time .label{
+    font-style: normal;
+}
+
 #notifications-area #button-clear-notifications {
     margin-top: 3px;
 }
