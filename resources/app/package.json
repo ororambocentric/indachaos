@@ -6,6 +6,7 @@
   "scripts": {
     "build": "./node_modules/.bin/electron-rebuild",
     "release": "electron-packager . --out=releases --asar --overwrite --all",
+    "release_win32": "electron-packager . --out=releases --platform=win32 --arch=ia32",
     "start": "electron main.js"
   },
   "repository": {
@@ -34,6 +35,7 @@
   },
   "homepage": "https://github.com/ororambocentric/indachaos/blob/master/README.md",
   "devDependencies": {
+    "electron-packager": "^8.5.2",
     "electron-prebuilt": "^1.2.0",
     "electron-rebuild": "~1.1.5"
   },
