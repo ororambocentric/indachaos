@@ -204,7 +204,9 @@ $(document).ready(function () {
         if (addingFromClipboard || $("#screen-edit").attr('data-id') === undefined) {
             return;
         }
-        editorDataModified = true;
+        if (!e.ctrlKey) {
+            editorDataModified = true;
+        }
         displayEditorSaveButton();
     });
 

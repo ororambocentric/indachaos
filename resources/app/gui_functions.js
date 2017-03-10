@@ -809,6 +809,12 @@ function historyBack() {
     var historyRecord = settings.history[historyPos];
     historyRecord.n = parseInt(historyRecord.n);
 
+    var noteID = $("#screen-edit").attr('data-id');
+    if (activeScreen == 'edit' && noteID !== undefined && !editorDataModified) {
+        showScreenEdit(historyRecord.n);
+        return;
+    }
+
     if (navigatorList.indexOf(historyRecord.n) < 0) {
         $("#input-search").val(historyRecord.s);
         searchNotes(historyRecord.s);
@@ -831,6 +837,12 @@ function historyForward() {
 
     var historyRecord = settings.history[historyPos];
     historyRecord.n = parseInt(historyRecord.n);
+
+    var noteID = $("#screen-edit").attr('data-id');
+    if (activeScreen == 'edit' && noteID !== undefined && !editorDataModified) {
+        showScreenEdit(historyRecord.n);
+        return;
+    }
 
     if (navigatorList.indexOf(historyRecord.n) < 0) {
         $("#input-search").val(historyRecord.s);
