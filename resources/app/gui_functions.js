@@ -411,6 +411,12 @@ function navigatorForward() {
         navigatorPos = 0;
     }
 
+    var noteID = navigatorList[pos];
+    if (activeScreen == 'edit' && noteID !== undefined && !editorDataModified) {
+        showScreenEdit(noteID);
+        return;
+    }
+
     $(".highlight").removeClass('highlight-current');
     $("#search-results-area [name=note_"+navigatorList[pos]+"] + .note").find(".highlight:first").addClass('highlight-current');
     currentResultIndex = parseInt($("#search-results-area [name=note_"+navigatorList[pos]+"] + .note").find(".highlight:first").attr('data-index')) - 1;
@@ -429,6 +435,12 @@ function navigatorBackward() {
         });
     } else {
         navigatorPos = navigatorList.length-1;
+    }
+
+    var noteID = navigatorList[pos];
+    if (activeScreen == 'edit' && noteID !== undefined && !editorDataModified) {
+        showScreenEdit(noteID);
+        return;
     }
 
     $(".highlight").removeClass('highlight-current');
