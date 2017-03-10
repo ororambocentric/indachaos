@@ -33,7 +33,8 @@ var settings = {
     notifications: [],
     notifications_is_read: true,
     date_format: "DD.MM.YYYY",
-    time_format: "HH:mm"
+    time_format: "HH:mm",
+    animationSpeed: 250
 };
 
 function loadAppSettings(callback) {

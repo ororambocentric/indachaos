@@ -28,7 +28,7 @@ $(document).ready(function () {
 
     loadAppSettings(function () {
         setColorTheme(settings.color_theme);
-        $(".container").fadeIn(animationSpeed);
+        $(".container").fadeIn(settings.animationSpeed);
         registerShortcuts();
         showScreenSearch();
         toggleSidebar();
@@ -276,7 +276,7 @@ $(document).ready(function () {
     $(document).on('click', ".edit-todo-button", function () {
         $('body').animate({
             scrollTop: $("#todo-list .editor-group[data-id="+$(this).data('id')+"]").offset().top - 93
-        }, settings.animationSpeed);
+        }, settings.settings.animationSpeed);
     });
 
 

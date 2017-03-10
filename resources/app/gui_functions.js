@@ -22,7 +22,6 @@
  SOFTWARE.
  */
 
-var animationSpeed = 250;
 var clipTitle='', clipBody='';
 var currentResultIndex = -1;
 var searchMatchesCount = 0;
@@ -68,7 +67,7 @@ function showScreenSettings() {
     $("#screen-settings #local-keymap").val(settings.local_keymap);
     $("#screen-settings #history-length").val(settings.history_length);
     $("#screen-settings #theme-"+settings.color_theme+".color-theme").prop('checked', 'checked');
-    $("#screen-settings").fadeIn(animationSpeed);
+    $("#screen-settings").fadeIn(settings.animationSpeed);
     $('#screen-settings #path-to-db').focus();
 }
 
@@ -81,7 +80,7 @@ function showScreenTodo() {
     }
     activeScreen = 'todo';
     hideAllScreens();
-    $("#screen-todo").fadeIn(animationSpeed);
+    $("#screen-todo").fadeIn(settings.animationSpeed);
     $("#screen-todo #input-todo").focus();
 }
 
@@ -94,7 +93,7 @@ function showScreenNotifications() {
     activeScreen = 'notifications';
     checkNotifications();
     hideAllScreens();
-    $("#screen-notifications").fadeIn(animationSpeed);
+    $("#screen-notifications").fadeIn(settings.animationSpeed);
 }
 
 function showScreenAbout() {
@@ -104,16 +103,16 @@ function showScreenAbout() {
     }
     activeScreen = 'about';
     hideAllScreens();
-    $("#screen-about").fadeIn(animationSpeed);
+    $("#screen-about").fadeIn(settings.animationSpeed);
 }
 
 
 function showScreenSearch() {
     activeScreen = 'search';
     hideAllScreens();
-    $("#screen-search").fadeIn(animationSpeed);
+    $("#screen-search").fadeIn(settings.animationSpeed);
     if ($("#button-sidebar-toggle").hasClass('active')) {
-        $("#sidebar").fadeIn(animationSpeed);
+        $("#sidebar").fadeIn(settings.animationSpeed);
         $(".container").addClass('with-sidebar');
     }
     $("#screen-search #input-search").focus();
@@ -146,7 +145,7 @@ function showScreenEdit(id) {
 
     }
     displayEditorSaveButton();
-    $("#screen-edit").fadeIn(animationSpeed);
+    $("#screen-edit").fadeIn(settings.animationSpeed);
     if (id === undefined) {
         $("#screen-edit #title").focus();
     } else {
@@ -162,7 +161,7 @@ function showScreenClips() {
     activeScreen = 'clips';
     searchClips();
     hideAllScreens();
-    $("#screen-clips").fadeIn(animationSpeed);
+    $("#screen-clips").fadeIn(settings.animationSpeed);
 
 }
 
@@ -739,11 +738,11 @@ function toggleSidebar() {
     if (activeScreen != 'search') return;
     if ($("#sidebar").css('display') == 'none') {
         $("#button-sidebar-toggle").addClass('active');
-        $("#sidebar").fadeIn(animationSpeed);
+        $("#sidebar").fadeIn(settings.animationSpeed);
         $(".container").addClass('with-sidebar');
     } else {
         $("#button-sidebar-toggle").removeClass('active');
-        $("#sidebar").fadeOut(animationSpeed / 2, function () {
+        $("#sidebar").fadeOut(settings.animationSpeed / 2, function () {
             $(".container").removeClass('with-sidebar');
         });
 
@@ -956,9 +955,9 @@ function setColorTheme(name) {
 
 function displayEditorSaveButton() {
     if (editorDataModified) {
-        $("#screen-edit #button-save").show(animationSpeed);
+        $("#screen-edit #button-save").show(settings.animationSpeed);
     } else {
-        $("#screen-edit #button-save").hide(animationSpeed);
+        $("#screen-edit #button-save").hide(settings.animationSpeed);
     }
 
 }
