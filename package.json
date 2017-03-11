@@ -4,9 +4,11 @@
   "description": "Notes manager with focus on fast data access.",
   "main": "main.js",
   "scripts": {
-    "dist_linux_x64": "electron-packager . --out=dist --overwrite --asar --ignore=.gitignore && cp -r resources/app dist/indachaos-linux-x64/resources",
-    "build": "./node_modules/.bin/electron-rebuild",
-    "start": "electron main.js"
+    "build": "electron-rebuild",
+    "build_linux_32": "cd node_modules/sqlite3 && node-gyp configure --module_name=node_sqlite3 --module_path=../lib/binding/electron-v1.4-linux-ia32 && node-gyp rebuild --target=1.4.13 --arch=ia32 --target_platform=linux --dist-url=https://atom.io/download/atom-shell --module_name=node_sqlite3 --module_path=../lib/binding/electron-v1.4-linux-ia32 && cd -",
+    "start": "electron main.js",
+    "dist_linux_64": "electron-packager . --out=dist --overwrite --asar --platform=linux --arch=x64 --ignore=.gitignore && cp -r resources/app dist/indachaos-linux-x64/resources",
+    "dist_linux_32": "electron-packager . --out=dist --overwrite --asar --platform=linux --arch=ia32 --ignore=.gitignore && cp -r resources/app dist/indachaos-linux-ia32/resources"
   },
   "repository": {
     "type": "git",
