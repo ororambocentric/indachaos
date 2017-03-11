@@ -4,10 +4,8 @@
   "description": "Notes manager with focus on fast data access.",
   "main": "main.js",
   "scripts": {
-    "dist_linux_x64": "electron-packager . --out=dist --overwrite --asar && cp -r resources/app dist/indachaos-linux-x64/resources",
+    "dist_linux_x64": "electron-packager . --out=dist --overwrite --asar --ignore=.gitignore && cp -r resources/app dist/indachaos-linux-x64/resources",
     "build": "./node_modules/.bin/electron-rebuild",
-    "release": "electron-packager . --out=releases --asar --overwrite --all",
-    "release_win32": "electron-packager . --out=releases --platform=win32 --arch=ia32",
     "start": "electron main.js"
   },
   "repository": {
