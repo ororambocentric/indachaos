@@ -33,7 +33,7 @@ let appIcon = null;
 
 function createWindow () {
 
-    mainWindow = new BrowserWindow({width: 800, height: 600, icon: 'images/app-icon.png'});
+    mainWindow = new BrowserWindow({width: 800, height: 600, icon: 'resources/app/images/app-icon.png'});
     mainWindow.loadURL(`file://${__dirname}/index.html`);
     //mainWindow.webContents.openDevTools();
     mainWindow.on('close', function (e) {
@@ -45,7 +45,7 @@ function createWindow () {
         mainWindow = null;
     });
 
-    appIcon = new Tray('images/app-icon.png');
+    appIcon = new Tray(`resources/app/images/app-icon.png`);
     const contextMenu = Menu.buildFromTemplate([
         {label: 'Add', type: 'normal', click: function () {
             mainWindow.webContents.send('add');
@@ -146,10 +146,10 @@ app.on('activate', function () {
 
 const {ipcMain} = require('electron')
 ipcMain.on('set-tray-icon-notif', function (event, arg) {
-    appIcon.setImage('images/app-icon-notif.png');
+    appIcon.setImage('resources/app/images/app-icon-notif.png');
 });
 ipcMain.on('set-tray-icon-normal', function (event, arg) {
-    appIcon.setImage('images/app-icon.png');
+    appIcon.setImage('resources/app/images/app-icon.png');
 });
 ipcMain.on('system-exit', function (event, arg) {
     app.exit(0);

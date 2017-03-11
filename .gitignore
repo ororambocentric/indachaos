@@ -2,7 +2,7 @@ node_modules
 .idea
 settings
 indachaos_notes.db
-releases
+dist
 run.sh
 npm-debug.log
 settings~

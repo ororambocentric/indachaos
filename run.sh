@@ -1,3 +1,3 @@
 #!/bin/bash
 
-cd /home/idzn/dev/indachaos/resources/app && npm start
+cd /home/idzn/dev/indachaos && npm start
