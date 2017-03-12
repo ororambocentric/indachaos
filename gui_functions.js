@@ -182,6 +182,7 @@ function showScreenEnterSecretKey() {
         return;
     }
     activeScreen = 'enter-secret-key';
+    dbSecretKey == null;
     hideAllScreens();
     $("#screen-enter-secret-key").fadeIn(settings.animationSpeed);
     $("#screen-enter-secret-key #key").focus();

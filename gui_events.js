@@ -32,10 +32,10 @@ $(document).ready(function () {
         registerShortcuts();
         showScreenSearch();
         toggleSidebar();
-        renderNotesLinks();
         loadTodosFromSettings();
         loadNotificationsFromSettings();
         checkNotifications();
+        renderNotesLinks();
     });
 
     var appTimer = setInterval(function () {
@@ -365,6 +365,7 @@ $(document).on('submit', '#screen-set-secret-key form', function (e) {
     nm.setDB(settings.path_to_db);
     nm.createDB();
     renderNotesLinks();
+    showScreenSearch();
 });
 
 $(document).on('keyup', '#screen-enter-secret-key #key', function (e) {
@@ -381,6 +382,7 @@ $(document).on('submit', '#screen-enter-secret-key form', function (e) {
     nm.setDB(settings.path_to_db);
     nm.createDB();
     renderNotesLinks();
+    showScreenSearch();
 });
 
 
