@@ -1,11 +1,12 @@
 {
   "name": "indachaos",
-  "version": "1.7.7",
+  "version": "1.8.0",
   "description": "Notes manager with focus on fast data access.",
   "main": "main.js",
   "scripts": {
     "build": "electron-rebuild",
-    "build_linux_32": "cd node_modules/sqlite3 && node-gyp configure --module_name=node_sqlite3 --module_path=../lib/binding/electron-v1.4-linux-ia32 && node-gyp rebuild --target=1.4.13 --arch=ia32 --target_platform=linux --dist-url=https://atom.io/download/atom-shell --module_name=node_sqlite3 --module_path=../lib/binding/electron-v1.4-linux-ia32 && cd -",
+    "build_linux_32": "cd node_modules/sqlite3 && node-gyp configure --module_name=node_sqlite3 --build-from-source --sqlite_libname=sqlcipher --sqlite=/usr/local --module_path=../lib/binding/electron-v1.4-linux-ia32 && node-gyp rebuild --target=1.4.13 --arch=ia32 --target_platform=linux --dist-url=https://atom.io/download/atom-shell --module_name=node_sqlite3 --build-from-source --sqlite_libname=sqlcipher --sqlite=/usr/local --module_path=../lib/binding/electron-v1.4-linux-ia32 && cd -",
+    "build_linux_64": "cd node_modules/sqlite3 && node-gyp configure --module_name=node_sqlite3 --build-from-source --sqlite_libname=sqlcipher --sqlite=/usr/local --module_path=../lib/binding/electron-v1.4-linux-x64 && node-gyp rebuild --target=1.4.13 --arch=x64 --target_platform=linux --dist-url=https://atom.io/download/atom-shell --module_name=node_sqlite3 --build-from-source --sqlite_libname=sqlcipher --sqlite=/usr/local --module_path=../lib/binding/electron-v1.4-linux-x64 && cd -",
     "start": "electron main.js",
     "dist_linux_64": "electron-packager . --out=dist --overwrite --asar --platform=linux --arch=x64 --ignore=.gitignore && cp -r resources/app dist/indachaos-linux-x64/resources",
     "dist_linux_32": "electron-packager . --out=dist --overwrite --asar --platform=linux --arch=ia32 --ignore=.gitignore && cp -r resources/app dist/indachaos-linux-ia32/resources"

@@ -32,27 +32,50 @@ const template = [
             {
                 label: 'Add note',
                 accelerator: 'CmdOrCtrl+N',
-                click() { $("#button-add-note").trigger('click'); }
+                click() {
+                    if (activeScreen == 'set-secret-key' || activeScreen == 'enter-secret-key') {
+                        return;
+                    }
+                    $("#button-add-note").trigger('click');
+                }
             },
             {
                 label: 'Clips',
                 accelerator: 'CmdOrCtrl+K',
-                click() { $("#button-clips").trigger('click'); }
+                click() {
+                    if (activeScreen == 'set-secret-key' || activeScreen == 'enter-secret-key') {
+                        return;
+                    }
+                    $("#button-clips").trigger('click');
+                }
             },
             {
                 label: 'Todo list',
                 accelerator: 'CmdOrCtrl+T',
-                click() { $("#button-todo").trigger('click'); }
+                click() {
+                    if (activeScreen == 'set-secret-key' || activeScreen == 'enter-secret-key') {
+                        return;
+                    }
+                    $("#button-todo").trigger('click');
+                }
             },
             {
                 label: 'Notifications',
                 accelerator: 'CmdOrCtrl+I',
-                click() { $("#button-notifications").trigger('click'); }
+                click() {
+                    if (activeScreen == 'set-secret-key' || activeScreen == 'enter-secret-key') {
+                        return;
+                    }
+                    $("#button-notifications").trigger('click');
+                }
             },
             {
                 label: 'Go to search',
                 accelerator: 'CmdOrCtrl+F',
-                click() { 
+                click() {
+                    if (activeScreen == 'set-secret-key' || activeScreen == 'enter-secret-key') {
+                        return;
+                    }
                     if (activeScreen !== 'search') {
                         showScreenSearch();
                     } else {
@@ -66,6 +89,9 @@ const template = [
                 label: 'Open recent',
                 accelerator: 'CmdOrCtrl+E',
                 click() {
+                    if (activeScreen == 'set-secret-key' || activeScreen == 'enter-secret-key') {
+                        return;
+                    }
                     actionGoToLastEditing();
                 }
 
@@ -73,48 +99,93 @@ const template = [
             {
                 label: 'Go to next occurrence',
                 accelerator: 'F3',
-                click() { $("#button-gotoresult-forward").trigger('click'); }
+                click() {
+                    if (activeScreen == 'set-secret-key' || activeScreen == 'enter-secret-key') {
+                        return;
+                    }
+                    $("#button-gotoresult-forward").trigger('click');
+                }
             },
             {
                 label: 'Go to previous occurrence',
                 accelerator: 'Shift+F3',
-                click() { $("#button-gotoresult-backward").trigger('click'); }
+                click() {
+                    if (activeScreen == 'set-secret-key' || activeScreen == 'enter-secret-key') {
+                        return;
+                    }
+                    $("#button-gotoresult-backward").trigger('click');
+                }
             },
             {
                 label: 'Go to next note',
                 accelerator: 'CmdOrCtrl+Down',
-                click() { $("#button-navigator-forward").trigger('click'); }
+                click() {
+                    if (activeScreen == 'set-secret-key' || activeScreen == 'enter-secret-key') {
+                        return;
+                    }
+                    $("#button-navigator-forward").trigger('click');
+                }
             },
             {
                 label: 'Go to previous note',
                 accelerator: 'CmdOrCtrl+Up',
-                click() { $("#button-navigator-backward").trigger('click'); }
+                click() {
+                    if (activeScreen == 'set-secret-key' || activeScreen == 'enter-secret-key') {
+                        return;
+                    }
+                    $("#button-navigator-backward").trigger('click');
+                }
             },
             {
                 label: 'History back',
                 accelerator: 'CmdOrCtrl+Left',
-                click() { historyBack(); }
+                click() {
+                    if (activeScreen == 'set-secret-key' || activeScreen == 'enter-secret-key') {
+                        return;
+                    }
+                    historyBack();
+                }
             },
             {
                 label: 'History forward',
                 accelerator: 'CmdOrCtrl+Right',
-                click() { historyForward(); }
+                click() {
+                    if (activeScreen == 'set-secret-key' || activeScreen == 'enter-secret-key') {
+                        return;
+                    }
+                    historyForward();
+                }
             },
             {
                 label: 'Toggle sidebar',
                 accelerator: 'CmdOrCtrl+L',
-                click() { $("#button-sidebar-toggle").trigger('click'); }
+                click() {
+                    if (activeScreen == 'set-secret-key' || activeScreen == 'enter-secret-key') {
+                        return;
+                    }
+                    $("#button-sidebar-toggle").trigger('click');
+                }
             },
 
             {
                 label: 'Settings',
                 accelerator: 'F6',
-                click() { showScreenSettings(); }
+                click() {
+                    if (activeScreen == 'set-secret-key' || activeScreen == 'enter-secret-key') {
+                        return;
+                    }
+                    showScreenSettings();
+                }
             },
             {
                 label: 'About',
                 accelerator: 'F12',
-                click() { showScreenAbout(); }
+                click() {
+                    if (activeScreen == 'set-secret-key' || activeScreen == 'enter-secret-key') {
+                        return;
+                    }
+                    showScreenAbout();
+                }
             },
             {
                 label: 'Exit',
@@ -508,34 +579,58 @@ const editorTitleContextMenu = Menu.buildFromTemplate(editorTitleContextMenuTemp
 const clipsContextMenu = Menu.buildFromTemplate(clipsContextMenuTemplate);
 
 ipcRenderer.on('add-from-clipboard', function() {
+    if (activeScreen == 'set-secret-key' || activeScreen == 'enter-secret-key') {
+        return;
+    }
     trayAddFromClipboard();
 });
 
 ipcRenderer.on('todo-from-clipboard', function() {
+    if (activeScreen == 'set-secret-key' || activeScreen == 'enter-secret-key') {
+        return;
+    }
     trayTodoFromClipboard();
 });
 
 ipcRenderer.on('add', function() {
+    if (activeScreen == 'set-secret-key' || activeScreen == 'enter-secret-key') {
+        return;
+    }
     trayAdd();
 });
 
 ipcRenderer.on('open-recent', function() {
+    if (activeScreen == 'set-secret-key' || activeScreen == 'enter-secret-key') {
+        return;
+    }
     trayOpenRecent();
 });
 
 ipcRenderer.on('clips', function() {
+    if (activeScreen == 'set-secret-key' || activeScreen == 'enter-secret-key') {
+        return;
+    }
     trayClips();
 });
 
 ipcRenderer.on('todolist', function() {
+    if (activeScreen == 'set-secret-key' || activeScreen == 'enter-secret-key') {
+        return;
+    }
     trayTodoList();
 });
 
 ipcRenderer.on('notifications', function() {
+    if (activeScreen == 'set-secret-key' || activeScreen == 'enter-secret-key') {
+        return;
+    }
     trayNotifications();
 });
 
 ipcRenderer.on('settings', function() {
+    if (activeScreen == 'set-secret-key' || activeScreen == 'enter-secret-key') {
+        return;
+    }
     traySettings();
 });
 

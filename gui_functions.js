@@ -173,7 +173,8 @@ function showScreenSetSecretKey() {
     activeScreen = 'set-secret-key';
     hideAllScreens();
     $("#screen-set-secret-key").fadeIn(settings.animationSpeed);
-    $("#screen-set-secret-key #key").focus();
+    $("#screen-set-secret-key #key-repeat").val('');
+    $("#screen-set-secret-key #key").val('').focus();
 
 }
 
@@ -185,7 +186,7 @@ function showScreenEnterSecretKey() {
     dbSecretKey == null;
     hideAllScreens();
     $("#screen-enter-secret-key").fadeIn(settings.animationSpeed);
-    $("#screen-enter-secret-key #key").focus();
+    $("#screen-enter-secret-key #key").val('').focus();
 
 }
 

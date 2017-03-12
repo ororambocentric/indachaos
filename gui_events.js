@@ -386,4 +386,3 @@ $(document).on('submit', '#screen-enter-secret-key form', function (e) {
 });
 
 
-
