@@ -316,6 +316,56 @@ SOFTWARE.
 
     <div id="clips-area" class="col-xs-12"></div>
   </div>
+  <div id="screen-set-secret-key">
+    <div class="toolbar set-secret-key-header navbar-fixed-top">
+      <h1>Set database secret key</h1>
+    </div>
+
+
+    <div id="set-secret-key-area">
+      <form>
+        <div class="input-group">
+          <div class="row">
+            <label for="key">Key</label>
+            <input type="password" id="key" class="form-control">
+          </div>
+          <div class="row">
+            <label for="key-repeat">Repeat</label>
+            <input type="password" id="key-repeat" class="form-control">
+          </div>
+          <div class="row">
+            <div class="btn-group">
+              <button id="set-secret-key-button-ok" class="btn btn-default">Ok</button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
+
+  </div>
+
+  <div id="screen-enter-secret-key">
+    <div class="toolbar enter-secret-key-header navbar-fixed-top">
+      <h1>Enter database secret key</h1>
+    </div>
+
+    <form>
+      <div id="enter-secret-key-area">
+        <div class="input-group">
+          <div class="row">
+            <input type="password" id="key" class="form-control">
+          </div>
+          <div class="row">
+            <input type="submit" id="enter-secret-key-button-ok" class="btn btn-default" value="Ok">
+          </div>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+
   <div id="screen-about">
     <div class="toolbar navbar-fixed-top">
       <button id="button-about-back" type="button" class="btn btn-default pull-right" title="Close (ESC)">

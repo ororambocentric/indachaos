@@ -22,6 +22,7 @@
  SOFTWARE.
  */
 
+var dbSecretKey = null;
 var clipTitle='', clipBody='';
 var currentResultIndex = -1;
 var searchMatchesCount = 0;
@@ -162,6 +163,28 @@ function showScreenClips() {
     searchClips();
     hideAllScreens();
     $("#screen-clips").fadeIn(settings.animationSpeed);
+
+}
+
+function showScreenSetSecretKey() {
+    if (activeScreen == 'set-secret-key') {
+        return;
+    }
+    activeScreen = 'set-secret-key';
+    hideAllScreens();
+    $("#screen-set-secret-key").fadeIn(settings.animationSpeed);
+    $("#screen-set-secret-key #key").focus();
+
+}
+
+function showScreenEnterSecretKey() {
+    if (activeScreen == 'enter-secret-key') {
+        return;
+    }
+    activeScreen = 'enter-secret-key';
+    hideAllScreens();
+    $("#screen-enter-secret-key").fadeIn(settings.animationSpeed);
+    $("#screen-enter-secret-key #key").focus();
 
 }
 

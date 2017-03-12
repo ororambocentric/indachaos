@@ -340,3 +340,48 @@ $(window).scroll(function (e) {
     }
 });
 
+$(document).on('keyup', '#screen-set-secret-key #key-repeat, #screen-set-secret-key #key', function (e) {
+    e.preventDefault();
+    $('#screen-set-secret-key #key-repeat').removeClass('error').removeClass('equal');
+    $('#screen-set-secret-key #key').removeClass('error').removeClass('equal');
+
+    if ($('#screen-set-secret-key #key').val() == $('#screen-set-secret-key #key-repeat').val()) {
+        $('#screen-set-secret-key #key-repeat').removeClass('error').addClass('equal');
+    } else {
+        $('#screen-set-secret-key #key-repeat').removeClass('equal').addClass('error');
+    }
+});
+
+$(document).on('submit', '#screen-set-secret-key form', function (e) {
+    e.preventDefault();
+
+    if ($('#screen-set-secret-key #key').val() != $('#screen-set-secret-key #key-repeat').val()) {
+        return;
+    }
+
+    dbSecretKey = $('#screen-set-secret-key #key').val();
+    showScreenSearch();
+    var nm = new DBManager();
+    nm.setDB(settings.path_to_db);
+    nm.createDB();
+    renderNotesLinks();
+});
+
+$(document).on('keyup', '#screen-enter-secret-key #key', function (e) {
+    e.preventDefault();
+    $('#screen-enter-secret-key #key').removeClass('error');
+});
+
+$(document).on('submit', '#screen-enter-secret-key form', function (e) {
+    e.preventDefault();
+
+    dbSecretKey = $('#screen-enter-secret-key #key').val();
+    showScreenSearch();
+    var nm = new DBManager();
+    nm.setDB(settings.path_to_db);
+    nm.createDB();
+    renderNotesLinks();
+});
+
+
+

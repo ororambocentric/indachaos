@@ -23,7 +23,7 @@
  */
 
 var settings = {
-    path_to_db: 'indachaos_notes.db',
+    path_to_db: 'indachaos.db',
     local_keymap: 'ru',
     history: [],
     last_editing_note_id: 0,

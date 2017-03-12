@@ -38,8 +38,41 @@ function DBManager() {
         return self.dbPath;
     };
 
+    this.setSecretKey = function (key) {
+        if (key == '') {
+            return;
+        }
+        self.db.run("PRAGMA key = '"+ key +"'");
+    };
+
+    this.checkSecretKey = function () {
+        if (dbSecretKey === null) {
+            if (!require('fs').existsSync(settings.path_to_db)) {
+                showScreenSetSecretKey();
+            } else {
+                showScreenEnterSecretKey();
+            }
+            return false;
+        }
+        return true;
+    };
+
+    function errorSaysDatabaseEnripted (err) {
+        var error = String(JSON.stringify(err));
+        if (error == '{"errno":26,"code":"SQLITE_NOTADB"}') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     this.createDB = function () {
+        if (!this.checkSecretKey()) {
+            return;
+        }
         self.db = new sqlite3.Database(self.dbPath);
+        this.setSecretKey(dbSecretKey);
+        //self.db.run("PRAGMA key = '123'");
         self.db.run("CREATE TABLE IF NOT EXISTS note ( id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT, ltitle TEXT, lbody TEXT, marker INTEGER DEFAULT (1))");
         self.db.run("CREATE TABLE IF NOT EXISTS clip ( id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT)");
     }
@@ -59,7 +92,7 @@ function DBManager() {
             callback(err, row)
         });
     };
-    
+
     this.addClip = function (title, body) {
         self.db.run("INSERT INTO clip (title, body) VALUES ($title, $body)", {
             $title: title,
@@ -82,11 +115,15 @@ function DBManager() {
         self.db.get("SELECT * FROM note WHERE id = "+id, function (err, row) {
             callback(err, row)
         });
-        
+
     };
-    
+
     this.getNotes = function (callback, extra='') {
         self.db.all("SELECT * FROM note " + extra, function (err, rows) {
+            if (errorSaysDatabaseEnripted(err)) {
+                showScreenEnterSecretKey();
+                return;
+            }
             callback(err, rows)
         });
     };
