@@ -23,6 +23,7 @@
  */
 
 var dbSecretKey = null;
+var dbChangedSecretKey = null;
 var clipTitle='', clipBody='';
 var currentResultIndex = -1;
 var searchMatchesCount = 0;
@@ -148,7 +149,8 @@ function showScreenEdit(id) {
     displayEditorSaveButton();
     $("#screen-edit").fadeIn(settings.animationSpeed);
     if (id === undefined) {
-        $("#screen-edit #title").focus();
+        //$("#screen-edit #title").focus();
+        $("#screen-edit #body").focus();
     } else {
         $("#screen-edit #body").focus();
     }
@@ -175,6 +177,18 @@ function showScreenSetSecretKey() {
     $("#screen-set-secret-key").fadeIn(settings.animationSpeed);
     $("#screen-set-secret-key #key-repeat").val('');
     $("#screen-set-secret-key #key").val('').focus();
+
+}
+
+function showScreenChangeSecretKey() {
+    if (activeScreen == 'change-secret-key') {
+        return;
+    }
+    activeScreen = 'change-secret-key';
+    hideAllScreens();
+    $("#screen-change-secret-key").fadeIn(settings.animationSpeed);
+    $("#screen-change-secret-key #new-key").val('').focus();
+    $("#screen-change-secret-key #new-key-repeat").val('');
 
 }
 
@@ -1050,6 +1064,10 @@ function trayNotifications() {
 
 function traySettings() {
     showScreenSettings();
+}
+
+function trayChangeSecretKey() {
+    showScreenChangeSecretKey();
 }
 
 function convertDate(date) {

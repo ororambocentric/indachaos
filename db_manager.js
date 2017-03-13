@@ -45,6 +45,13 @@ function DBManager() {
         self.db.run("PRAGMA key = '"+ key +"'");
     };
 
+    this.changeSecretKey = function (key) {
+        if (key == null) {
+            return;
+        }
+        self.db.run("PRAGMA rekey = '"+ key +"'");
+    };
+
     this.checkSecretKey = function () {
         if (dbSecretKey === null) {
             if (!require('fs').existsSync(settings.path_to_db)) {
@@ -72,6 +79,7 @@ function DBManager() {
         }
         self.db = new sqlite3.Database(self.dbPath);
         this.setSecretKey(dbSecretKey);
+        this.changeSecretKey(dbChangedSecretKey);
         self.db.run("CREATE TABLE IF NOT EXISTS note ( id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT, ltitle TEXT, lbody TEXT, marker INTEGER DEFAULT (1))");
         self.db.run("CREATE TABLE IF NOT EXISTS clip ( id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT)");
     }

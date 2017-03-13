@@ -318,7 +318,7 @@ SOFTWARE.
   </div>
   <div id="screen-set-secret-key">
     <div class="toolbar set-secret-key-header navbar-fixed-top">
-      <h1>Set a secret key</h1>
+      <h1>Set secret key</h1>
     </div>
 
 
@@ -347,7 +347,7 @@ SOFTWARE.
 
   <div id="screen-enter-secret-key">
     <div class="toolbar enter-secret-key-header navbar-fixed-top">
-      <h1>Enter a secret key</h1>
+      <h1>Enter secret key</h1>
     </div>
 
     <form>
@@ -366,6 +366,44 @@ SOFTWARE.
 
   </div>
 
+  <div id="screen-change-secret-key">
+    <div class="toolbar change-secret-key-header navbar-fixed-top">
+      <h1>Change secret key</h1>
+    </div>
+    <div class="toolbar navbar-fixed-top">
+      <button id="button-change-secret-key-back" type="button" class="btn btn-default pull-right" title="Close (ESC)">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+      </button>
+    </div>
+    <div style="clear: both"></div>
+
+    <div id="change-secret-key-area">
+      <form>
+        <div class="input-group">
+          <!--<div class="row">-->
+            <!--<label for="current-key">Current key</label>-->
+            <!--<input type="password" id="current-key" class="form-control">-->
+          <!--</div>-->
+          <div class="row">
+            <label for="new-key">New key</label>
+            <input type="password" id="new-key" class="form-control">
+          </div>
+          <div class="row">
+            <label for="new-key-repeat">Repeat new key</label>
+            <input type="password" id="new-key-repeat" class="form-control">
+          </div>
+          <div class="row">
+            <div class="btn-group">
+              <button id="change-secret-key-button-ok" class="btn btn-default">Ok</button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
+
+  </div>
+
   <div id="screen-about">
     <div class="toolbar navbar-fixed-top">
       <button id="button-about-back" type="button" class="btn btn-default pull-right" title="Close (ESC)">
@@ -377,7 +415,7 @@ SOFTWARE.
     <div style="text-align: center">
       <img src="resources/app/images/app-icon.png" alt="">
       <h2>Indachaos</h2>
-      <p>version 1.8.0 (alpha)</p>
+      <p>version 1.8.1 (alpha)</p>
       <p>Supersonic notes manager.</p>
       <p>&copy; 2016 - 2017 Sergei Tolokonnikov</p>
       <br>

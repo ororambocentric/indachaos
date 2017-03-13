@@ -166,7 +166,6 @@ const template = [
                     $("#button-sidebar-toggle").trigger('click');
                 }
             },
-
             {
                 label: 'Settings',
                 accelerator: 'F6',
@@ -175,6 +174,16 @@ const template = [
                         return;
                     }
                     showScreenSettings();
+                }
+            },
+            {
+                label: 'Change secret key',
+                accelerator: 'F7',
+                click() {
+                    if (activeScreen == 'set-secret-key' || activeScreen == 'enter-secret-key') {
+                        return;
+                    }
+                    showScreenChangeSecretKey();
                 }
             },
             {
@@ -632,6 +641,13 @@ ipcRenderer.on('settings', function() {
         return;
     }
     traySettings();
+});
+
+ipcRenderer.on('change-secret-key', function() {
+    if (activeScreen == 'set-secret-key' || activeScreen == 'enter-secret-key') {
+        return;
+    }
+    trayChangeSecretKey();
 });
 
 ipcRenderer.on('window-must-be-hidden', function() {

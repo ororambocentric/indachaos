@@ -96,7 +96,11 @@ function createWindow () {
             mainWindow.show();
         }},
         {type: 'separator'},
-
+        {label: 'Change secret key', type: 'normal', click: function () {
+            mainWindow.webContents.send('change-secret-key');
+            mainWindow.show();
+        }},
+        {type: 'separator'},
         {label: 'Show', type: 'normal', click: function () {
             mainWindow.show();
         }},

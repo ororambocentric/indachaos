@@ -500,17 +500,21 @@ button, input, textarea, select {
 }
 
 #screen-enter-secret-key form .row,
-#screen-set-secret-key form .row {
+#screen-set-secret-key form .row,
+#screen-change-secret-key form .row {
     margin-bottom: 10px;
 }
 
 
-#screen-set-secret-key #key-repeat.equal {
+#screen-set-secret-key #key-repeat.equal,
+#screen-change-secret-key #new-key-repeat.equal {
     background: mediumseagreen !important;
 }
 
 #screen-set-secret-key #key.error,
 #screen-set-secret-key #key-repeat.error,
+#screen-change-secret-key #new-key.error,
+#screen-change-secret-key #new-key-repeat.error,
 #screen-enter-secret-key #key.error {
     background: lightcoral !important;
 }
@@ -535,8 +539,17 @@ button, input, textarea, select {
     margin-left: 20px;
 }
 
-#screen-enter-secret-key #enter-secret-key-area {
+.change-secret-key-header {
+    margin-top: 0;
+    padding: 30px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    background: white;
+}
+
+#change-secret-key-area {
     margin-top: 70px;
     margin-left: 20px;
 }
+
 

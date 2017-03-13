@@ -181,6 +181,9 @@ $(document).ready(function () {
     $(document).on('click', "#button-about-back", function () {
         showScreenSearch();
     });
+    $(document).on('click', "#button-change-secret-key-back", function () {
+        showScreenSearch();
+    });
 
     // $(document).on('mouseenter', ".note", function () {
     //     markActiveNoteLink(parseInt($(this).attr('data-id')));
@@ -385,4 +388,30 @@ $(document).on('submit', '#screen-enter-secret-key form', function (e) {
     showScreenSearch();
 });
 
+$(document).on('keyup', '#screen-change-secret-key #new-key-repeat, #screen-change-secret-key #new-key', function (e) {
+    e.preventDefault();
+    $('#screen-change-secret-key #new-key-repeat').removeClass('error').removeClass('equal');
+    $('#screen-change-secret-key #new-key').removeClass('error').removeClass('equal');
 
+    if ($('#screen-change-secret-key #new-key').val() == $('#screen-change-secret-key #new-key-repeat').val()) {
+        $('#screen-change-secret-key #new-key-repeat').removeClass('error').addClass('equal');
+    } else {
+        $('#screen-change-secret-key #new-key-repeat').removeClass('equal').addClass('error');
+    }
+});
+
+$(document).on('submit', '#screen-change-secret-key form', function (e) {
+    e.preventDefault();
+
+    if ($('#screen-change-secret-key #new-key').val() != $('#screen-change-secret-key #new-key-repeat').val()) {
+        return;
+    }
+    
+    dbChangedSecretKey = $('#screen-change-secret-key #new-key').val();
+    showScreenSearch();
+    var nm = new DBManager();
+    nm.setDB(settings.path_to_db);
+    nm.createDB();
+    renderNotesLinks();
+    showScreenSearch();
+});
