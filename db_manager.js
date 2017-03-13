@@ -80,6 +80,7 @@ function DBManager() {
         self.db = new sqlite3.Database(self.dbPath);
         this.setSecretKey(dbSecretKey);
         this.changeSecretKey(dbChangedSecretKey);
+        dbChangedSecretKey = null;
         self.db.run("CREATE TABLE IF NOT EXISTS note ( id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT, ltitle TEXT, lbody TEXT, marker INTEGER DEFAULT (1))");
         self.db.run("CREATE TABLE IF NOT EXISTS clip ( id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT)");
     }
