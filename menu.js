@@ -302,6 +302,27 @@ const template = [
                         focusedWindow.webContents.toggleDevTools();
                 }
             },
+            {
+                label: 'Zoom In',
+                click() {
+                    var webFrame = require('electron').webFrame;
+                    webFrame.setZoomFactor(webFrame.getZoomFactor() + 0.1);
+                }
+            },
+            {
+                label: 'Zoom Out',
+                click() {
+                    var webFrame = require('electron').webFrame;
+                    webFrame.setZoomFactor(webFrame.getZoomFactor() - 0.1);
+                }
+            },
+            {
+                label: 'Zoom Normal',
+                click() {
+                    var webFrame = require('electron').webFrame;
+                    webFrame.setZoomFactor(1);
+                }
+            },
         ]
     },
     {
