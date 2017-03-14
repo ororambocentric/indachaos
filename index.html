@@ -205,12 +205,6 @@ SOFTWARE.
         <div class="todo-list-header">
           <h1>Todo list</h1>
           <div class="input-group add-todo-group">
-            <select v-model="categoryForNew" class="category form-control">
-              <option value="10">Work</option>
-              <option value="20">Project</option>
-              <option value="30">Personal</option>
-              <option value="40">Family</option>
-            </select>
             <input v-model.trim="newItemInput" id="input-todo" type="text"  class="form-control" placeholder="To do..."
                    @keyup.enter="addItem">
           </div>

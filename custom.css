@@ -405,7 +405,7 @@ button, input, textarea, select {
 }
 
 #todo-list .add-todo-group input {
-    width: 80%;
+    width: 100%;
 }
 
 #todo-list .edit-todo-title-group select {
