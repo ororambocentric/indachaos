@@ -73,6 +73,16 @@ function DBManager() {
         }
     }
 
+    this.pingKey = function (callback) {
+        self.db.run("select count(*) from note", function (err, rows) {
+            if (errorSaysDatabaseEnripted(err)) {
+                showScreenEnterSecretKey();
+                return;
+            }
+            callback();
+        });
+    };
+
     this.createDB = function () {
         if (!this.checkSecretKey()) {
             return;
@@ -83,7 +93,7 @@ function DBManager() {
         dbChangedSecretKey = null;
         self.db.run("CREATE TABLE IF NOT EXISTS note ( id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT, ltitle TEXT, lbody TEXT, marker INTEGER DEFAULT (1))");
         self.db.run("CREATE TABLE IF NOT EXISTS clip ( id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT)");
-    }
+    };
 
     this.addNote = function (title, body, marker='1') {
         self.db.run("INSERT INTO note (title, body, ltitle, lbody, marker) VALUES ($title, $body, $ltitle, $lbody, $marker)", {
@@ -128,10 +138,6 @@ function DBManager() {
 
     this.getNotes = function (callback, extra='') {
         self.db.all("SELECT * FROM note " + extra, function (err, rows) {
-            if (errorSaysDatabaseEnripted(err)) {
-                showScreenEnterSecretKey();
-                return;
-            }
             callback(err, rows)
         });
     };

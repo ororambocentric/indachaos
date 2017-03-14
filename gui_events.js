@@ -363,12 +363,16 @@ $(document).on('submit', '#screen-set-secret-key form', function (e) {
     }
 
     dbSecretKey = $('#screen-set-secret-key #key').val();
-    showScreenSearch();
+
     var nm = new DBManager();
     nm.setDB(settings.path_to_db);
     nm.createDB();
-    renderNotesLinks();
-    showScreenSearch();
+    nm.pingKey(function () {
+        renderNotesLinks();
+        showScreenSearch();
+        researchNotes();
+    });
+
 });
 
 $(document).on('keyup', '#screen-enter-secret-key #key', function (e) {
@@ -380,12 +384,16 @@ $(document).on('submit', '#screen-enter-secret-key form', function (e) {
     e.preventDefault();
 
     dbSecretKey = $('#screen-enter-secret-key #key').val();
-    showScreenSearch();
+
     var nm = new DBManager();
     nm.setDB(settings.path_to_db);
     nm.createDB();
-    renderNotesLinks();
-    showScreenSearch();
+    nm.pingKey(function () {
+        renderNotesLinks();
+        showScreenSearch();
+        researchNotes();
+    });
+
 });
 
 $(document).on('keyup', '#screen-change-secret-key #new-key-repeat, #screen-change-secret-key #new-key', function (e) {
@@ -408,10 +416,14 @@ $(document).on('submit', '#screen-change-secret-key form', function (e) {
     }
     
     dbChangedSecretKey = $('#screen-change-secret-key #new-key').val();
-    showScreenSearch();
+
     var nm = new DBManager();
     nm.setDB(settings.path_to_db);
     nm.createDB();
-    renderNotesLinks();
-    showScreenSearch();
+    nm.pingKey(function () {
+        renderNotesLinks();
+        showScreenSearch();
+        researchNotes();
+    });
+
 });
