@@ -767,7 +767,7 @@ function pasteCurrentDate() {
     }
 }
 
-function genPassword(len=20) {
+function genPassword(len=32) {
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567890123456789!@#$%=!@#$%=!@#$%=";
 
@@ -780,7 +780,7 @@ function genPassword(len=20) {
 function pastePassword() {
     if (activeScreen == 'edit') {
         if ($('#body').is(':focus')) {
-            $('#body').insertAtCaret(genPassword(20));
+            $('#body').insertAtCaret(genPassword(32));
         }
     }
 }
