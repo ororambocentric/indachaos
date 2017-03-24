@@ -234,7 +234,7 @@ $(document).ready(function () {
             return;
         }
         if (title == '') {
-            var prefix = '';
+            var prefix = '#untitled ';
             if (addingFromClipboard) {
                 prefix = '#clipboard ';
                 addingFromClipboard = false;
