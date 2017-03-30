@@ -187,6 +187,39 @@ SOFTWARE.
         <textarea id="body" class="form-control" rows="15" placeholder="Body..."></textarea>
 
       </div>
+      <div id="secrets-widget" class="form-group" style="height: 100%">
+        <h2>Passwords</h2>
+        <div class="passwords-area">
+          <div class="password row">
+            <div class="col-sm-3">
+              <label for="password-name-1">Name</label>
+              <input type="text" id="password-name-1">
+            </div>
+            <div class="col-sm-4">
+              <label for="password-password-1">Password</label>
+              <input type="password" id="password-password-1">
+              <button type="button" class="btn btn-xs btn-default button-gen-password">
+                <span class="glyphicon glyphicon-flash" aria-hidden="true"></span>
+              </button>
+              <button type="button" class="btn btn-xs btn-default button-show-password">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+              </button>
+            </div>
+            <div class="col-sm-3">
+              <label for="password-confirm-1">Confirm</label>
+              <input type="password" id="password-confirm-1">
+            </div>
+            <div class="pull-right">
+              <button id="button-add-password" type="button" class="btn btn-sm btn-default">
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <button id="add-secret" type="button" class="btn btn-default">
+          <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Add secret
+        </button>
+      </div>
       <div class="form-group">
         <div class="">
           <button id="button-save" type="button" class="btn btn-default" title="Ctrl+Shift+S">
@@ -375,8 +408,8 @@ SOFTWARE.
       <form>
         <div class="input-group">
           <!--<div class="row">-->
-            <!--<label for="current-key">Current key</label>-->
-            <!--<input type="password" id="current-key" class="form-control">-->
+          <!--<label for="current-key">Current key</label>-->
+          <!--<input type="password" id="current-key" class="form-control">-->
           <!--</div>-->
           <div class="row">
             <label for="new-key">New key</label>
@@ -409,7 +442,7 @@ SOFTWARE.
     <div style="text-align: center">
       <img src="resources/app/images/app-icon.png" alt="">
       <h2>Indachaos</h2>
-      <p>version 1.8.3 (alpha)</p>
+      <p>version 1.9.3 (alpha)</p>
       <p>Supersonic notes manager.</p>
       <p>&copy; 2016 - 2017 Sergei Tolokonnikov</p>
       <br>

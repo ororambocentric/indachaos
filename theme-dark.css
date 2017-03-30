@@ -431,3 +431,7 @@ hr {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2b2b2b', endColorstr='#002b2b2b',GradientType=0 ); /* IE6-9 */
 
 }
+
+#secrets-widget .password{
+    background: #303030;
+}

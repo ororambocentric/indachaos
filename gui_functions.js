@@ -130,8 +130,7 @@ function showScreenEdit(id) {
         $("#screen-edit").removeAttr('data-id');
         $("#edit-screen-title").text('Add note');
         $("#screen-edit #title").val('');
-        $("#screen-edit #body").val('');
-
+        $("#screen-edit #body").addClass('compact').val('');
     } else {
         $("#edit-screen-title").text('Edit note');
         var nm = new DBManager();

@@ -136,7 +136,10 @@ h2 {
     color: #000000;
     white-space: pre;
     overflow: scroll;
+}
 
+#screen-edit #body.compact {
+    height: 290px !important;
 }
 
 #screen-edit #title {
@@ -552,4 +555,17 @@ button, input, textarea, select {
     margin-left: 20px;
 }
 
+#secrets-widget label{
+    display: inline-block;
+}
 
+#secrets-widget .password{
+    margin-bottom: 2px;
+    padding: 5px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+#secrets-widget .button-show-password, #secrets-widget .button-gen-password{
+    display: inline;
+}
