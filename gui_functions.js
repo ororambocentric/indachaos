@@ -1211,3 +1211,37 @@ function getTodoGategoryByID(id) {
             return 'Family';
     }
 }
+
+// function renderEditPasswordWidget() {
+//
+//     var render = '';
+//     // var name = escapeHtml(clip.title);
+//     // var password = escapeHtml(clip.body);
+//     render += '<div class="password row">';
+//     render += '<div class="col-sm-3">';
+//     render += '<label for="password-name-1">Name</label>';
+//     render += '<input type="text" id="password-name-1">';
+//     render += '</div>';
+//     render += '<div class="col-sm-4">';
+//     render += '<label for="password-password-1">Password</label>';
+//     render += '<input type="password" id="password-password-1">';
+//     render += '<button type="button" class="btn btn-xs btn-default button-gen-password">';
+//     render += '<span class="glyphicon glyphicon-flash" aria-hidden="true"></span>';
+//     render += '</button>';
+//     render += '<button type="button" class="btn btn-xs btn-default button-show-password">';
+//     render += '<span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>';
+//     render += '</button>';
+//     render += '</div>';
+//     render += '<div class="col-sm-3">';
+//     render += '<label for="password-confirm-1">Confirm</label>';
+//     render += '<input type="password" id="password-confirm-1">';
+//     render += '</div>';
+//     render += '<div class="pull-right">';
+//     render += '<button id="button-add-password" type="button" class="btn btn-sm btn-default">';
+//     render += '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>';
+//     render += '</button>';
+//     render += '</div>';
+//     render += '</div>';
+//     return render;
+//
+// }

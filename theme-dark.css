@@ -432,6 +432,6 @@ hr {
 
 }
 
-#secrets-widget .password{
+#password-edit-wrap .password{
     background: #303030;
 }

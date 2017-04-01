@@ -93,6 +93,7 @@ function DBManager() {
         dbChangedSecretKey = null;
         self.db.run("CREATE TABLE IF NOT EXISTS note ( id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT, ltitle TEXT, lbody TEXT, marker INTEGER DEFAULT (1))");
         self.db.run("CREATE TABLE IF NOT EXISTS clip ( id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT)");
+        self.db.run("CREATE TABLE IF NOT EXISTS password ( id INTEGER PRIMARY KEY AUTOINCREMENT, note_id INTEGER, name TEXT, lname TEXT, password TEXT)");
     };
 
     this.addNote = function (title, body, marker='1') {

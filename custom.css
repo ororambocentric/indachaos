@@ -555,17 +555,17 @@ button, input, textarea, select {
     margin-left: 20px;
 }
 
-#secrets-widget label{
+#password-edit-wrap label{
     display: inline-block;
 }
 
-#secrets-widget .password{
+#password-edit-wrap .password{
     margin-bottom: 2px;
     padding: 5px;
     margin-left: 0px;
     margin-right: 0px;
 }
 
-#secrets-widget .button-show-password, #secrets-widget .button-gen-password{
+#password-edit-wrap .button-show-password, #password-edit-wrap .button-gen-password{
     display: inline;
 }
