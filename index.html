@@ -189,37 +189,23 @@ SOFTWARE.
       </div>
       <div id="password-edit-wrap" class="form-group" style="height: 100%">
         <h2>Passwords</h2>
-        <div class="passwords-area">
-          <div class="password row">
-            <div class="col-sm-3">
-              <label for="password-name-1">Name</label>
-              <input type="text" id="password-name-1">
-            </div>
-            <div class="col-sm-4">
-              <label for="password-password-1">Password</label>
-              <input type="password" id="password-password-1">
-              <button type="button" class="btn btn-xs btn-default button-gen-password">
-                <span class="glyphicon glyphicon-flash" aria-hidden="true"></span>
-              </button>
-              <button type="button" class="btn btn-xs btn-default button-show-password">
-                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-              </button>
-            </div>
-            <div class="col-sm-3">
-              <label for="password-confirm-1">Confirm</label>
-              <input type="password" id="password-confirm-1">
-            </div>
-            <div class="pull-right">
-              <button id="button-add-password" type="button" class="btn btn-sm btn-default">
-                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-              </button>
-            </div>
-          </div>
+        <div class="passwords-edit-area">
+          <ul class="passwords-list list-group">
+            <passwords-edit-item v-for="(item, index) in passwords"
+                                 :index="index"
+                                 :key="index"
+                                 :item="item"
+                                 @delete="deleteItem(index)"
+                                 @gen="genPassword(index)"
+                                 @visibility="changeVisibility(index)"
+            ></passwords-edit-item>
+          </ul>
+          <button @click="addPasswordEditWidget" id="add-password-edit-widget" type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Add secret
+          </button>
         </div>
-        <button id="add-password-edit-widget" type="button" class="btn btn-default">
-          <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Add secret
-        </button>
       </div>
+
       <div class="form-group">
         <div class="">
           <button id="button-save" type="button" class="btn btn-default" title="Ctrl+Shift+S">
@@ -454,5 +440,6 @@ SOFTWARE.
 </div>
 <script src="todolist.js"></script>
 <script src="notifications.js"></script>
+<script src="passwords_edit_widget.js"></script>
 </body>
 </html>

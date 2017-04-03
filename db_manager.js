@@ -201,6 +201,15 @@ function DBManager() {
         searchClips();
     }
 
+    this.addPassword = function (note_id, name, password) {
+        self.db.run("INSERT INTO password (note_id, name, lname, password) VALUES ($note_id, $name, $lname, $password)", {
+            $note_id: note_id,
+            $name: name,
+            $lname: name.toLowerCase(),
+            $password: password
+        });
+    };
+
 }
 
 
