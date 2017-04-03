@@ -12,7 +12,7 @@ Vue.component('passwords-edit-item', {
     <span class="glyphicon glyphicon-flash" aria-hidden="true"></span>\
     </button>\
     <button @click="$emit(\'visibility\')" type="button" class="btn btn-xs btn-default button-show-password">\
-    <span :class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>\
+    <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>\
     </button>\
     </div>\
     <div class="col-sm-3">\
