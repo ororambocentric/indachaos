@@ -7,17 +7,32 @@ Vue.component('passwords-edit-item', {
     </div>\
     <div class="col-sm-4">\
     <label>Password</label>\
-    <input v-model="item.password" :type="item.visibility ? \'text\': \'password\'">\
+    <div v-if="item.visibility">\
+    <input v-model="item.password" type="text">\
+    </div>\
+    <div v-else>\
+    <input v-model="item.password" type="password">\
+    </div>\
     <button @click="$emit(\'gen\')" type="button" class="btn btn-xs btn-default button-gen-password">\
     <span class="glyphicon glyphicon-flash" aria-hidden="true"></span>\
     </button>\
     <button @click="$emit(\'visibility\')" type="button" class="btn btn-xs btn-default button-show-password">\
+    <div v-if="item.visibility">\
+    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>\
+    </div>\
+    <div v-else>\
     <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>\
+    </div>\
     </button>\
     </div>\
     <div class="col-sm-3">\
     <label>Confirm</label>\
-    <input v-model="item.confirm" :type="item.visibility ? \'text\': \'password\'">\
+    <div v-if="item.visibility">\
+    <input v-model="item.confirm" type="text">\
+    </div>\
+    <div v-else>\
+    <input v-model="item.confirm" type="password">\
+    </div>\
     </div>\
     <div class="pull-right">\
     <button @click="$emit(\'delete\')" type="button" class="btn btn-sm btn-default">\

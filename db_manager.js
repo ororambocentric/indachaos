@@ -127,18 +127,18 @@ function DBManager() {
             $ltitle: title.toLowerCase(),
             $lbody: body.toLowerCase(),
             $marker: marker
-        }, afterUpdateNote);
+        }, afterUpdateNote(id));
     };
 
     this.getNote = function (id, callback) {
-        self.db.get("SELECT * FROM note WHERE id = "+id, function (err, row) {
+        self.db.get("SELECT note.*, password.note_id, password.name, password.lname, password.password FROM note LEFT JOIN password ON note.id = password.note_id WHERE note.id = "+id, function (err, row) {
             callback(err, row)
         });
 
     };
 
     this.getNotes = function (callback, extra='') {
-        self.db.all("SELECT * FROM note " + extra, function (err, rows) {
+        self.db.all("SELECT note.*, password.note_id, password.name, password.lname, password.password FROM note LEFT JOIN password ON note.id = password.note_id " + extra, function (err, rows) {
             callback(err, rows)
         });
     };
@@ -171,14 +171,23 @@ function DBManager() {
 
     function afterAddNote() {
         self.db.get("SELECT id FROM note ORDER BY id DESC LIMIT 1", function (err, row) {
-            addToHistory(row.id);
+            addPasswordsToDB(row.id, function (noteID) {
+                addToHistory(noteID);
+                renderNotesLinks();
+                //searchNotes($("#screen-search #input-search").val());
+                showScreenSearch();
+                researchNotes();
+            });
         });
-        renderNotesLinks();
-        //searchNotes($("#screen-search #input-search").val());
-        showScreenSearch();
-        researchNotes();
     }
-    function afterUpdateNote() {
+    function afterUpdateNote(noteID) {
+        deletePasswordsByNoteID(noteID, function (noteID) {
+            addPasswordsToDB(noteID, function (noteID) {
+                afterUpdatePassword();
+            });
+        });
+    }
+    function afterUpdatePassword() {
         renderNotesLinks();
         //searchNotes($("#screen-search #input-search").val());
         if (!dontCloseScreen) {
@@ -186,7 +195,6 @@ function DBManager() {
         }
         dontCloseScreen = false;
         researchNotes();
-
     }
     function afterDeleteNote() {
         renderNotesLinks();
@@ -201,13 +209,37 @@ function DBManager() {
         searchClips();
     }
 
-    this.addPassword = function (note_id, name, password) {
+    function addPassword(note_id, name, password) {
         self.db.run("INSERT INTO password (note_id, name, lname, password) VALUES ($note_id, $name, $lname, $password)", {
             $note_id: note_id,
             $name: name,
             $lname: name.toLowerCase(),
             $password: password
         });
+    };
+
+    function addPasswordsToDB(noteID, callback) {
+        if (!vmPasswordsEditWidget.passwords.length) {
+            return;
+        }
+        for (var i in vmPasswordsEditWidget.passwords) {
+            addPassword(
+                noteID,
+                vmPasswordsEditWidget.passwords[i].name,
+                vmPasswordsEditWidget.passwords[i].password);
+        }
+        callback(noteID);
+    }
+
+    this.getPasswords = function (noteID, callback) {
+        self.db.all("SELECT * FROM password WHERE note_id = "+noteID, function (err, rows) {
+            callback(err, rows)
+        });
+    };
+
+    function deletePasswordsByNoteID(noteID, callback) {
+        self.db.run("DELETE FROM password WHERE note_id = "+noteID);
+        callback(noteID);
     };
 
 }

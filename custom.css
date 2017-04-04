@@ -569,3 +569,7 @@ button, input, textarea, select {
 #password-edit-wrap .button-show-password, #password-edit-wrap .button-gen-password{
     display: inline;
 }
+
+.copy-password-button {
+    margin-bottom: 10px;
+}

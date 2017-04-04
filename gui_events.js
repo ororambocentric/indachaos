@@ -417,7 +417,7 @@ $(document).on('submit', '#screen-change-secret-key form', function (e) {
     if ($('#screen-change-secret-key #new-key').val() != $('#screen-change-secret-key #new-key-repeat').val()) {
         return;
     }
-    
+
     dbChangedSecretKey = $('#screen-change-secret-key #new-key').val();
 
     var nm = new DBManager();
@@ -429,4 +429,8 @@ $(document).on('submit', '#screen-change-secret-key form', function (e) {
         researchNotes();
     });
 
+});
+
+$(document).on('click', ".copy-password-button", function () {
+    clipboard.writeText($(this).data('password'));
 });

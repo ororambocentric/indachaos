@@ -131,6 +131,7 @@ function showScreenEdit(id) {
         $("#edit-screen-title").text('Add note');
         $("#screen-edit #title").val('');
         $("#screen-edit #body").addClass('compact').val('');
+        vmPasswordsEditWidget.passwords = [];
     } else {
         $("#edit-screen-title").text('Edit note');
         var nm = new DBManager();
@@ -140,7 +141,8 @@ function showScreenEdit(id) {
             $("#screen-edit").attr('data-id', row.id);
             $("#screen-edit #title").val(row.title);
             $("#screen-edit #body").val(row.body);
-
+            vmPasswordsEditWidget.passwords = [];
+            loadNotePasswordsData(row.id);
         });
         nm.closeDB();
 
@@ -212,7 +214,25 @@ function escapeHtml(text) {
         .replace(/'/g, "&#039;");
 }
 
-function renderFoundNote(note, patternArray) {
+function renderPassword(row) {
+    var render = '';
+    //render += '<div>';
+    render += '<button class="btn btn-default copy-password-button" data-password="'+row.password+'">';
+    render += '<span class="glyphicon glyphicon-copy" aria-hidden="true"></span> '+row.name;
+    render += '</button>';
+    //render += '</div>';
+    return render;
+}
+
+function renderFoundNote(note, patternArray, rows) {
+
+    var render_passwords = '';
+    rows.forEach(function (row) {
+        if (row.note_id != note.id) {
+            return;
+        }
+        render_passwords += renderPassword(row);
+    });
 
     var render = '';
     var title = escapeHtml(note.title);
@@ -228,6 +248,7 @@ function renderFoundNote(note, patternArray) {
     render += '</button>';
     render += '</div>';
     render += '<h2 class="title">'+title+'</h2>';
+    render += render_passwords;
     render += '<div class="body">';
     render += body;
     render += '</div>';
@@ -252,19 +273,19 @@ function searchNotes(pattern, id) {
     var extra = " WHERE ";
 
     if (id !== undefined) {
-        extra += " id = '"+id+"'";
+        extra += " note.id = '"+id+"'";
     } else {
         for (var i in patternArray) {
             var keymaped1 = alterKeymap(patternArray[i], 'en', settings.local_keymap);
             var keymaped2 = alterKeymap(patternArray[i], settings.local_keymap, 'en');
-            extra += " (title LIKE '%"+patternArray[i]+"%' OR ltitle LIKE '%"+patternArray[i]+"%' OR body LIKE '%"+patternArray[i]+"%' or lbody LIKE '%"+patternArray[i]+"%'";
-            extra += " OR title LIKE '%"+keymaped1+"%' OR ltitle LIKE '%"+keymaped1+"%' OR body LIKE '%"+keymaped1+"%' or lbody LIKE '%"+keymaped1+"%'";
-            extra += " OR title LIKE '%"+keymaped2+"%' OR ltitle LIKE '%"+keymaped2+"%' OR body LIKE '%"+keymaped2+"%' or lbody LIKE '%"+keymaped2+"%')";
+            extra += " (note.title LIKE '%"+patternArray[i]+"%' OR note.ltitle LIKE '%"+patternArray[i]+"%' OR note.body LIKE '%"+patternArray[i]+"%' or note.lbody LIKE '%"+patternArray[i]+"%' or password.name LIKE '%"+patternArray[i]+"%' or password.lname LIKE '%"+patternArray[i]+"%'";
+            extra += " OR note.title LIKE '%"+keymaped1+"%' OR note.ltitle LIKE '%"+keymaped1+"%' OR note.body LIKE '%"+keymaped1+"%' or note.lbody LIKE '%"+keymaped1+"%' or password.name LIKE '%"+keymaped1+"%' or password.lname LIKE '%"+keymaped1+"%'";
+            extra += " OR note.title LIKE '%"+keymaped2+"%' OR note.ltitle LIKE '%"+keymaped2+"%' OR note.body LIKE '%"+keymaped2+"%' or note.lbody LIKE '%"+keymaped2+"%' or password.name LIKE '%"+keymaped2+"%' or password.lname LIKE '%"+keymaped2+"%')";
 
             if (i < patternArray.length-1) {
                 extra += ' AND ';
             } else {
-                extra += " ORDER BY id DESC";
+                extra += " ORDER BY note.id DESC";
             }
 
         }
@@ -273,16 +294,22 @@ function searchNotes(pattern, id) {
     nm.getNotes(function (err, rows) {
         var html = '';
         var idList = [];
-
         $("#sidebar .note-link").hide();
         if (rows.length) {
             $("#sidebar").css('overflow-y', 'scroll');
         } else {
             $("#sidebar").css('overflow-y', 'hidden');
         }
+        var last_note_id;
         rows.forEach(function (note) {
+            if (last_note_id == note.id) {
+
+                return;
+            } else {
+                last_note_id = note.id;
+            }
             idList.push(note.id);
-            html += renderFoundNote(note, patternArray);
+            html += renderFoundNote(note, patternArray, rows);
             $("#sidebar .note-link[data-id="+note.id+"]").show();
         });
 
@@ -345,7 +372,13 @@ function renderNotesLinks() {
     nm.getNotes(function (err, rows) {
 
         var html = '';
+        var last_note_id;
         rows.forEach(function (note) {
+            if (last_note_id == note.id) {
+                return;
+            } else {
+                last_note_id = note.id;
+            }
             html += renderNoteLink(note);
         });
         $("#notes-links-area").html(html);
@@ -1212,3 +1245,36 @@ function getTodoGategoryByID(id) {
     }
 }
 
+function loadNotePasswordsData(noteID) {
+    var nm = new DBManager();
+    nm.setDB(settings.path_to_db);
+    nm.createDB();
+    nm.getPasswords(noteID, function (err, rows) {
+        rows.forEach(function (row) {
+            vmPasswordsEditWidget.passwords.push({
+                name: row.name,
+                password: row.password,
+                confirm: row.password,
+                visibility: false
+            });
+        });
+    });
+    nm.closeDB();
+}
+
+function loadNotePasswordsData(noteID) {
+    var nm = new DBManager();
+    nm.setDB(settings.path_to_db);
+    nm.createDB();
+    nm.getPasswords(noteID, function (err, rows) {
+        rows.forEach(function (row) {
+            vmPasswordsEditWidget.passwords.push({
+                name: row.name,
+                password: row.password,
+                confirm: row.password,
+                visibility: false
+            });
+        });
+    });
+    nm.closeDB();
+}
