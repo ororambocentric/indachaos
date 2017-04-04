@@ -560,6 +560,7 @@ button, input, textarea, select {
 }
 
 #password-edit-wrap .password{
+    background: #eee;
     margin-bottom: 2px;
     padding: 5px;
     margin-left: 0px;
