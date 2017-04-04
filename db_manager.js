@@ -152,7 +152,7 @@ function DBManager() {
     this.deleteNote = function (id) {
         self.db.run("DELETE FROM note WHERE id = $id", {
             $id: id
-        }, afterDeleteNote);
+        }, afterDeleteNote(id));
     };
 
     this.deleteClip = function (id) {
@@ -196,10 +196,13 @@ function DBManager() {
         dontCloseScreen = false;
         researchNotes();
     }
-    function afterDeleteNote() {
-        renderNotesLinks();
-        //searchNotes($("#screen-search #input-search").val());
-        researchNotes();
+    function afterDeleteNote(nodeID) {
+        deletePasswordsByNoteID(nodeID, function (nodeID) {
+            renderNotesLinks();
+            //searchNotes($("#screen-search #input-search").val());
+            researchNotes();
+        });
+
     }
     function afterDeleteClip() {
         searchClips();
@@ -237,8 +240,7 @@ function DBManager() {
     };
 
     function deletePasswordsByNoteID(noteID, callback) {
-        self.db.run("DELETE FROM password WHERE note_id = "+noteID);
-        callback(noteID);
+        self.db.run("DELETE FROM password WHERE note_id = "+noteID, callback(noteID));
     };
 
 }
