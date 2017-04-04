@@ -219,14 +219,13 @@ function DBManager() {
     };
 
     function addPasswordsToDB(noteID, callback) {
-        if (!vmPasswordsEditWidget.passwords.length) {
-            return;
-        }
-        for (var i in vmPasswordsEditWidget.passwords) {
-            addPassword(
-                noteID,
-                vmPasswordsEditWidget.passwords[i].name,
-                vmPasswordsEditWidget.passwords[i].password);
+        if (vmPasswordsEditWidget.passwords.length) {
+            for (var i in vmPasswordsEditWidget.passwords) {
+                addPassword(
+                    noteID,
+                    vmPasswordsEditWidget.passwords[i].name,
+                    vmPasswordsEditWidget.passwords[i].password);
+            }
         }
         callback(noteID);
     }
