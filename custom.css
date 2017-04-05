@@ -574,3 +574,7 @@ button, input, textarea, select {
 .copy-password-button {
     margin-bottom: 10px;
 }
+
+#password-edit-wrap input.invalid {
+    background: lightcoral !important;
+}

@@ -1272,7 +1272,10 @@ function loadNotePasswordsData(noteID) {
                 name: row.name,
                 password: row.password,
                 confirm: row.password,
-                visibility: false
+                visibility: false,
+                name_valid: true,
+                password_valid: true,
+                confirm_valid: true
             });
         });
     });

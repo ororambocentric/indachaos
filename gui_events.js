@@ -233,6 +233,10 @@ $(document).ready(function () {
             alert('Field Body is required.');
             return;
         }
+        if (!validatePasswordsEditWidget()) {
+            alert('Incorrect passwords data!');
+            return;
+        }
         if (title == '') {
             var prefix = '#untitled ';
             if (addingFromClipboard) {

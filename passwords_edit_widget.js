@@ -3,15 +3,15 @@ Vue.component('passwords-edit-item', {
     <div class="password row">\
     <div class="col-sm-3">\
     <label>Name</label>\
-    <input v-model="item.name" type="text">\
+    <input v-model="item.name" type="text" :class="{invalid: !item.name_valid}">\
     </div>\
     <div class="col-sm-4">\
     <label>Password</label>\
     <div v-if="item.visibility">\
-    <input v-model="item.password" type="text">\
+    <input v-model="item.password" type="text" :class="{invalid: !item.password_valid}">\
     </div>\
     <div v-else>\
-    <input v-model="item.password" type="password">\
+    <input v-model="item.password" type="password" :class="{invalid: !item.password_valid}">\
     </div>\
     <button @click="$emit(\'gen\')" type="button" class="btn btn-xs btn-default button-gen-password">\
     <span class="glyphicon glyphicon-flash" aria-hidden="true"></span>\
@@ -28,10 +28,10 @@ Vue.component('passwords-edit-item', {
     <div class="col-sm-3">\
     <label>Confirm</label>\
     <div v-if="item.visibility">\
-    <input v-model="item.confirm" type="text">\
+    <input v-model="item.confirm" type="text" :class="{invalid: !item.confirm_valid}">\
     </div>\
     <div v-else>\
-    <input v-model="item.confirm" type="password">\
+    <input v-model="item.confirm" type="password" :class="{invalid: !item.confirm_valid}">\
     </div>\
     </div>\
     <div class="pull-right">\
@@ -44,6 +44,35 @@ Vue.component('passwords-edit-item', {
     props: ['index', 'item'],
     methods: {
 
+    },
+    watch: {
+        'item.name': function (value) {
+            if (!value) {
+                this.item.name_valid = false;
+            } else {
+                this.item.name_valid = true;
+            }
+        },
+        'item.password': function (value) {
+            if (!value) {
+                this.item.password_valid = false;
+            } else {
+                this.item.password_valid = true;
+            }
+
+            if (value != this.item.confirm) {
+                this.item.confirm_valid = false;
+            } else {
+                this.item.confirm_valid = true;
+            }
+        },
+        'item.confirm': function (value) {
+            if (value != this.item.password) {
+                this.item.confirm_valid = false;
+            } else {
+                this.item.confirm_valid = true;
+            }
+        }
     }
 });
 
@@ -58,7 +87,10 @@ var vmPasswordsEditWidget = new Vue({
                 name: 'password',
                 password: genPassword(),
                 confirm: genPassword(),
-                visibility: false
+                visibility: false,
+                name_valid: true,
+                password_valid: true,
+                confirm_valid: true,
             });
         },
         deleteItem: function (index) {
@@ -77,3 +109,16 @@ var vmPasswordsEditWidget = new Vue({
         }
     }
 });
+
+function validatePasswordsEditWidget() {
+    for (var i in vmPasswordsEditWidget.passwords) {
+        if (
+            !vmPasswordsEditWidget.passwords[i].name_valid ||
+            !vmPasswordsEditWidget.passwords[i].password_valid ||
+            !vmPasswordsEditWidget.passwords[i].confirm_valid
+        ) {
+            return false;
+        }
+    }
+    return true;
+}
