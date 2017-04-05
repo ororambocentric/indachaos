@@ -367,7 +367,7 @@ function renderNotesLinks() {
     nm.setDB(settings.path_to_db);
     nm.createDB();
 
-    var extra = " ORDER BY id DESC";
+    var extra = " ORDER BY note.id DESC";
 
     nm.getNotes(function (err, rows) {
 
