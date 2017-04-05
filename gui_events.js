@@ -436,5 +436,6 @@ $(document).on('submit', '#screen-change-secret-key form', function (e) {
 });
 
 $(document).on('click', ".copy-password-button", function () {
-    clipboard.writeText($(this).data('password'));
+    console.log($(this).data('password'));
+    clipboard.writeText(''+$(this).data('password'));
 });
