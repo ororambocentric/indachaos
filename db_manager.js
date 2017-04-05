@@ -123,18 +123,19 @@ function DBManager() {
     };
 
     this.updateNote = function (id, title, body, marker='1') {
-        deletePasswordsByNoteID(id);
-        addPasswordsToDB(id, function () {
+        deletePasswordsByNoteID(id, function () {
+            addPasswordsToDB(id, function () {
 
+            });
+            self.db.run("UPDATE note SET title=$title, body=$body, ltitle=$ltitle, lbody=$lbody, marker=$marker WHERE id = $id", {
+                $id: id,
+                $title: title,
+                $body: body,
+                $ltitle: title.toLowerCase(),
+                $lbody: body.toLowerCase(),
+                $marker: marker
+            }, afterUpdateNote);
         });
-        self.db.run("UPDATE note SET title=$title, body=$body, ltitle=$ltitle, lbody=$lbody, marker=$marker WHERE id = $id", {
-            $id: id,
-            $title: title,
-            $body: body,
-            $ltitle: title.toLowerCase(),
-            $lbody: body.toLowerCase(),
-            $marker: marker
-        }, afterUpdateNote);
     };
 
     this.getNote = function (id, callback) {
@@ -157,7 +158,9 @@ function DBManager() {
     };
 
     this.deleteNote = function (id) {
-        deletePasswordsByNoteID(id);
+        deletePasswordsByNoteID(id, function (id) {
+
+        });
         self.db.run("DELETE FROM note WHERE id = $id", {
             $id: id
         }, afterDeleteNote);
@@ -237,8 +240,8 @@ function DBManager() {
         });
     };
 
-    function deletePasswordsByNoteID(noteID) {
-        self.db.run("DELETE FROM password WHERE note_id = "+noteID);
+    function deletePasswordsByNoteID(noteID, callback) {
+        self.db.run("DELETE FROM password WHERE note_id = "+noteID, callback);
     };
 
 }

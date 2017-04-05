@@ -55,7 +55,7 @@ var vmPasswordsEditWidget = new Vue({
     methods: {
         addPasswordEditWidget: function () {
             this.passwords.push({
-                name: '',
+                name: 'password',
                 password: genPassword(),
                 confirm: genPassword(),
                 visibility: false

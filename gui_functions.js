@@ -218,7 +218,7 @@ function renderPassword(row) {
     var render = '';
     //render += '<div>';
     render += '<button class="btn btn-default copy-password-button" data-password="'+row.password+'">';
-    render += '<span class="glyphicon glyphicon-copy" aria-hidden="true"></span> '+row.name;
+    render += '<span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> '+row.name;
     render += '</button>';
     //render += '</div>';
     return render;

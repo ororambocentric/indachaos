@@ -229,7 +229,7 @@ $(document).ready(function () {
     $(document).on('click', "#screen-edit #button-ok", function () {
         var title = $("#screen-edit #title").val().trim();
         var body = $("#screen-edit #body").val().trim();
-        if (body == '') {
+        if (body == '' && !vmPasswordsEditWidget.passwords.length) {
             alert('Field Body is required.');
             return;
         }
