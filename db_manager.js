@@ -124,7 +124,9 @@ function DBManager() {
 
     this.updateNote = function (id, title, body, marker='1') {
         deletePasswordsByNoteID(id);
-        addPasswordsToDB(id);
+        addPasswordsToDB(id, function () {
+
+        });
         self.db.run("UPDATE note SET title=$title, body=$body, ltitle=$ltitle, lbody=$lbody, marker=$marker WHERE id = $id", {
             $id: id,
             $title: title,
