@@ -94,6 +94,7 @@ function DBManager() {
         self.db.run("CREATE TABLE IF NOT EXISTS note ( id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT, ltitle TEXT, lbody TEXT, marker INTEGER DEFAULT (1))");
         self.db.run("CREATE TABLE IF NOT EXISTS clip ( id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT)");
         self.db.run("CREATE TABLE IF NOT EXISTS password ( id INTEGER PRIMARY KEY AUTOINCREMENT, note_id INTEGER, name TEXT, lname TEXT, password TEXT)");
+        self.db.run("CREATE INDEX IF NOT EXISTS index_password_note_id ON password (note_id);");
     };
 
     this.addNote = function (title, body, marker='1') {
@@ -103,7 +104,9 @@ function DBManager() {
             $ltitle: title.toLowerCase(),
             $lbody: body.toLowerCase(),
             $marker: marker
-        }, afterAddNote);
+        }, function () {
+            afterAddNote();
+        });
     };
 
     this.getClipsCount = function (callback) {
@@ -120,6 +123,8 @@ function DBManager() {
     };
 
     this.updateNote = function (id, title, body, marker='1') {
+        deletePasswordsByNoteID(id);
+        addPasswordsToDB(id);
         self.db.run("UPDATE note SET title=$title, body=$body, ltitle=$ltitle, lbody=$lbody, marker=$marker WHERE id = $id", {
             $id: id,
             $title: title,
@@ -127,7 +132,7 @@ function DBManager() {
             $ltitle: title.toLowerCase(),
             $lbody: body.toLowerCase(),
             $marker: marker
-        }, afterUpdateNote(id));
+        }, afterUpdateNote);
     };
 
     this.getNote = function (id, callback) {
@@ -150,9 +155,10 @@ function DBManager() {
     };
 
     this.deleteNote = function (id) {
+        deletePasswordsByNoteID(id);
         self.db.run("DELETE FROM note WHERE id = $id", {
             $id: id
-        }, afterDeleteNote(id));
+        }, afterDeleteNote);
     };
 
     this.deleteClip = function (id) {
@@ -180,14 +186,7 @@ function DBManager() {
             });
         });
     }
-    function afterUpdateNote(noteID) {
-        deletePasswordsByNoteID(noteID, function (noteID) {
-            addPasswordsToDB(noteID, function (noteID) {
-                afterUpdatePassword();
-            });
-        });
-    }
-    function afterUpdatePassword() {
+    function afterUpdateNote() {
         renderNotesLinks();
         //searchNotes($("#screen-search #input-search").val());
         if (!dontCloseScreen) {
@@ -196,13 +195,10 @@ function DBManager() {
         dontCloseScreen = false;
         researchNotes();
     }
-    function afterDeleteNote(nodeID) {
-        deletePasswordsByNoteID(nodeID, function (nodeID) {
-            renderNotesLinks();
-            //searchNotes($("#screen-search #input-search").val());
-            researchNotes();
-        });
-
+    function afterDeleteNote() {
+        renderNotesLinks();
+        //searchNotes($("#screen-search #input-search").val());
+        researchNotes();
     }
     function afterDeleteClip() {
         searchClips();
@@ -239,8 +235,8 @@ function DBManager() {
         });
     };
 
-    function deletePasswordsByNoteID(noteID, callback) {
-        self.db.run("DELETE FROM password WHERE note_id = "+noteID, callback(noteID));
+    function deletePasswordsByNoteID(noteID) {
+        self.db.run("DELETE FROM password WHERE note_id = "+noteID);
     };
 
 }
