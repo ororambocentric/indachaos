@@ -217,7 +217,7 @@ function escapeHtml(text) {
 function renderPassword(row) {
     var render = '';
     //render += '<div>';
-    render += '<button class="btn btn-default copy-password-button" data-password="'+row.password+'" title="Copy to clipboard">';
+    render += '<button class="btn btn-default copy-password-button" data-password="'+row.password+'" data-note-id="'+row.id+'" title="Copy to clipboard">';
     render += '<span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> '+row.name;
     render += '</button>';
     //render += '</div>';
@@ -397,7 +397,16 @@ function renderFoundClip(clip) {
     render += '<div class="row clip" data-id="'+clip.id+'">';
     render += '<button class="btn btn-default btn-block" type="submit" title="Copy it">';
     render += '<p class="clip-title">... '+title+'</p>';
-    render += '<p class="clip-text">'+body+'</p>';
+    render += '<p class="clip-text '+((clip.is_password) ? "is_password" : "")+'">';
+    //render += '<span class="glyphicon glyphicon-copy" aria-hidden="true"></span>';
+    render += body;
+    render += '</p>';
+    if (clip.is_password) {
+        render += '<p class="clip-caption">';
+        render += '<span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>';
+        render += clip.caption;
+        render += '</p>';
+    }
     render += '</button>';
     render += '</div>';
     return render;
@@ -425,11 +434,11 @@ function addNote(title, body) {
     nm.closeDB();
 }
 
-function addClip(title, body) {
+function addClip(title, body, is_password, caption) {
     var nm = new DBManager();
     nm.setDB(settings.path_to_db);
     nm.createDB();
-    nm.addClip(title, body);
+    nm.addClip(title, body, is_password, caption);
     nm.closeDB();
 }
 

@@ -122,6 +122,18 @@ h2 {
     font-weight: bold;
 }
 
+.clip-text.is_password {
+    display: none;
+}
+
+.clip-caption {
+    font-weight: bold;
+    padding: 5px;
+    margin: 5px;
+    border: 1px dashed;
+    display: inline;
+}
+
 .highlight {
     background: cyan;
 }

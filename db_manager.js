@@ -91,9 +91,9 @@ function DBManager() {
         this.setSecretKey(dbSecretKey);
         this.changeSecretKey(dbChangedSecretKey);
         dbChangedSecretKey = null;
-        self.db.run("CREATE TABLE IF NOT EXISTS note ( id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT, ltitle TEXT, lbody TEXT, marker INTEGER DEFAULT (1))");
-        self.db.run("CREATE TABLE IF NOT EXISTS clip ( id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT)");
-        self.db.run("CREATE TABLE IF NOT EXISTS password ( id INTEGER PRIMARY KEY AUTOINCREMENT, note_id INTEGER, name TEXT, lname TEXT, password TEXT)");
+        self.db.run("CREATE TABLE IF NOT EXISTS note (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT, ltitle TEXT, lbody TEXT, marker INTEGER DEFAULT (1))");
+        self.db.run("CREATE TABLE IF NOT EXISTS clip (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT, is_password INTEGER, caption TEXT)");
+        self.db.run("CREATE TABLE IF NOT EXISTS password (id INTEGER PRIMARY KEY AUTOINCREMENT, note_id INTEGER, name TEXT, lname TEXT, password TEXT)");
         self.db.run("CREATE INDEX IF NOT EXISTS index_password_note_id ON password (note_id);");
     };
 
@@ -115,10 +115,12 @@ function DBManager() {
         });
     };
 
-    this.addClip = function (title, body) {
-        self.db.run("INSERT INTO clip (title, body) VALUES ($title, $body)", {
+    this.addClip = function (title, body, is_password, caption) {
+        self.db.run("INSERT INTO clip (title, body, is_password, caption) VALUES ($title, $body, $is_password, $caption)", {
             $title: title,
-            $body: body
+            $body: body,
+            $is_password: is_password,
+            $caption: caption
         });
     };
 

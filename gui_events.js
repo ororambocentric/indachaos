@@ -435,6 +435,13 @@ $(document).on('submit', '#screen-change-secret-key form', function (e) {
 
 });
 
-$(document).on('click', ".copy-password-button", function () {
+$(document).on('click', ".copy-password-button", function (e) {
+    if (e.ctrlKey) {
+        var caption = $(this).text();
+        var noteID = $(this).data("note-id");
+        clipTitle = $(".note[data-id="+noteID+"]").find(".title").text();
+        clipBody = $(this).data("password").trim();
+        addClip(clipTitle, clipBody, 1, caption);
+    }
     clipboard.writeText(''+$(this).data('password'));
 });

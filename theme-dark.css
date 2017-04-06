@@ -293,6 +293,15 @@ button, input, textarea, select {
     color: #D6BF55;
 }
 
+#screen-clips .clip-caption {
+    font-weight: bold;
+    color: #D6BF55;
+    font-family: inherit;
+}
+#screen-clips .clip-caption * {
+    color: #D6BF55;
+}
+
 input[type=search], input[type=text], input[type=password],
 input[type=number], input[type=date], input[type=time], select, textarea {
     background: #1e1e1e !important;
