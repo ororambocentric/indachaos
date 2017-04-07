@@ -91,10 +91,19 @@ function DBManager() {
         this.setSecretKey(dbSecretKey);
         this.changeSecretKey(dbChangedSecretKey);
         dbChangedSecretKey = null;
-        self.db.run("CREATE TABLE IF NOT EXISTS note (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT, ltitle TEXT, lbody TEXT, marker INTEGER DEFAULT (1))");
-        self.db.run("CREATE TABLE IF NOT EXISTS clip (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT, is_password INTEGER, caption TEXT)");
-        self.db.run("CREATE TABLE IF NOT EXISTS password (id INTEGER PRIMARY KEY AUTOINCREMENT, note_id INTEGER, name TEXT, lname TEXT, password TEXT)");
-        self.db.run("CREATE INDEX IF NOT EXISTS index_password_note_id ON password (note_id);");
+        // self.db.run("CREATE TABLE IF NOT EXISTS note (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT, ltitle TEXT, lbody TEXT, marker INTEGER DEFAULT (1))");
+        // self.db.run("CREATE TABLE IF NOT EXISTS clip (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT, is_password INTEGER, caption TEXT)");
+        // self.db.run("CREATE TABLE IF NOT EXISTS password (id INTEGER PRIMARY KEY AUTOINCREMENT, note_id INTEGER, name TEXT, lname TEXT, password TEXT)");
+        // self.db.run("CREATE INDEX IF NOT EXISTS index_password_note_id ON password (note_id);");
+
+        self.db.run("CREATE TABLE IF NOT EXISTS note (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT, ltitle TEXT, lbody TEXT, marker INTEGER DEFAULT (1))", function () {
+            self.db.run("CREATE TABLE IF NOT EXISTS clip (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT, is_password INTEGER, caption TEXT)", function () {
+                self.db.run("CREATE TABLE IF NOT EXISTS password (id INTEGER PRIMARY KEY AUTOINCREMENT, note_id INTEGER, name TEXT, lname TEXT, password TEXT)", function () {
+                    self.db.run("CREATE INDEX IF NOT EXISTS index_password_note_id ON password (note_id);");
+                });
+            });
+        });
+
     };
 
     this.addNote = function (title, body, marker='1') {
