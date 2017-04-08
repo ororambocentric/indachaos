@@ -42,6 +42,7 @@ var dontCloseScreen = false;
 
 const {clipboard} = require('electron');
 const {ipcRenderer} = require('electron');
+const {dialog} = require('electron').remote;
 
 function hideAllScreens() {
     $("[id^=screen]").hide();
@@ -1139,7 +1140,7 @@ function watchTodoRemainds() {
 
         var notification = new Notification('Indachaos reminds', {
             body: escapeHtml(getTodoGategoryByID(settings.todos[i].category) + '\n\r' + settings.todos[i].remind_date + ' at '+ settings.todos[i].remind_time + '\n\r' +
-            settings.todos[i].text + '\n\r\n\r' + ((settings.todos[i].details) ? settings.todos[i].details : '')),
+                settings.todos[i].text + '\n\r\n\r' + ((settings.todos[i].details) ? settings.todos[i].details : '')),
             icon: 'images/app-icon.png'
         });
 
@@ -1290,3 +1291,4 @@ function loadNotePasswordsData(noteID) {
     });
     nm.closeDB();
 }
+

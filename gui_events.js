@@ -65,6 +65,30 @@ $(document).ready(function () {
         researchNotes();
     });
 
+    $(document).on('click', "#screen-settings #button-open-db", function (e) {
+
+        dialog.showOpenDialog({ filters: [
+            { name: 'Indachaos database', extensions: ['indc'] }
+        ]}, function (fileNames) {
+            if (fileNames === undefined) return;
+            var fileName = fileNames[0];
+            $("#screen-settings #path-to-db").val(fileName);
+        });
+
+    });
+
+    $(document).on('click', "#screen-settings #button-new-db", function (e) {
+
+        dialog.showSaveDialog({ filters: [
+            { name: 'Indachaos database', extensions: ['indc'] }
+        ]}, function (fileName) {
+            if (fileName === undefined) return;
+            $("#screen-settings #path-to-db").val(fileName);
+        });
+
+    });
+
+
     $(document).on('click', "#button-add-note", function () {
         showScreenEdit();
     });
