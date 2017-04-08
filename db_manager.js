@@ -195,6 +195,8 @@ function DBManager() {
         self.db.get("SELECT id FROM note ORDER BY id DESC LIMIT 1", function (err, row) {
             addPasswordsToDB(row.id, function (noteID) {
                 addToHistory(noteID);
+                settings.last_editing_note_id = noteID;
+                updateAppSettings();
                 renderNotesLinks();
                 //searchNotes($("#screen-search #input-search").val());
                 showScreenSearch();
