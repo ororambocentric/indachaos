@@ -218,7 +218,7 @@ function escapeHtml(text) {
 function renderPassword(row) {
     var render = '';
     //render += '<div>';
-    render += '<button class="btn btn-default copy-password-button" data-password="'+row.password+'" data-note-id="'+row.id+'" title="click to copy / click with \'ctrl\' for Clip\'n\'Copy">';
+    render += '<button class="btn btn-default copy-password-button" data-password="'+row.password+'" data-note-id="'+row.id+'" title="click to copy / click with \'ctrl\' for Copy\'n\'Clip">';
     render += '<span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> '+row.name;
     render += '</button>';
     //render += '</div>';
