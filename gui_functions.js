@@ -1040,6 +1040,7 @@ function deleteDuplicatesFromHistory() {
 
 function setColorTheme(name) {
     if (name != 'default') {
+        $('#add-color-theme').remove();
         $('head').append('<link id="add-color-theme" rel="stylesheet" href="theme-'+name+'.css">')
     } else {
         $('#add-color-theme').remove();
