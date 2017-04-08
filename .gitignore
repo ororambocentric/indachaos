@@ -1,7 +1,7 @@
 node_modules
 .idea
 settings
-indachaos.db
+default.indc
 dist
 run.sh
 npm-debug.log
