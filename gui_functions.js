@@ -141,7 +141,7 @@ function showScreenEdit(id) {
         nm.getNote(id, function (err, row) {
             $("#screen-edit").attr('data-id', row.id);
             $("#screen-edit #title").val(row.title);
-            $("#screen-edit #body").val(row.body);
+            $("#screen-edit #body").addClass('compact').val(row.body);
             vmPasswordsEditWidget.passwords = [];
             loadNotePasswordsData(row.id);
         });

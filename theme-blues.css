@@ -256,7 +256,7 @@ button, input, textarea, select {
 
 .btn-default {
     background: #223751;
-    border: none;
+    border: 1px solid #1f324a;
     color: #5ad0ff;
 }
 
@@ -277,7 +277,7 @@ button, input, textarea, select {
 
 .btn:hover {
     background: #27425f;
-    border: none;
+    border: 1px solid #1f324a;
     color: #5ad0ff;
 }
 
