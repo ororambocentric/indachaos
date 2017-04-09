@@ -83,6 +83,7 @@ var vmPasswordsEditWidget = new Vue({
     },
     methods: {
         addPasswordEditWidget: function () {
+
             this.passwords.push({
                 name: 'password',
                 password: genPassword(),
@@ -92,12 +93,19 @@ var vmPasswordsEditWidget = new Vue({
                 password_valid: true,
                 confirm_valid: true,
             });
+
+            editorDataModified = true;
+            displayEditorSaveButton();
         },
         deleteItem: function (index) {
             // if (confirm('Are you sure you want to delete this password?')) {
             //     this.todos.splice(index, 1);
             // }
+
             this.passwords.splice(index, 1);
+
+            editorDataModified = true;
+            displayEditorSaveButton();
         },
         genPassword: function (index) {
             this.passwords[index].confirm = this.passwords[index].password = genPassword();

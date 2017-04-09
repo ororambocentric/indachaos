@@ -474,8 +474,3 @@ $(document).on('keydown', "#password-edit-wrap input", function (e) {
     editorDataModified = true;
     displayEditorSaveButton();
 });
-
-$(document).on('click', "#password-edit-wrap .btn", function (e) {
-    editorDataModified = true;
-    displayEditorSaveButton();
-});

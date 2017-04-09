@@ -94,9 +94,9 @@ function DBManager() {
         // self.db.run("CREATE TABLE IF NOT EXISTS note (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT, ltitle TEXT, lbody TEXT, marker INTEGER DEFAULT (1))");
         // self.db.run("CREATE TABLE IF NOT EXISTS clip (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT, is_password INTEGER, caption TEXT)");
         // self.db.run("CREATE TABLE IF NOT EXISTS password (id INTEGER PRIMARY KEY AUTOINCREMENT, note_id INTEGER, name TEXT, lname TEXT, password TEXT)");
-        // self.db.run("CREATE INDEX IF NOT EXISTS index_password_note_id ON password (note_id);");
+        // self.db.run("ALTER TABLE note DROP COLUMN marker");
 
-        self.db.run("CREATE TABLE IF NOT EXISTS note (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT, ltitle TEXT, lbody TEXT, marker INTEGER DEFAULT (1))", function () {
+        self.db.run("CREATE TABLE IF NOT EXISTS note (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT, ltitle TEXT, lbody TEXT)", function () {
             self.db.run("CREATE TABLE IF NOT EXISTS clip (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT, is_password INTEGER, caption TEXT)", function () {
                 self.db.run("CREATE TABLE IF NOT EXISTS password (id INTEGER PRIMARY KEY AUTOINCREMENT, note_id INTEGER, name TEXT, lname TEXT, password TEXT)", function () {
                     self.db.run("CREATE INDEX IF NOT EXISTS index_password_note_id ON password (note_id);");
@@ -106,13 +106,12 @@ function DBManager() {
 
     };
 
-    this.addNote = function (title, body, marker='1') {
-        self.db.run("INSERT INTO note (title, body, ltitle, lbody, marker) VALUES ($title, $body, $ltitle, $lbody, $marker)", {
+    this.addNote = function (title, body) {
+        self.db.run("INSERT INTO note (title, body, ltitle, lbody) VALUES ($title, $body, $ltitle, $lbody)", {
             $title: title,
             $body: body,
             $ltitle: title.toLowerCase(),
-            $lbody: body.toLowerCase(),
-            $marker: marker
+            $lbody: body.toLowerCase()
         }, function () {
             afterAddNote();
         });
@@ -133,7 +132,7 @@ function DBManager() {
         });
     };
 
-    this.updateNote = function (id, title, body, marker='1') {
+    this.updateNote = function (id, title, body) {
         deletePasswordsByNoteID(id, function () {
             addPasswordsToDB(id, function () {
 
@@ -143,8 +142,7 @@ function DBManager() {
                 $title: title,
                 $body: body,
                 $ltitle: title.toLowerCase(),
-                $lbody: body.toLowerCase(),
-                $marker: marker
+                $lbody: body.toLowerCase()
             }, afterUpdateNote);
         });
     };
