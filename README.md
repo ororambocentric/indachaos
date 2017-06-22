@@ -1,7 +1,7 @@
 Indachaos
 ---------
 
-Just right
+Supersonic notes manager
 
 Setup
 =====
