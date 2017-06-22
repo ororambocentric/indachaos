@@ -440,6 +440,13 @@ const searchResultsContextMenuTemplate = [
         type: 'separator'
     },
     {
+        label: 'Clone note',
+        click() { actionCloneNote(contextCurrentNoteID); }
+    },
+    {
+        type: 'separator'
+    },
+    {
         label: 'Edit note',
         click() { actionEditNote(contextCurrentNoteID); }
     },
@@ -455,6 +462,13 @@ const searchResultsContextMenu = Menu.buildFromTemplate(searchResultsContextMenu
 
 
 const notesLinksContextMenuTemplate = [
+    {
+        label: 'Clone note',
+        click() { actionCloneNote(contextCurrentNoteID); }
+    },
+    {
+        type: 'separator'
+    },
     {
         label: 'Edit note',
         click() { actionEditNote(contextCurrentNoteID); }

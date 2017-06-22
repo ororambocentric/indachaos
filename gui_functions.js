@@ -999,6 +999,20 @@ function actionEditNote(noteID) {
     addToHistory(noteID);
 }
 
+function actionCloneNote(noteID) {
+
+    var nm = new DBManager();
+    nm.setDB(settings.path_to_db);
+    nm.createDB();
+    nm.getNote(noteID, function (err, row) {
+        vmPasswordsEditWidget.passwords = [];
+        loadNotePasswordsData(noteID);
+        addNote(row.title, row.body);
+    });
+    nm.closeDB();
+
+}
+
 function actionClearHistory() {
     if (confirm('Are you sure you want to clear history?')) {
         settings.history = [];
