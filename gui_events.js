@@ -55,7 +55,7 @@ $(document).ready(function () {
         }
         settings.path_to_db = $("#screen-settings #path-to-db").val();
         settings.local_keymap = $("#screen-settings #local-keymap").val();
-        settings.history_length = $("#screen-settings #history-length").val();
+        settings.history_length = parseInt($("#screen-settings #history-length").val());
         settings.color_theme = $("[name=color_theme]:checked").val();
         setColorTheme(settings.color_theme);
         updateAppSettings();
@@ -281,6 +281,7 @@ $(document).ready(function () {
         }
         editorDataModified = false;
         displayEditorSaveButton();
+        settings.last_editing_note_id = $("#screen-edit").attr('data-id');
     });
     
     $(document).on('click', ".button-delete-note", function () {
@@ -460,14 +461,15 @@ $(document).on('submit', '#screen-change-secret-key form', function (e) {
 });
 
 $(document).on('click', ".copy-password-button", function (e) {
+    var noteID = $(this).data("note-id");
     if (e.ctrlKey) {
         var caption = $(this).text();
-        var noteID = $(this).data("note-id");
         clipTitle = $(".note[data-id="+noteID+"]").find(".title").text();
         clipBody = $(this).data("password").trim();
         addClip(clipTitle, clipBody, 1, caption);
     }
     clipboard.writeText(''+$(this).data('password'));
+    addToHistory(noteID);
 });
 
 $(document).on('keydown', "#password-edit-wrap input", function (e) {
