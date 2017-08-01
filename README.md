@@ -3,6 +3,11 @@ Indachaos
 
 Supersonic notes manager
 
+Requirements
+============
+
+sudo apt-get install sqlcipher
+
 Setup
 =====
 (instructions for Linux x64)
