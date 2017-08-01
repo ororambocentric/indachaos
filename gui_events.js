@@ -467,6 +467,12 @@ $(document).on('click', ".copy-password-button", function (e) {
         clipTitle = $(".note[data-id="+noteID+"]").find(".title").text();
         clipBody = $(this).data("password").trim();
         addClip(clipTitle, clipBody, 1, caption);
+
+        $('#button-clips').addClass('active');
+        setTimeout(function () {
+            $('#button-clips').removeClass('active');
+        }, 300);
+
     }
     clipboard.writeText(''+$(this).data('password'));
     addToHistory(noteID);

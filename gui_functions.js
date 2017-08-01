@@ -606,6 +606,12 @@ function copyText(viaClips = true) {
     if (selection == '') selection = window.getSelection().toString();
     clipboard.writeText(selection);
     clipboard.writeText(selection, 'selection');
+    if (viaClips) {
+        $('#button-clips').addClass('active');
+        setTimeout(function () {
+            $('#button-clips').removeClass('active');
+        }, 300);
+    }
     if (viaClips && clipBody != '' && selection != '') {
         addClip(clipTitle, clipBody);
         clipTitle = clipBody = '';
