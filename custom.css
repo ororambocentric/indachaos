@@ -590,3 +590,7 @@ button, input, textarea, select {
 #password-edit-wrap input.invalid {
     background: lightcoral !important;
 }
+
+#changelog {
+    width: 100%;
+}
