@@ -98,9 +98,7 @@ var vmPasswordsEditWidget = new Vue({
             displayEditorSaveButton();
         },
         deleteItem: function (index) {
-            // if (confirm('Are you sure you want to delete this password?')) {
-            //     this.todos.splice(index, 1);
-            // }
+            if (!confirm('Are you sure you want to delete this password?')) return;
 
             this.passwords.splice(index, 1);
 
@@ -108,8 +106,9 @@ var vmPasswordsEditWidget = new Vue({
             displayEditorSaveButton();
         },
         genPassword: function (index) {
-            this.passwords[index].confirm = this.passwords[index].password = genPassword();
+            if (!confirm('Are you sure you want to generate new password?')) return;
 
+            this.passwords[index].confirm = this.passwords[index].password = genPassword();
         },
         changeVisibility: function (index) {
             this.passwords[index].visibility = !this.passwords[index].visibility;
