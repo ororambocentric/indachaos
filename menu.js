@@ -280,7 +280,7 @@ const template = [
         label: 'View',
         submenu: [
             {
-                label: 'Reload',
+                label: 'Log out / reload app',
                 accelerator: 'CmdOrCtrl+R',
                 click(item, focusedWindow) {
                     if (focusedWindow) focusedWindow.reload();

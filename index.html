@@ -214,7 +214,7 @@ SOFTWARE.
             ></passwords-edit-item>
           </ul>
           <button @click="addPasswordEditWidget" id="add-password-edit-widget" type="button" class="btn btn-default">
-            <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Add secret
+            <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Add password
           </button>
         </div>
       </div>
@@ -239,6 +239,9 @@ SOFTWARE.
           <div class="input-group add-todo-group">
             <input v-model.trim="newItemInput" id="input-todo" type="text"  class="form-control" placeholder="To do..."
                    @keyup.enter="addItem">
+            <span class="input-group-btn">
+              <button @click="addItem" class="btn btn-default">Add</button>
+            </span>
           </div>
           <div v-show="!editMode.enabled" class="input-group filters-wrap">
 
