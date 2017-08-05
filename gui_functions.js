@@ -249,7 +249,11 @@ function renderFoundNote(note, patternArray, rows) {
     render += '</button>';
     render += '</div>';
     render += '<h2 class="title">'+title+'</h2>';
-    render += '<p class="date">'+note.created_at+', <b>upd</b>: '+note.updated_at+'</p>';
+    if (note.created_at == note.updated_at) {
+        render += '<p class="date">'+note.created_at+'</p>';
+    } else {
+        render += '<p class="date">'+note.created_at+', <b>up</b>: '+note.updated_at+'</p>';
+    }
     render += render_passwords;
     render += '<div class="body">';
     render += body;
