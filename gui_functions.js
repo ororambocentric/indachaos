@@ -249,6 +249,7 @@ function renderFoundNote(note, patternArray, rows) {
     render += '</button>';
     render += '</div>';
     render += '<h2 class="title">'+title+'</h2>';
+    render += '<p class="date">'+note.created_at+', <b>upd</b>: '+note.updated_at+'</p>';
     render += render_passwords;
     render += '<div class="body">';
     render += body;
@@ -279,7 +280,7 @@ function searchNotes(pattern, id) {
         for (var i in patternArray) {
             var keymaped1 = alterKeymap(patternArray[i], 'en', settings.local_keymap);
             var keymaped2 = alterKeymap(patternArray[i], settings.local_keymap, 'en');
-            extra += " (note.title LIKE '%"+patternArray[i]+"%' OR note.ltitle LIKE '%"+patternArray[i]+"%' OR note.body LIKE '%"+patternArray[i]+"%' or note.lbody LIKE '%"+patternArray[i]+"%' or password.name LIKE '%"+patternArray[i]+"%' or password.lname LIKE '%"+patternArray[i]+"%'";
+            extra += " (note.title LIKE '%"+patternArray[i]+"%' OR note.ltitle LIKE '%"+patternArray[i]+"%' OR note.body LIKE '%"+patternArray[i]+"%' or note.lbody LIKE '%"+patternArray[i]+"%' OR note.created_at LIKE '%"+patternArray[i]+"%' or note.updated_at LIKE '%"+patternArray[i]+"%' or password.name LIKE '%"+patternArray[i]+"%' or password.lname LIKE '%"+patternArray[i]+"%'";
             extra += " OR note.title LIKE '%"+keymaped1+"%' OR note.ltitle LIKE '%"+keymaped1+"%' OR note.body LIKE '%"+keymaped1+"%' or note.lbody LIKE '%"+keymaped1+"%' or password.name LIKE '%"+keymaped1+"%' or password.lname LIKE '%"+keymaped1+"%'";
             extra += " OR note.title LIKE '%"+keymaped2+"%' OR note.ltitle LIKE '%"+keymaped2+"%' OR note.body LIKE '%"+keymaped2+"%' or note.lbody LIKE '%"+keymaped2+"%' or password.name LIKE '%"+keymaped2+"%' or password.lname LIKE '%"+keymaped2+"%')";
 

@@ -87,6 +87,11 @@ h2 {
     color: #ddd;
 }
 
+#search-results-area .note .date{
+    font-size: 11px;
+    color: #686868;
+}
+
 .status-bar {
     background: #2b2b2b;
     padding: 4px;

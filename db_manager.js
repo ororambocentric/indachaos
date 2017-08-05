@@ -96,7 +96,11 @@ function DBManager() {
         // self.db.run("CREATE TABLE IF NOT EXISTS password (id INTEGER PRIMARY KEY AUTOINCREMENT, note_id INTEGER, name TEXT, lname TEXT, password TEXT)");
         // self.db.run("ALTER TABLE note DROP COLUMN marker");
 
-        self.db.run("CREATE TABLE IF NOT EXISTS note (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT, ltitle TEXT, lbody TEXT)", function () {
+        // self.db.run("ALTER TABLE note ADD COLUMN created_at TIMESTAMP");
+        // self.db.run("ALTER TABLE note ADD COLUMN updated_at TIMESTAMP");
+        // self.db.run("UPDATE note SET created_at=CURRENT_TIMESTAMP, updated_at=CURRENT_TIMESTAMP");
+
+        self.db.run("CREATE TABLE IF NOT EXISTS note (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT, ltitle TEXT, lbody TEXT, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)", function () {
             self.db.run("CREATE TABLE IF NOT EXISTS clip (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT, is_password INTEGER, caption TEXT)", function () {
                 self.db.run("CREATE TABLE IF NOT EXISTS password (id INTEGER PRIMARY KEY AUTOINCREMENT, note_id INTEGER, name TEXT, lname TEXT, password TEXT)", function () {
                     self.db.run("CREATE INDEX IF NOT EXISTS index_password_note_id ON password (note_id);");
@@ -137,7 +141,7 @@ function DBManager() {
             addPasswordsToDB(id, function () {
 
             });
-            self.db.run("UPDATE note SET title=$title, body=$body, ltitle=$ltitle, lbody=$lbody, marker=$marker WHERE id = $id", {
+            self.db.run("UPDATE note SET title=$title, body=$body, ltitle=$ltitle, lbody=$lbody, updated_at=CURRENT_TIMESTAMP WHERE id = $id", {
                 $id: id,
                 $title: title,
                 $body: body,

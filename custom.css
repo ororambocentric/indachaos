@@ -77,6 +77,11 @@ h2 {
     background: #f1f1f1;
 }
 
+#search-results-area .note .date{
+    font-size: 11px;
+    color: gray;
+}
+
 #search-results-area .note .body{
     white-space: pre-line;
     word-break: break-all;

@@ -1,6 +1,6 @@
 {
   "name": "indachaos",
-  "version": "1.11.0",
+  "version": "1.11.1",
   "description": "Supersonic notes manager",
   "main": "main.js",
   "scripts": {

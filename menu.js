@@ -177,7 +177,7 @@ const template = [
                 }
             },
             {
-                label: 'Change secret key',
+                label: 'Change password',
                 accelerator: 'F7',
                 click() {
                     if (activeScreen == 'set-secret-key' || activeScreen == 'enter-secret-key') {
